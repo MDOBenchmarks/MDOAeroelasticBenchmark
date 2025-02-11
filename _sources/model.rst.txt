@@ -168,7 +168,7 @@ Equivalent meshes with higher order 9 and 16-node quad elements are also availab
 To test the modeling capabilities relevant for analysis of modern aircraft structures, the wingbox is assumed to be made of stiffened composite panels.
 The stiffeners are assumed to have a T-shaped cross section, as shown in :numref:`figCrossSection`.
 The composite ply properties used throughout the wingbox are shown in :numref:`tabCompositeProperties`, taken from :cite:t:`Brooks2020a`.
-Both the shell and stiffeners in every panel of the wingbox are assumed to consist of a [:math:`0^{\circ}`, :math:`-45^{\circ}`, :math:`45^{\circ}`, :math:`0-^{\circ}`] layup.
+Both the shell and stiffeners in every panel of the wingbox are assumed to consist of a [:math:`0^{\circ}`, :math:`-45^{\circ}`, :math:`45^{\circ}`, :math:`90^{\circ}`] layup.
 Different layups of these plies are used for different components in the wingbox based on values used by :cite:t:`Dillinger2014`.
 In the upper and lower skin shells and in all stiffeners, we assume a :math:`0^{\circ}` biased layup with ply fractions of [44.41%, 22.2%, 22.2%, 11.19%], while in the spar and rib shells we use a more isotropic [10%, 35%, 35%, 20%].
 In the skins, the stiffeners and :math:`0^{\circ}` plies are aligned with the trailing edge spar, in the spars and ribs they are vertically oriented.
