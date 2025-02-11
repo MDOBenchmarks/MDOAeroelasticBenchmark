@@ -158,10 +158,10 @@ Structural Variables
 Due to the variety of structural modeling approaches we want to support in these benchmark problems, we do not prescribe a specific set of structural sizing variables.
 Instead we specify the following requirements for the parameterization of the wingbox:
 
-1. A stiffener pitch of :math:`150mm` should be used on all panels.
+1. A stiffener pitch of :math:`150\,\text{mm}` should be used on all panels.
 2. Each rib, and each skin and spar segment between a pair of ribs, should be treated as a separate panel with its own structural sizing variables, as shown in :numref:`figStructuralParameterisation`.
 3. The parameterization should allow the optimizer to vary the thickness of the panels.
-4. The parameterization should allow the optimizer to vary the thickness of stiffeners, and ideally their cross-section dimensions\footnote{If parameterizing the stiffener cross-section, we recommend participants link the flange width, :math:`W_\text{stiff}`, to the web height, :math:`h_\text{stiff}` (e.g keeping :math:`w_\text{stiff} = h_\text{stiff}`) rather than treating it as a separate variable.}.
+4. The parameterization should allow the optimizer to vary the thickness of stiffeners, and ideally their cross-section dimensions\footnote{If parameterizing the stiffener cross-section, we recommend participants link the flange width, :math:`W_\text{stiff}`, to the web height, :math:`h_\text{stiff}` (e.g keeping :math:`w_\text{stiff} = h_\text{stiff}`) rather than treating it as a separate variable.
 
 This structural parameterization should remain the same for all three optimization problems.
 
@@ -205,12 +205,12 @@ The primary structural constraints enforce that the wingbox has a safety factor 
 How this is achieved is left free.
 
 Adjacency constraints are enforced to avoid abrupt changes in panel sizing.
-The change in panel and stiffener thicknesses between adjacent skin and spar panels is limited to :math:`2.5mm` and the change in stiffener height to :math:`10mm`. (By this we mean that the difference between variables on two adjacent skin panels, or two adjacent spar panels, are constrained, but not the difference between a spar panel and an adjacent skin panel.)
+The change in panel and stiffener thicknesses between adjacent skin and spar panels is limited to :math:`2.5\,\text{mm}` and the change in stiffener height to :math:`10\,\text{mm}`. (By this we mean that the difference between variables on two adjacent skin panels, or two adjacent spar panels, are constrained, but not the difference between a spar panel and an adjacent skin panel.)
 Some basic structural sizing rules suggested by :cite:t:`Kassapoglou2013` should be used on all panels:
 
-* The skin and stiffener thicknesses should be at least :math:`0.6mm`
-* The stiffener heights should be at least :math:`18mm`
-* The stiffener flange widths should be at least :math:`25.4mm`
+* The skin and stiffener thicknesses should be at least :math:`0.6\,\text{mm}`
+* The stiffener heights should be at least :math:`18\,\text{mm}`
+* The stiffener flange widths should be at least :math:`25.4\,\text{mm}`
 * The aspect-ratio of the stiffener web (:math:`h_\text{stiff}/t_\text{stiff}`) should be between 5 and 30.
 * The thickness of the stiffener flanges on a panel should be no more than 15 times the panel thickness.
 * The stiffener flange width should be less than the stiffener pitch to avoid overlapping flanges.
@@ -226,7 +226,7 @@ Since the benchmark problems consider a limited selection of flight points, addi
 * The front and rear spars must be at least 75% of their baseline height throughout the span to maintain the space required to mount components such as control surface actuators :cite:p:`Liem2015a`.
 * The region between the rear spar and the trailing edge must be at least 50% of its baseline thickness to prevent the optimizer creating an unrealistically thin trailing edge.
 * The wingbox volume must be large enough to store the amount of fuel required for the mission, as computed in the objective function.
-* When the planform is varied, the wing loading :math:`\left(\text{TOGM}/2S\right)` must be no greater than :math:`600kg / m^2`.
+* When the planform is varied, the wing loading :math:`\left(\text{TOGM}/2S\right)` must be no greater than :math:`600\,\text{kg} / \text{m}^2`.
 
 When computing the fuel volume constraint, the total available fuel tank volume is the auxiliary tank volume plus the fraction of both wingboxes that is assumed to be available for fuel storage, the constraint can therefore be written as:
 
@@ -261,11 +261,11 @@ This accounts for the non-uniform rate of fuel burn over the segment.
    +============================================================================================+================================================+=====================+=====================+=====================+
    | :math:`SR_\text{-1g} \leq 1 / 1.5`                                                         | Push-down maneuver strength ratio              | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  |
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+
-   | :math:`\left|t_{\text{panel},i} - t_{\text{panel},j}\right| \leq` \SI{2.5}{\milli\metre}   | Skin/spar panel thickness adjacency            | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  |
+   | :math:`\left|t_{\text{panel},i} - t_{\text{panel},j}\right| \leq 2.5 \text{mm}`            | Skin/spar panel thickness adjacency            | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  |
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+
-   | :math:`\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq` \SI{2.5}{\milli\metre}   | Skin/spar stiffener thickness adjacency        | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  |
+   | :math:`\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq 2.5 \text{mm}`            | Skin/spar stiffener thickness adjacency        | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  |
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+
-   | :math:`\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq` \SI{10}{\milli\metre}    | Skin/spar stiffener height adjacency \tnote{*} | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  |
+   | :math:`\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq 10 \text{mm}`             | Skin/spar stiffener height adjacency \tnote{*} | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  |
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+
    | :math:`t_{\text{stiff},i} \leq 15 t_{\text{panel},i}`                                      | Maximum stiffener thickness \tnote{*}          | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  |
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+
@@ -289,5 +289,5 @@ This accounts for the non-uniform rate of fuel burn over the segment.
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+
    | :math:`M_\text{fuel}/\rho_\text{fuel} \leq V_\text{aux} + 2k_\text{tank} V_\text{wingbox}` | Fuel volume                                    |                     | :math:`\checkmark`  | :math:`\checkmark`  |
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+
-   | :math:`TOGM / 2S \leq` \SI{600}{\kg\per\metre\squared}                                     | Maximum wing loading                           |                     |                     | :math:`\checkmark`  |
+   | :math:`TOGM / 2S \leq 600 \text{kg}/\text{m}^{2}`                                          | Maximum wing loading                           |                     |                     | :math:`\checkmark`  |
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+

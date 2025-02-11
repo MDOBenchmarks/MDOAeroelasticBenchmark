@@ -11,10 +11,10 @@ Wing Geometry
 The wing geometry is shown in :numref:`figWingPlanform`, :numref:`figBoundaryConditions` and :numref:`figAirfoilSection`.
 It has a simple trapezoidal planform, based on the Boeing 717, with a constant, untwisted RAE2822 cross-section, shown in :numref:`figAirfoilSection`.
 Note that this cross section cuts through the wing on planes normal to the global Y-axis, rather than normal the quarter-chord axis.
-The cross section extends out to the nominal semispan of :math:`14m`, beyond which a small rounded tip cap extends a further :math:`42.5mm`.
+The cross section extends out to the nominal semispan of :math:`14\,\text{m}`, beyond which a small rounded tip cap extends a further :math:`42.5\,\text{mm}`.
 
 The wing contains a conformal wingbox with upper and lower skins, leading and trailing edge spars, and 23 ribs.
-The wingbox features a typical SOB break at a semispan of :math:`y = 1.5m`, inboard of which the wingbox is unswept, resembling a center-box.
+The wingbox features a typical SOB break at a semispan of :math:`y = 1.5\,\text{m}`, inboard of which the wingbox is unswept, resembling a center-box.
 Outboard of the SOB, the wingbox extends from 15 to 65% of the chord.
 Four of the ribs are evenly spaced between the centerline and the SOB, the remaining ribs are evenly spaced between the SOB and the tip.
 The wingbox is subject to symmetry conditions at the centerline and is fixed in the chordwise and vertical directions at the SOB as shown in :numref:`figBoundaryConditions`.
@@ -76,7 +76,7 @@ Aerodynamic Model
 
 A family of 3 structured multiblock CFD meshes for the wing are provided in the repository, which are summarized in :numref:`tabAeroMeshes`.
 The finest mesh (L1) is intended only for mesh convergence and analysis studies, the L2 mesh is intended for final optimizations, and the L3 mesh for debugging.
-The coarser meshes are created by repeatedly coarsening the L0 surface mesh by a factor of 2 in each direction before extruding up to a distance of :math:`300m` from the wing surface.
+The coarser meshes are created by repeatedly coarsening the L0 surface mesh by a factor of 2 in each direction before extruding up to a distance of :math:`300\,\text{m}` from the wing surface.
 The advantage of this approach is that it results in higher quality volume meshes than simply coarsening the L1 volume mesh.
 The disadvantage is that it does not provide the parametrically-similar series of grids necessary for a mathematically rigorous convergence study :cite:p:`Vassberg2011a`.
 
@@ -168,12 +168,12 @@ Equivalent meshes with higher order 9 and 16-node quad elements are also availab
 To test the modeling capabilities relevant for analysis of modern aircraft structures, the wingbox is assumed to be made of stiffened composite panels.
 The stiffeners are assumed to have a T-shaped cross section, as shown in :numref:`figCrossSection`.
 The composite ply properties used throughout the wingbox are shown in :numref:`tabCompositeProperties`, taken from :cite:t:`Brooks2020a`.
-Both the shell and stiffeners in every panel of the wingbox are assumed to consist of a [0, -45, +45, 90]\si{\degree} layup.
+Both the shell and stiffeners in every panel of the wingbox are assumed to consist of a [:math:`0^{\circ}`, :math:`-45^{\circ}`, :math:`45^{\circ}`, :math:`0-^{\circ}`] layup.
 Different layups of these plies are used for different components in the wingbox based on values used by :cite:t:`Dillinger2014`.
-In the upper and lower skin shells and in all stiffeners, we assume a \SI{0}{\degree} biased layup with ply fractions of [44.41%, 22.2%, 22.2%, 11.19%], while in the spar and rib shells we use a more isotropic [10\%, 35\%, 35\%, 20\%].
-In the skins, the stiffeners and \SI{0}{\degree} plies are aligned with the trailing edge spar, in the spars and ribs they are vertically oriented.
+In the upper and lower skin shells and in all stiffeners, we assume a :math:`0^{\circ}` biased layup with ply fractions of [44.41%, 22.2%, 22.2%, 11.19%], while in the spar and rib shells we use a more isotropic [10%, 35%, 35%, 20%].
+In the skins, the stiffeners and :math:`0^{\circ}` plies are aligned with the trailing edge spar, in the spars and ribs they are vertically oriented.
 
-.. figure:: figures/StiffenedShellModel/CrossSection.png
+.. figure:: figures/StiffenedShellModel/CrossSection.svg
    :name: figCrossSection
    :align: center
 

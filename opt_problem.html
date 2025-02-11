@@ -288,10 +288,10 @@ Note that, the exact number and form of some design variables will depend on the
 <p>Due to the variety of structural modeling approaches we want to support in these benchmark problems, we do not prescribe a specific set of structural sizing variables.
 Instead we specify the following requirements for the parameterization of the wingbox:</p>
 <ol class="arabic simple">
-<li><p>A stiffener pitch of <span class="math notranslate nohighlight">\(150mm\)</span> should be used on all panels.</p></li>
+<li><p>A stiffener pitch of <span class="math notranslate nohighlight">\(150\,\text{mm}\)</span> should be used on all panels.</p></li>
 <li><p>Each rib, and each skin and spar segment between a pair of ribs, should be treated as a separate panel with its own structural sizing variables, as shown in <a class="reference internal" href="#figstructuralparameterisation"><span class="std std-numref">Fig. 6</span></a>.</p></li>
 <li><p>The parameterization should allow the optimizer to vary the thickness of the panels.</p></li>
-<li><p>The parameterization should allow the optimizer to vary the thickness of stiffeners, and ideally their cross-section dimensionsfootnote{If parameterizing the stiffener cross-section, we recommend participants link the flange width, <span class="math notranslate nohighlight">\(W_\text{stiff}\)</span>, to the web height, <span class="math notranslate nohighlight">\(h_\text{stiff}\)</span> (e.g keeping <span class="math notranslate nohighlight">\(w_\text{stiff} = h_\text{stiff}\)</span>) rather than treating it as a separate variable.}.</p></li>
+<li><p>The parameterization should allow the optimizer to vary the thickness of stiffeners, and ideally their cross-section dimensionsfootnote{If parameterizing the stiffener cross-section, we recommend participants link the flange width, <span class="math notranslate nohighlight">\(W_\text{stiff}\)</span>, to the web height, <span class="math notranslate nohighlight">\(h_\text{stiff}\)</span> (e.g keeping <span class="math notranslate nohighlight">\(w_\text{stiff} = h_\text{stiff}\)</span>) rather than treating it as a separate variable.</p></li>
 </ol>
 <p>This structural parameterization should remain the same for all three optimization problems.</p>
 <figure class="align-center" id="figstructuralparameterisation">
@@ -330,12 +330,12 @@ As with the design variables, the exact formulation of the constraints in each b
 <p>The primary structural constraints enforce that the wingbox has a safety factor of 1.5 to both material and buckling failure in both maneuver flight conditions.
 How this is achieved is left free.</p>
 <p>Adjacency constraints are enforced to avoid abrupt changes in panel sizing.
-The change in panel and stiffener thicknesses between adjacent skin and spar panels is limited to <span class="math notranslate nohighlight">\(2.5mm\)</span> and the change in stiffener height to <span class="math notranslate nohighlight">\(10mm\)</span>. (By this we mean that the difference between variables on two adjacent skin panels, or two adjacent spar panels, are constrained, but not the difference between a spar panel and an adjacent skin panel.)
+The change in panel and stiffener thicknesses between adjacent skin and spar panels is limited to <span class="math notranslate nohighlight">\(2.5\,\text{mm}\)</span> and the change in stiffener height to <span class="math notranslate nohighlight">\(10\,\text{mm}\)</span>. (By this we mean that the difference between variables on two adjacent skin panels, or two adjacent spar panels, are constrained, but not the difference between a spar panel and an adjacent skin panel.)
 Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a class="reference internal" href="index.html#id7" title="Christos Kassapoglou. Design and Analysis of Composite Structures: With Applications to Aerospace Structures. John Wiley &amp; Sons Ltd, 2nd edition, 2013. ISBN 9781118401606. doi:10.1002/9781118536933.">Kas13</a>]</span> should be used on all panels:</p>
 <ul class="simple">
-<li><p>The skin and stiffener thicknesses should be at least <span class="math notranslate nohighlight">\(0.6mm\)</span></p></li>
-<li><p>The stiffener heights should be at least <span class="math notranslate nohighlight">\(18mm\)</span></p></li>
-<li><p>The stiffener flange widths should be at least <span class="math notranslate nohighlight">\(25.4mm\)</span></p></li>
+<li><p>The skin and stiffener thicknesses should be at least <span class="math notranslate nohighlight">\(0.6\,\text{mm}\)</span></p></li>
+<li><p>The stiffener heights should be at least <span class="math notranslate nohighlight">\(18\,\text{mm}\)</span></p></li>
+<li><p>The stiffener flange widths should be at least <span class="math notranslate nohighlight">\(25.4\,\text{mm}\)</span></p></li>
 <li><p>The aspect-ratio of the stiffener web (<span class="math notranslate nohighlight">\(h_\text{stiff}/t_\text{stiff}\)</span>) should be between 5 and 30.</p></li>
 <li><p>The thickness of the stiffener flanges on a panel should be no more than 15 times the panel thickness.</p></li>
 <li><p>The stiffener flange width should be less than the stiffener pitch to avoid overlapping flanges.</p></li>
@@ -350,7 +350,7 @@ Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a c
 <li><p>The front and rear spars must be at least 75% of their baseline height throughout the span to maintain the space required to mount components such as control surface actuators <span id="id6">[<a class="reference internal" href="index.html#id9" title="Rhea P. Liem, Gaetan K. W. Kenway, and Joaquim R. R. A. Martins. Multimission aircraft fuel burn minimization via multipoint aerostructural optimization. AIAA Journal, 53(1):104–122, January 2015. doi:10.2514/1.J052940.">LKM15</a>]</span>.</p></li>
 <li><p>The region between the rear spar and the trailing edge must be at least 50% of its baseline thickness to prevent the optimizer creating an unrealistically thin trailing edge.</p></li>
 <li><p>The wingbox volume must be large enough to store the amount of fuel required for the mission, as computed in the objective function.</p></li>
-<li><p>When the planform is varied, the wing loading <span class="math notranslate nohighlight">\(\left(\text{TOGM}/2S\right)\)</span> must be no greater than <span class="math notranslate nohighlight">\(600kg / m^2\)</span>.</p></li>
+<li><p>When the planform is varied, the wing loading <span class="math notranslate nohighlight">\(\left(\text{TOGM}/2S\right)\)</span> must be no greater than <span class="math notranslate nohighlight">\(600\,\text{kg} / \text{m}^2\)</span>.</p></li>
 </ul>
 <p>When computing the fuel volume constraint, the total available fuel tank volume is the auxiliary tank volume plus the fraction of both wingboxes that is assumed to be available for fuel storage, the constraint can therefore be written as:</p>
 <div class="math notranslate nohighlight">
@@ -384,19 +384,19 @@ This accounts for the non-uniform rate of fuel burn over the segment.</p>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{panel},i} - t_{\text{panel},j}\right| \leq\)</span> SI{2.5}{millimetre}</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{panel},i} - t_{\text{panel},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
 <td><p>Skin/spar panel thickness adjacency</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq\)</span> SI{2.5}{millimetre}</p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
 <td><p>Skin/spar stiffener thickness adjacency</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq\)</span> SI{10}{millimetre}</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq 10 \text{mm}\)</span></p></td>
 <td><p>Skin/spar stiffener height adjacency tnote{*}</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
@@ -468,7 +468,7 @@ This accounts for the non-uniform rate of fuel burn over the segment.</p>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(TOGM / 2S \leq\)</span> SI{600}{kgpermetresquared}</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(TOGM / 2S \leq 600 \text{kg}/\text{m}^{2}\)</span></p></td>
 <td><p>Maximum wing loading</p></td>
 <td></td>
 <td></td>
