@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Optimization Problems &#8212; Aeroelastic Optimization Benchmark</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=5283bb3d" />
+    
+    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Required Results" href="required_results.html" />
+    <link rel="prev" title="Wing Model" href="model.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="required_results.html" title="Required Results"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="model.html" title="Wing Model"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AOB</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Optimization Problems</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="optimization-problems">
+<h1>Optimization Problems<a class="headerlink" href="#optimization-problems" title="Link to this heading">¶</a></h1>
+<p>This section describes our three proposed benchmark optimization problems to be applied to the STW.
+The three problems build on one another with the intention of allowing researchers to test their tools on increasingly complex problems:</p>
+<ol class="arabic simple">
+<li><p><strong>Case 1</strong>: Structural mass minimization with a fixed geometry.</p></li>
+<li><p><strong>Case 2</strong>: Fuel burn minimization with a fixed wing planform.</p></li>
+<li><p><strong>Case 3</strong>: Fuel burn minimization with a variable wing planform.</p></li>
+</ol>
+<p><a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a> list information about the aircraft and the flight conditions used in the optimization problems, which are all based on publicly available data on the high gross-weight variant of the Boeing 717.</p>
+<table class="docutils align-default" id="tabaircraftspec">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Aircraft and mission specifications, based on the Boeing 717 high gross-weight variant.</span><a class="headerlink" href="#tabaircraftspec" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><strong>Quantity</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Baseline wing geometry</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td><p>Semispan</p></td>
+<td><p><span class="math notranslate nohighlight">\(14\,\text{m}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(C_\text{root}\)</span></p></td>
+<td><p>Root chord</p></td>
+<td><p><span class="math notranslate nohighlight">\(5\,\text{m}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(C_\text{tip}\)</span></p></td>
+<td><p>Tip chord</p></td>
+<td><p><span class="math notranslate nohighlight">\(1.5\,\text{m}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(S\)</span></p></td>
+<td><p>Planform area (single wing)</p></td>
+<td><p><span class="math notranslate nohighlight">\(45.5\,\text{m}^2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\text{MAC}\)</span></p></td>
+<td><p>Mean aerodynamic chord</p></td>
+<td><p><span class="math notranslate nohighlight">\(3.56\,\text{m}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Masses</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(M_\text{payload}\)</span></p></td>
+<td><p>Payload mass</p></td>
+<td><p><span class="math notranslate nohighlight">\(14.5e3\,\text{kg}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(M_\text{frame}\)</span></p></td>
+<td><p>Operating empty mass (minus wing)</p></td>
+<td><p><span class="math notranslate nohighlight">\(25e3\,\text{kg}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(M_\text{fuel, res}\)</span></p></td>
+<td><p>Reserve fuel mass</p></td>
+<td><p><span class="math notranslate nohighlight">\(2e3\,\text{kg}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Fuelburn calculation parameters</strong></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(R\)</span></p></td>
+<td><p>Nominal range</p></td>
+<td><p><span class="math notranslate nohighlight">\(3815\,\text{km}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(R_\text{climb}\)</span></p></td>
+<td><p>Climb segment range</p></td>
+<td><p><span class="math notranslate nohighlight">\(290\,\text{km}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(V_\text{climb}\)</span></p></td>
+<td><p>Average climb speed</p></td>
+<td><p><span class="math notranslate nohighlight">\(350\,\text{mph}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(C_{D,\text{frame}}\)</span></p></td>
+<td><p>Airframe drag coefficient (fuselage + tail + nacelle)</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.01508\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(k_\text{tank}\)</span></p></td>
+<td><p>Assumed fraction of wingbox that can store fuel</p></td>
+<td><p><span class="math notranslate nohighlight">\(0.85\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(V_\text{aux}\)</span></p></td>
+<td><p>Auxilliary fuel tank volume</p></td>
+<td><p><span class="math notranslate nohighlight">\(2.763\,\text{m}^{3}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\text{TSFC}\)</span></p></td>
+<td><p>Thrust specific fuel consumption</p></td>
+<td><p><span class="math notranslate nohighlight">\(18e-6\,\text{kg}/\text{N\,s}\)</span></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><span class="math notranslate nohighlight">\(\rho_\text{fuel}\)</span></p></td>
+<td><p>Fuel density</p></td>
+<td><p><span class="math notranslate nohighlight">\(804\,\text{kg}/\text{m}^3\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="tabflightconditions">
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Flight conditions</span><a class="headerlink" href="#tabflightconditions" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Flight point</strong></p></th>
+<th class="head"><p><strong>Altitude</strong></p></th>
+<th class="head"><p><strong>Mach number</strong></p></th>
+<th class="head"><p><strong>Load factor</strong></p></th>
+<th class="head"><p><strong>Aircraft mass</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cruise</p></td>
+<td><p><span class="math notranslate nohighlight">\(10400\,\text{m}\)</span></p></td>
+<td><p>0.7</p></td>
+<td><p>1</p></td>
+<td><p><span class="math notranslate nohighlight">\(\sqrt{M_\text{cruise, start}\times LGM}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Pull-up Maneuver</p></td>
+<td><p><span class="math notranslate nohighlight">\(0\,\text{m}\)</span></p></td>
+<td><p>0.458</p></td>
+<td><p>2.5</p></td>
+<td><p><span class="math notranslate nohighlight">\(LGM\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Push-down Maneuver</p></td>
+<td><p><span class="math notranslate nohighlight">\(0\,\text{m}\)</span></p></td>
+<td><p>0.458</p></td>
+<td><p>-1</p></td>
+<td><p><span class="math notranslate nohighlight">\(LGM\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<section id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">¶</a></h2>
+<p>The objective function to be minimized in <strong>Case 1</strong> is the wingbox mass, computed from the FE model.
+The objective function for cases 2 and 3 is the fuel burn over a given mission.
+The fuel burn is computed using a two-stage process that accounts for the fuel burn in both cruise and climb.
+This process starts by computing the landing gross mass (<span class="math notranslate nohighlight">\(\text{LGM}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\text{LGM} = M_\text{payload} + M_\text{frame} + M_\text{fuel, res} + 2M_\text{wing}\]</div>
+<p>The total mass of a single wing is computed using the regression model created by <span id="id1">Mariens <em>et al.</em> [<a class="reference internal" href="index.html#id10" title="J. Mariens, A. Elham, and M. J.L. Van Tooren. Influence of weight modelling on the outcome of wing design using multidisciplinary design optimisation techniques. Aeronautical Journal, 117(1195):871–895, 2013. doi:10.1017/S0001924000008563.">MEVanTooren13</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[M_\text{wing} = 10.147  M_\text{wingbox}^{0.8162}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(M_\text{wingbox}\)</span> is the wingbox mass.</p>
+<p>Assuming the fuel burn during descent and landing is negligible, the mass at the start of the cruise phase, and then the takeoff gross mass (<span class="math notranslate nohighlight">\(\text{TOGM}\)</span>) are computed by rearranging the Breguet range equation:</p>
+<div class="math notranslate nohighlight" id="equation-eqfuelburn">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqfuelburn" title="Link to this equation">¶</a></span>\[\begin{split}\begin{align}
+M_\text{cruise, start} &amp; = \text{LGM} \exp\left(\frac{R \times TSFC}{V_\text{cruise}}  \left(\frac{D_\text{cruise}}{L_\text{cruise}}\right)\right)                                                      \\
+\text{TOGM}            &amp; = M_\text{cruise, start} \exp\left(\frac{R_\text{climb} \times TSFC}{V_\text{climb}}  \left(\frac{\cos(\gamma) }{L_\text{cruise}/D_\text{cruise}} + \sin(\gamma)\right)\right) \\
+FB                     &amp; = \text{TOGM} - \text{LGM}
+\end{align}\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\gamma\)</span> is the climb angle (SI{2.054}{degree}), computed based on the assumed climb range and cruise altitude given in <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a>.</p>
+<p>The lift and drag in the cruise condition are computed using an aeroelastic analysis, the values are doubled to get the full aircraft values, and the drag of un-modeled components (fuselage, tail, and nacelles) is added:</p>
+<div class="math notranslate nohighlight">
+\[L_\text{cruise} = 2L_\text{wing} \qquad D_\text{cruise} = 2\left(D_\text{wing} + q_\text{cruise} S C_{D,\text{frame}}\right)\]</div>
+<p>Where <span class="math notranslate nohighlight">\(C_{D,\text{frame}}\)</span> is estimated using a conceptual drag build-up implemented by <span id="id2">Adler and Martins [<a class="reference internal" href="index.html#id3" title="Eytan J. Adler and Joaquim R. R. A. Martins. Blended wing body configuration for hydrogen-powered aviation. In AIAA Aviation 2023 Forum. June 2023. doi:10.2514/6.2023-4020.">AM23</a>]</span> based on the methods of <span id="id3">Torenbeek [<a class="reference internal" href="index.html#id13" title="E. Torenbeek. Synthesis of Subsonic Airplane Design. Delft University Press and Kluwer Academic Publishers, 6th edition, 1990.">Tor90</a>]</span> and <span id="id4">Raymer [<a class="reference internal" href="index.html#id12" title="Daniel P. Raymer. Aircraft Design: A Conceptual Approach. AIAA, 2nd edition, 1992.">Ray92</a>]</span>.
+<span class="math notranslate nohighlight">\(S\)</span> is the baseline single wing planform area from <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and does not vary during optimization since we assume that the remainder of the aircraft remains identical.</p>
+</section>
+<section id="design-variables">
+<h2>Design Variables<a class="headerlink" href="#design-variables" title="Link to this heading">¶</a></h2>
+<p>The primary differences between the three benchmark problems are the amount of design freedom given to the optimizer through the design variables.
+<a class="reference internal" href="#taboptprob-dvs"><span class="std std-numref">Table 6</span></a> summarizes these design variables.
+Note that, the exact number and form of some design variables will depend on the structural modeling and geometric parameterization approaches used, as is explained in the following sections.</p>
+<table class="docutils align-default" id="taboptprob-dvs">
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">Design variables to be used in the benchmark problems</span><a class="headerlink" href="#taboptprob-dvs" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
+<th class="head"><p><strong>Case 1</strong></p></th>
+<th class="head"><p><strong>Case 2</strong></p></th>
+<th class="head"><p><strong>Case 3</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Structural sizing</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Pull-up maneuver angle of attack</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Push-down maneuver angle of attack</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Cruise angle of attack</p></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Twist distribution</p></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Section shapes</p></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Chord distribution</p></td>
+<td></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Span</p></td>
+<td></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Sweep</p></td>
+<td></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="structural-variables">
+<h2>Structural Variables<a class="headerlink" href="#structural-variables" title="Link to this heading">¶</a></h2>
+<p>Due to the variety of structural modeling approaches we want to support in these benchmark problems, we do not prescribe a specific set of structural sizing variables.
+Instead we specify the following requirements for the parameterization of the wingbox:</p>
+<ol class="arabic simple">
+<li><p>A stiffener pitch of <span class="math notranslate nohighlight">\(150mm\)</span> should be used on all panels.</p></li>
+<li><p>Each rib, and each skin and spar segment between a pair of ribs, should be treated as a separate panel with its own structural sizing variables, as shown in <a class="reference internal" href="#figstructuralparameterisation"><span class="std std-numref">Fig. 6</span></a>.</p></li>
+<li><p>The parameterization should allow the optimizer to vary the thickness of the panels.</p></li>
+<li><p>The parameterization should allow the optimizer to vary the thickness of stiffeners, and ideally their cross-section dimensionsfootnote{If parameterizing the stiffener cross-section, we recommend participants link the flange width, <span class="math notranslate nohighlight">\(W_\text{stiff}\)</span>, to the web height, <span class="math notranslate nohighlight">\(h_\text{stiff}\)</span> (e.g keeping <span class="math notranslate nohighlight">\(w_\text{stiff} = h_\text{stiff}\)</span>) rather than treating it as a separate variable.}.</p></li>
+</ol>
+<p>This structural parameterization should remain the same for all three optimization problems.</p>
+<figure class="align-center" id="figstructuralparameterisation">
+<img alt="_images/StructuralParameterisation-General.png" src="_images/StructuralParameterisation-General.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Each separately colored wingbox panel should be given it’s own structural sizing variables.</span><a class="headerlink" href="#figstructuralparameterisation" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="geometric-variables">
+<h2>Geometric Variables<a class="headerlink" href="#geometric-variables" title="Link to this heading">¶</a></h2>
+<p>In <strong>Case 1</strong>, the wing geometry is fixed and thus there are no geometric design variables.
+In <strong>Case 2</strong>, the section shapes of the wing may be changed in the z direction, and the twist distribution may be varied.
+In <strong>Case 3</strong>, the optimizer may also vary the span, sweep, and chord distribution.
+The parameterization method used to achieve these changes (e.g FFD, CAD etc) and the level of detail (e.g number of values used to define the twist distribution) are left free.
+However, the following requirements must be satisfied:</p>
+<ul class="simple">
+<li><p>The twisting must occur about the leading edge of the wing.</p></li>
+<li><p>The root of the wing (at the symmetry plane) must not be twisted.</p></li>
+<li><p>The shape changes must be parameterized in a manner that does not allow the optimizer to achieve twisting of the section shapes.</p></li>
+<li><p>The SOB junction of the wingbox should not move in the y direction.</p></li>
+<li><p>The leading edge of the wing must remain straight, save for a potential break at the SOB junction.</p></li>
+</ul>
+</section>
+<section id="aerodynamic-variables">
+<h2>Aerodynamic Variables<a class="headerlink" href="#aerodynamic-variables" title="Link to this heading">¶</a></h2>
+<p>Finally, the optimizer can control the angles of attack at each flight point to meet the lift constraints described in the Constraints section.</p>
+</section>
+<section id="constraints">
+<h2>Constraints<a class="headerlink" href="#constraints" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="#taboptprob-constraints"><span class="std std-numref">Table 7</span></a> provides a high-level summary the constraints applied in the 3 benchmark problems.
+As with the design variables, the exact formulation of the constraints in each benchmark problem will depend to some extent on the structural modeling and geometric parameterization approaches used by participants.</p>
+</section>
+<section id="structural-constraints">
+<h2>Structural Constraints<a class="headerlink" href="#structural-constraints" title="Link to this heading">¶</a></h2>
+<p>The primary structural constraints enforce that the wingbox has a safety factor of 1.5 to both material and buckling failure in both maneuver flight conditions.
+How this is achieved is left free.</p>
+<p>Adjacency constraints are enforced to avoid abrupt changes in panel sizing.
+The change in panel and stiffener thicknesses between adjacent skin and spar panels is limited to <span class="math notranslate nohighlight">\(2.5mm\)</span> and the change in stiffener height to <span class="math notranslate nohighlight">\(10mm\)</span>. (By this we mean that the difference between variables on two adjacent skin panels, or two adjacent spar panels, are constrained, but not the difference between a spar panel and an adjacent skin panel.)
+Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a class="reference internal" href="index.html#id7" title="Christos Kassapoglou. Design and Analysis of Composite Structures: With Applications to Aerospace Structures. John Wiley &amp; Sons Ltd, 2nd edition, 2013. ISBN 9781118401606. doi:10.1002/9781118536933.">Kas13</a>]</span> should be used on all panels:</p>
+<ul class="simple">
+<li><p>The skin and stiffener thicknesses should be at least <span class="math notranslate nohighlight">\(0.6mm\)</span></p></li>
+<li><p>The stiffener heights should be at least <span class="math notranslate nohighlight">\(18mm\)</span></p></li>
+<li><p>The stiffener flange widths should be at least <span class="math notranslate nohighlight">\(25.4mm\)</span></p></li>
+<li><p>The aspect-ratio of the stiffener web (<span class="math notranslate nohighlight">\(h_\text{stiff}/t_\text{stiff}\)</span>) should be between 5 and 30.</p></li>
+<li><p>The thickness of the stiffener flanges on a panel should be no more than 15 times the panel thickness.</p></li>
+<li><p>The stiffener flange width should be less than the stiffener pitch to avoid overlapping flanges.</p></li>
+</ul>
+<p>Participants should enforce as many of these constraints as are applicable to their structural sizing parameterization in all three benchmark problems.</p>
+</section>
+<section id="geometric-constraints">
+<h2>Geometric Constraints<a class="headerlink" href="#geometric-constraints" title="Link to this heading">¶</a></h2>
+<p>Since the benchmark problems consider a limited selection of flight points, additional geometric constraints are required to ensure the optimizer produces a realistic wing geometry:</p>
+<ul class="simple">
+<li><p>The wing’s leading edge radius must be at least 90% of its baseline value throughout the span to maintain reasonable low-speed performance.</p></li>
+<li><p>The front and rear spars must be at least 75% of their baseline height throughout the span to maintain the space required to mount components such as control surface actuators <span id="id6">[<a class="reference internal" href="index.html#id9" title="Rhea P. Liem, Gaetan K. W. Kenway, and Joaquim R. R. A. Martins. Multimission aircraft fuel burn minimization via multipoint aerostructural optimization. AIAA Journal, 53(1):104–122, January 2015. doi:10.2514/1.J052940.">LKM15</a>]</span>.</p></li>
+<li><p>The region between the rear spar and the trailing edge must be at least 50% of its baseline thickness to prevent the optimizer creating an unrealistically thin trailing edge.</p></li>
+<li><p>The wingbox volume must be large enough to store the amount of fuel required for the mission, as computed in the objective function.</p></li>
+<li><p>When the planform is varied, the wing loading <span class="math notranslate nohighlight">\(\left(\text{TOGM}/2S\right)\)</span> must be no greater than <span class="math notranslate nohighlight">\(600kg / m^2\)</span>.</p></li>
+</ul>
+<p>When computing the fuel volume constraint, the total available fuel tank volume is the auxiliary tank volume plus the fraction of both wingboxes that is assumed to be available for fuel storage, the constraint can therefore be written as:</p>
+<div class="math notranslate nohighlight">
+\[M_\text{fuel}/\rho_\text{fuel} \leq V_\text{aux} + 2k_\text{tank} V_\text{wingbox}\]</div>
+<p>or:</p>
+<div class="math notranslate nohighlight">
+\[\frac{M_\text{fuel}/\rho_\text{fuel} - V_\text{aux}}{2k_\text{tank} V_\text{wingbox}} \leq 1\]</div>
+<p>which is better scaled.
+Note that the total fuel mass, <span class="math notranslate nohighlight">\(M_\text{fuel}\)</span>, is the sum of the fuel burn computed using <a class="reference internal" href="#equation-eqfuelburn">(1)</a> and the reserve fuel mass given in <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a>.</p>
+</section>
+<section id="aerodynamic-constraints">
+<h2>Aerodynamic Constraints<a class="headerlink" href="#aerodynamic-constraints" title="Link to this heading">¶</a></h2>
+<p>The lift produced by the wing at each flight point must be equal to the aircraft weight multiplied by the relevant load factor.
+The maneuvers are assumed to be performed at the LGM since the inertial relief of the fuel is not included in the structural model.
+The aircraft mass for the cruise condition is taken to be the mid-cruise mass, which is the geometric average of the cruise start and end masses.
+This accounts for the non-uniform rate of fuel burn over the segment.</p>
+<table class="docutils align-default" id="taboptprob-constraints">
+<caption><span class="caption-number">Table 7 </span><span class="caption-text">Constraints to be enforced in the benchmark problems</span><a class="headerlink" href="#taboptprob-constraints" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(SR_\text{2.5g} \leq 1 / 1.5\)</span></p></th>
+<th class="head"><p>Pull-up maneuver strength ratio</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(SR_\text{-1g} \leq 1 / 1.5\)</span></p></td>
+<td><p>Push-down maneuver strength ratio</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{panel},i} - t_{\text{panel},j}\right| \leq\)</span> SI{2.5}{millimetre}</p></td>
+<td><p>Skin/spar panel thickness adjacency</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq\)</span> SI{2.5}{millimetre}</p></td>
+<td><p>Skin/spar stiffener thickness adjacency</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq\)</span> SI{10}{millimetre}</p></td>
+<td><p>Skin/spar stiffener height adjacency tnote{*}</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t_{\text{stiff},i} \leq 15 t_{\text{panel},i}\)</span></p></td>
+<td><p>Maximum stiffener thickness tnote{*}</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \leq 30 t_{\text{stiff},i}\)</span></p></td>
+<td><p>Maximum stiffener aspect-ratio tnote{*}</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \geq 5 t_{\text{stiff},i}\)</span></p></td>
+<td><p>Minimum stiffener aspect-ratio tnote{*}</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(w_{\text{stiff},i} \leq p_{\text{stiff},i}\)</span></p></td>
+<td><p>Minimum stiffener spacing tnote{*}</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(L_\text{2.5g} = 2.5 LGM g\)</span></p></td>
+<td><p>Pull-up maneuver lift level</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(L_\text{-1g} = -LGM g\)</span></p></td>
+<td><p>Push-down maneuver lift level</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(L_\text{cruise} = M_\text{mid-cruise} g\)</span></p></td>
+<td><p>Cruise maneuver lift level</p></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t_\text{spar} \geq 0.75 t_{\text{spar},0}\)</span></p></td>
+<td><p>Minimum Spar height</p></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t \geq  0.5 t_{0}\)</span></p></td>
+<td><p>Minimum TE thickness</p></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_\text{LE} \geq 0.9 R_{\text{LE},0}\)</span></p></td>
+<td><p>Minimum Leading edge radius</p></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(M_\text{fuel}/\rho_\text{fuel} \leq V_\text{aux} + 2k_\text{tank} V_\text{wingbox}\)</span></p></td>
+<td><p>Fuel volume</p></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(TOGM / 2S \leq\)</span> SI{600}{kgpermetresquared}</p></td>
+<td><p>Maximum wing loading</p></td>
+<td></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Optimization Problems</a><ul>
+<li><a class="reference internal" href="#objectives">Objectives</a></li>
+<li><a class="reference internal" href="#design-variables">Design Variables</a></li>
+<li><a class="reference internal" href="#structural-variables">Structural Variables</a></li>
+<li><a class="reference internal" href="#geometric-variables">Geometric Variables</a></li>
+<li><a class="reference internal" href="#aerodynamic-variables">Aerodynamic Variables</a></li>
+<li><a class="reference internal" href="#constraints">Constraints</a></li>
+<li><a class="reference internal" href="#structural-constraints">Structural Constraints</a></li>
+<li><a class="reference internal" href="#geometric-constraints">Geometric Constraints</a></li>
+<li><a class="reference internal" href="#aerodynamic-constraints">Aerodynamic Constraints</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="model.html"
+                          title="previous chapter">Wing Model</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="required_results.html"
+                          title="next chapter">Required Results</a></p>
+  </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="required_results.html" title="Required Results"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="model.html" title="Wing Model"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AOB</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Optimization Problems</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Aeroelastic Optimization Benchmark organizers.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    </div>
+  </body>
+</html>

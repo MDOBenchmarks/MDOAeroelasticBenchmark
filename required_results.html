@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Required Results &#8212; Aeroelastic Optimization Benchmark</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=5283bb3d" />
+    
+    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Optimization Problems" href="opt_problem.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="opt_problem.html" title="Optimization Problems"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AOB</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Required Results</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="required-results">
+<h1>Required Results<a class="headerlink" href="#required-results" title="Link to this heading">¶</a></h1>
+<section id="benchmark-analyses">
+<h2>Benchmark Analyses<a class="headerlink" href="#benchmark-analyses" title="Link to this heading">¶</a></h2>
+<p>In order to quantify the differences between the codes and meshes used by participants separately from differences in optimized designs, participants should provide the following results for the baseline wing.
+These analyses should be performed using the same meshes participants use for their optimizations.
+They should be performed using the baseline geometry and the following structural sizing variables on every panel:</p>
+<table class="docutils align-default" id="tabbaselinesizing">
+<caption><span class="caption-number">Table 8 </span><span class="caption-text">Panel variables</span><a class="headerlink" href="#tabbaselinesizing" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
+<th class="head"><p><strong>Value</strong> (m)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Stiffener Pitch</p></td>
+<td><p>0.15</p></td>
+</tr>
+<tr class="row-odd"><td><p>Panel Thickness</p></td>
+<td><p>0.0065</p></td>
+</tr>
+<tr class="row-even"><td><p>Stiffener Height</p></td>
+<td><p>0.05</p></td>
+</tr>
+<tr class="row-odd"><td><p>Stiffener Thickness</p></td>
+<td><p>0.006</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="benchmark-aerodynamic-analysis">
+<h2>Benchmark Aerodynamic Analysis<a class="headerlink" href="#benchmark-aerodynamic-analysis" title="Link to this heading">¶</a></h2>
+<p>Report the values of <span class="math notranslate nohighlight">\(C_L\)</span> and <span class="math notranslate nohighlight">\(C_D\)</span> for the baseline OML in the cruise condition at angles of attack from 0 to <span class="math notranslate nohighlight">\(5^{\circ}\)</span> in steps of at most <span class="math notranslate nohighlight">\(1^{\circ}\)</span>.</p>
+</section>
+<section id="benchmark-structural-analysis">
+<h2>Benchmark Structural Analysis<a class="headerlink" href="#benchmark-structural-analysis" title="Link to this heading">¶</a></h2>
+<p>Simulate the baseline wing under a uniform pressure load of <span class="math notranslate nohighlight">\(30kPa\)</span> applied to the lower skin of the wingbox, include 2.5g inertial (a.k.a self-weight) loads.
+Report the tip deflection and twist, compliance (total strain energy), and separate factors of safety for material and buckling failure.
+The tip deflection and twist should be calculated using the deflections at the top corners of the tip rib, as shown in <a class="reference internal" href="#figtipdispequations"><span class="std std-numref">Fig. 7</span></a>.</p>
+<figure class="align-default" id="figtipdispequations">
+<img alt="_images/TipDispEquations.png" src="_images/TipDispEquations.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Method for calculating wing tip deflections.</span><a class="headerlink" href="#figtipdispequations" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="benchmark-aeroelastic-analysis">
+<h2>Benchmark Aeroelastic Analysis<a class="headerlink" href="#benchmark-aeroelastic-analysis" title="Link to this heading">¶</a></h2>
+<p>Perform aeroelastic analyss of the baseline wing in the cruise condition at an angle of attack of <span class="math notranslate nohighlight">\(3.25^{\circ}\)</span>, include 1g inertial (a.k.a self-weight) loads.
+Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="math notranslate nohighlight">\(C_D\)</span>, and the same values reported for the benchmark structural analysis.</p>
+</section>
+<section id="optimization-results">
+<h2>Optimization Results<a class="headerlink" href="#optimization-results" title="Link to this heading">¶</a></h2>
+<p>Participants are free to start their optimizations from any initial design they choose, a sensible progression would be:</p>
+<ul class="simple">
+<li><p>Generate a reasonable structural sizing by performing a structural optimization under fixed loads.</p></li>
+<li><p>Start the <strong>Case 1</strong> optimization from this design.</p></li>
+<li><p>Use the optimized design from <strong>Case 1</strong> as the starting point for <strong>Case 2</strong>.</p></li>
+<li><p>Use the optimized design from <strong>Case 2</strong> as the starting point for <strong>Case 3</strong>.</p></li>
+</ul>
+<p>However, participants should ensure that the reference values used in the geometric constraints (e.g leading edge radii, spar heights etc) are from the baseline geometry.</p>
+<p>Participants should provide the following results at a minimum:</p>
+</section>
+<section id="case-1">
+<h2>Case 1<a class="headerlink" href="#case-1" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Wall clock time and total number of CPU hours required for each optimization and a brief description of the hardware used.</p></li>
+<li><p>Convergence plots showing the objective value along with measures of constraint violation and optimality vs iterations, function evaluations, or wall time. The criteria used to terminate the optimization should also be described. Most gradient-based optimizers report some norm of the gradient of the Lagrangian as an <em>Optimality</em> value which is used to judge satisfaction of the KKT conditions <span id="id1">[<a class="reference internal" href="index.html#id11" title="Joaquim R. R. A. Martins and Andrew Ning. Engineering Design Optimization. Cambridge University Press, Cambridge, UK, January 2022. ISBN 9781108833417. URL: https://mdobook.github.io, doi:10.1017/9781108980647.">MN22</a>]</span> (Section 5.3). If your optimizer does not provide such a value then you should describe the stopping criteria of your optimization.</p></li>
+<li><p>Spanwise lift distribution plots for the initial and optimized designs in all flight conditions.</p></li>
+<li><p>Plots of the spanwise structural sizing distributions in the upper and lower skins, and the leading and trailing edge spars. Participants should plot the equivalent axial thickness, which is the thickness of an unstiffened panel with the same axial stiffness as the stiffened panel. This can be computed as <span class="math notranslate nohighlight">\(t_\text{eq} = t_\text{panel}+A_\text{stiff}/P_\text{stiff}\)</span>, where <span class="math notranslate nohighlight">\(t_\text{panel}\)</span> is the panel thickness, <span class="math notranslate nohighlight">\(A_\text{stiff}\)</span> is the stiffener cross-sectional area, and <span class="math notranslate nohighlight">\(P_\text{stiff}\)</span> is the stiffener pitch.</p></li>
+<li><dl class="simple">
+<dt>Quantities of interest for the optimized design:</dt><dd><ul>
+<li><p>Wingbox structural mass</p></li>
+<li><p>Wing total mass</p></li>
+<li><p>Aircraft landing gross mass</p></li>
+<li><p>Angle of attack in each maneuver condition</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="case-2">
+<h2>Case 2<a class="headerlink" href="#case-2" title="Link to this heading">¶</a></h2>
+<p>As for <strong>Case 1</strong> plus:</p>
+<ul class="simple">
+<li><p>Plots of in-flight twist distributions for each flight condition for the initial and optimized designs.</p></li>
+<li><p>Airfoil shapes and cruise Cp distributions of initial and optimized designs at 10, 30, 50, 70 and 90% semispan locations.</p></li>
+<li><dl class="simple">
+<dt>Additional quantities of interest for the optimized design:</dt><dd><ul>
+<li><p>Cruise angle of attack</p></li>
+<li><p>Cruise lift-to-drag ratio (including airframe drag)</p></li>
+<li><p>Total fuel burn</p></li>
+<li><p>Take-off gross mass</p></li>
+<li><p>Fuel tank usage <span class="math notranslate nohighlight">\(\left(\frac{M_\text{fuel}/\rho_\text{fuel} - V_\text{aux}}{2k_\text{tank} V_\text{wingbox}}\right)\)</span></p></li>
+<li><p>Lift to drag ratio for the optimized wing for a range of (pm 1)si{degree} angle of attack and (pm 0.02) Mach number relative to the cruise condition. Participants should simulate at least the 9 points shown in <a class="reference internal" href="#figpostoptimalitypolarstencil"><span class="std std-numref">Fig. 8</span></a>, but may choose to simulate more points within the range if desired.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<figure class="align-default" id="figpostoptimalitypolarstencil">
+<img alt="_images/PostOptimalityPolarStencil.png" src="_images/PostOptimalityPolarStencil.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Minimum required stencil for the post-optimality study.</span><a class="headerlink" href="#figpostoptimalitypolarstencil" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="case-3">
+<h2>Case 3<a class="headerlink" href="#case-3" title="Link to this heading">¶</a></h2>
+<p>As for <strong>Case 2</strong> plus:</p>
+<p>Additional quantities of interest for the optimized design:</p>
+<ul class="simple">
+<li><p>Wing semispan</p></li>
+<li><p>Wing aspect ratio</p></li>
+<li><p>Wing taper ratio</p></li>
+<li><p>Wing leading edge sweep angle</p></li>
+<li><p>Wing area</p></li>
+<li><p>Wing loading</p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Required Results</a><ul>
+<li><a class="reference internal" href="#benchmark-analyses">Benchmark Analyses</a></li>
+<li><a class="reference internal" href="#benchmark-aerodynamic-analysis">Benchmark Aerodynamic Analysis</a></li>
+<li><a class="reference internal" href="#benchmark-structural-analysis">Benchmark Structural Analysis</a></li>
+<li><a class="reference internal" href="#benchmark-aeroelastic-analysis">Benchmark Aeroelastic Analysis</a></li>
+<li><a class="reference internal" href="#optimization-results">Optimization Results</a></li>
+<li><a class="reference internal" href="#case-1">Case 1</a></li>
+<li><a class="reference internal" href="#case-2">Case 2</a></li>
+<li><a class="reference internal" href="#case-3">Case 3</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="opt_problem.html"
+                          title="previous chapter">Optimization Problems</a></p>
+  </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="opt_problem.html" title="Optimization Problems"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">AOB</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Required Results</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, Aeroelastic Optimization Benchmark organizers.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    </div>
+  </body>
+</html>
