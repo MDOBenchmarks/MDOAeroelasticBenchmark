@@ -87,7 +87,7 @@ As for **Case 1** plus:
    * Total fuel burn
    * Take-off gross mass
    * Fuel tank usage :math:`\left(\frac{M_\text{fuel}/\rho_\text{fuel} - V_\text{aux}}{2k_\text{tank} V_\text{wingbox}}\right)`
-   * Lift to drag ratio for the optimized wing for a range of \(\pm 1\)\si{\degree} angle of attack and \(\pm 0.02\) Mach number relative to the cruise condition. Participants should simulate at least the 9 points shown in :numref:`figPostOptimalityPolarStencil`, but may choose to simulate more points within the range if desired.
+   * Lift to drag ratio for the optimized wing for a range of :math:`\pm 1^{\circ}` angle of attack and :math:`\pm 0.02` Mach number relative to the cruise condition. Participants should simulate at least the 9 points shown in :numref:`figPostOptimalityPolarStencil`, but may choose to simulate more points within the range if desired.
 
 .. \begin{figure}[ht!]
 ..   \centering
