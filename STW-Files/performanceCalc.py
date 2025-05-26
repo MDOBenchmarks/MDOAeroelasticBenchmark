@@ -48,8 +48,9 @@ def computeSegmentInitMass(lift, drag, finalMass, R, tsfc, climbAngle, v):
     v : float/complex
         Flight speed
     """
+    g = 9.81  # m/s^2, acceleration due to gravity
     LoverD = np.sqrt((lift / drag) ** 2)
-    initMass = finalMass * np.exp(R * tsfc / v * (np.cos(climbAngle) / LoverD + np.sin(climbAngle)))
+    initMass = finalMass * np.exp(R * tsfc * g / v * (np.cos(climbAngle) / LoverD + np.sin(climbAngle)))
     return initMass
 
 
@@ -156,8 +157,6 @@ class LandingGrossMass(om.ExplicitComponent):
             airframeMass=opt["airframeMass"],
             reserveFuelMass=opt["reserveFuelMass"],
         )
-        # if self.comm.rank == 0:
-        #     print(f"landingGrossMass = {outputs['landingGrossMass'][0]: 11.7e}")
 
 
 def computeMidSegmentMass(initialMass, finalMass):
@@ -545,4 +544,4 @@ if __name__ == "__main__":
     prob.run_model()
     prob.model.list_outputs()
     prob.check_partials(compact_print=True, form="central", step=1e-6)
-    om.n2(prob, show_browser=True)
+    om.n2(prob, show_browser=False)

@@ -24,7 +24,8 @@ from openconcept.aerodynamics import ParasiteDragCoefficient_JetTransport
 # ==============================================================================
 # Extension modules
 # ==============================================================================
-from STWFlightPoints import standardCruise
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "."))
+from STWFlightPoints import standardCruise  # noqa: E402
 
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../geometry"))
 from wingGeometry import wingGeometry  # noqa: E402
@@ -50,9 +51,15 @@ WINGBOX_FUEL_VOLUME_FRACTION = (
 )
 AUX_FUEL_VOLUME = 2.763  # m^3, volume of the auxiliary fuel tanks not in the wingbox (730 gallons)
 FUEL_DENSITY = 804.0  # kg/m^3
-TSFC = (
-    18.1e-6 * 9.81
-)  # (kg/N-s) * g, based on wikipedia value for the BR700 (the 717 uses the BR715) https://en.wikipedia.org/wiki/Thrust-specific_fuel_consumption#Typical_values_of_SFC_for_thrust_engines
+
+# ==============================================================================
+# Engine Data
+# ==============================================================================
+# based on wikipedia value for the BR700 (the 717 uses the BR715) https://en.wikipedia.org/wiki/Thrust-specific_fuel_consumption#Typical_values_of_SFC_for_thrust_engines
+TSFC = 18.1e-6  # (kg/N-s),
+MAX_THRUST_PER_ENGINE = (
+    95.3e3  # N, maximum thrust per BR715-C1-30 engine (https://en.wikipedia.org/wiki/Boeing_717#Specifications)
+)
 
 
 # --- Climb specs ---
@@ -66,32 +73,30 @@ CLIMB_ANGLE = np.arctan(standardCruise.altitude / CLIMB_RANGE)  # radians
 MAX_WING_LOADING = 600.0  # kg/m^2 Max allowable wing loading
 
 # ==============================================================================
-# Airframe drag estimate
+# Takeoff specs
 # ==============================================================================
-fuselageLaminarFrac = 0.05  # Raymer table 12.4
-tailLaminarFrac = 0.1  # Raymer table 12.4
-
-nacelle = wingGeometry["nacelle"]
-nacelle_f = nacelle["length"] / nacelle["diameter"]
-nacelleFormFactor = 1.0 + 0.35 / (nacelle_f)  # Raymer sec 12.5.4 eq 12.32
-nacelleFormFactor *= (
-    1.3  # Multiply by form factor of 1.3 for nacelle mounted with one diameter of fuselage, Raymer sec 12.5.5
+# Do the takeoff analysis at standard sea-level conditions so we can just use the rated thrust of the engines
+TAKEOFF_ALTITUDE = 0.0  # meters
+TAKEOFF_TEMP_OFFSET = 0.0  # degrees C
+TAKEOFF_FLAP_SETTING = (
+    20.0  # degrees, takeoff flap setting (in reality this is variable betwee 0-20 but we'll assume the max)
 )
 
-QTail = 1.03  # Interference factor for clean tail, presumably from Raymer sec 12?
-
-tailThickness = 0.1  # Guess of tail t/c
-maxThickLoc = 0.5  # Guess of tail max thickness location
+# ==============================================================================
+# Airframe drag estimate
+# ==============================================================================
+FUSELAGE_LAMINAR_FRAC = 0.05  # Raymer table 12.4
+TAIL_LAMINAR_FRAC = 0.1  # Raymer table 12.4
 
 
 dragProb = om.Problem()
 dragProb.model = ParasiteDragCoefficient_JetTransport(
     include_wing=False,
-    FF_nacelle=nacelleFormFactor,
-    Q_tail=QTail,
-    fuselage_laminar_frac=fuselageLaminarFrac,
-    hstab_laminar_frac=tailLaminarFrac,
-    vstab_laminar_frac=tailLaminarFrac,
+    FF_nacelle=wingGeometry["nacelle"]["formFactor"],
+    Q_tail=wingGeometry["hTail"]["QFactor"],
+    fuselage_laminar_frac=FUSELAGE_LAMINAR_FRAC,
+    hstab_laminar_frac=TAIL_LAMINAR_FRAC,
+    vstab_laminar_frac=TAIL_LAMINAR_FRAC,
 )
 dragProb.setup()
 dragProb.set_val("fltcond|Utrue", standardCruise.a * standardCruise.mach)
@@ -103,14 +108,14 @@ dragProb.set_val("ac|geom|fuselage|S_wet", wingGeometry["fuselage"]["area"])
 dragProb.set_val("ac|geom|hstab|S_ref", wingGeometry["hTail"]["planformArea"] * 2)
 dragProb.set_val("ac|geom|hstab|AR", wingGeometry["hTail"]["aspectRatio"])
 dragProb.set_val("ac|geom|hstab|taper", wingGeometry["hTail"]["taperRatio"])
-dragProb.set_val("ac|geom|hstab|toverc", tailThickness)
+dragProb.set_val("ac|geom|hstab|toverc", wingGeometry["hTail"]["toverc"])
 dragProb.set_val("ac|geom|vstab|S_ref", wingGeometry["vTail"]["planformArea"])
 dragProb.set_val("ac|geom|vstab|AR", wingGeometry["vTail"]["aspectRatio"])
 dragProb.set_val("ac|geom|vstab|taper", wingGeometry["vTail"]["taperRatio"])
-dragProb.set_val("ac|geom|vstab|toverc", tailThickness)
+dragProb.set_val("ac|geom|vstab|toverc", wingGeometry["vTail"]["toverc"])
 dragProb.set_val("ac|geom|wing|S_ref", REF_AREA * 2)
-dragProb.set_val("ac|geom|nacelle|length", nacelle["length"])
-dragProb.set_val("ac|geom|nacelle|S_wet", nacelle["area"])
+dragProb.set_val("ac|geom|nacelle|length", wingGeometry["nacelle"]["length"])
+dragProb.set_val("ac|geom|nacelle|S_wet", wingGeometry["nacelle"]["area"])
 dragProb.set_val("ac|propulsion|num_engines", 2)
 dragProb.run_model()
 EXTRA_DRAG_COEFF = dragProb.get_val("CD0")[0]
@@ -127,9 +132,11 @@ aircraftSpecs = {
     "auxFuelVolume": AUX_FUEL_VOLUME,
     "extraDragCoeff": EXTRA_DRAG_COEFF,
     "tsfc": TSFC,
+    "maxThrustPerEngine": MAX_THRUST_PER_ENGINE,
     "fuelDensity": FUEL_DENSITY,
     "maxWingLoading": MAX_WING_LOADING,
     "climbAngle": CLIMB_ANGLE,
     "climbSpeed": CLIMB_SPEED,
     "climbRange": CLIMB_RANGE,
+    "takeoffFlapSetting": TAKEOFF_FLAP_SETTING,
 }
