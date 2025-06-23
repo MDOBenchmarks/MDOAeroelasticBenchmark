@@ -13,6 +13,7 @@ STW Takeoff analysis using OpenConcept
 # ==============================================================================
 import os
 import sys
+from difflib import get_close_matches
 
 # ==============================================================================
 # External Python modules
@@ -40,7 +41,7 @@ STWData = {
             "polar": {
                 "e": {"value": 0.9},
             },  # total guess
-            "airfoil_Cl_max": {"value": 1.00},  # total guess
+            "airfoil_Cl_max": {"value": 1.25},  # total guess
             "takeoff_flap_deg": {"value": aircraftSpecs["takeoffFlapSetting"], "units": "deg"},
         },
         "propulsion": {
@@ -86,54 +87,89 @@ STWData = {
 }
 
 
+def add_aircraft_data(group, excluded_inputs=None):
+    dv = group.add_subsystem("ac_vars", DictIndepVarComp(STWData), promotes_outputs=["*"])
+    dv_outputs = [
+        # -------------- Aero --------------
+        "ac|aero|polar|e",
+        "ac|aero|airfoil_Cl_max",
+        "ac|aero|takeoff_flap_deg",
+        # -------------- Propulsion --------------
+        "ac|propulsion|engine|rating",
+        "ac|propulsion|num_engines",
+        # -------------- Geometry --------------
+        # Wing
+        "ac|geom|wing|S_ref",  # Varies during optimization
+        "ac|geom|wing|AR",  # Varies during optimization
+        "ac|geom|wing|c4sweep",  # Varies during optimization
+        "ac|geom|wing|taper",  # Varies during optimization
+        "ac|geom|wing|toverc",  # Varies during optimization
+        # Horizontal stabilizer
+        "ac|geom|hstab|AR",
+        "ac|geom|hstab|taper",
+        "ac|geom|hstab|toverc",
+        "ac|geom|hstab|S_ref",
+        # Vertical stabilizer
+        "ac|geom|vstab|AR",
+        "ac|geom|vstab|taper",
+        "ac|geom|vstab|toverc",
+        "ac|geom|vstab|S_ref",
+        # Fuselage
+        "ac|geom|fuselage|length",
+        "ac|geom|fuselage|height",
+        "ac|geom|fuselage|S_wet",
+        # Nacelle
+        "ac|geom|nacelle|length",
+        "ac|geom|nacelle|S_wet",
+        # -------------- Weights --------------
+        "ac|weights|MTOW",  # Varies during optimization
+    ]
+
+    # Remove any excluded indepvarcomp outputs
+    if excluded_inputs is not None:
+        for ivc_exclude in excluded_inputs:
+            try:
+                dv_outputs.remove(ivc_exclude)
+            except ValueError:
+                closest_match = get_close_matches(ivc_exclude, list(dv_outputs.keys()), n=1, cutoff=0.0)
+                Warning(f"Variable {ivc_exclude} not found in indepvarcomp outputs. Did you mean {closest_match}?")
+
+    for output_name in dv_outputs:
+        dv.add_output_from_dict(output_name)
+
+    # Set default values for the excluded indepvarcomp outputs using the aircraft specs
+    if excluded_inputs is not None:
+        for ivc_exclude in excluded_inputs:
+            split_names = ivc_exclude.split("|")
+            data_dict_tmp = STWData
+            for sub_name in split_names:
+                try:
+                    data_dict_tmp = data_dict_tmp[sub_name]
+                except KeyError:
+                    raise KeyError('"%s" does not exist in the data dictionary' % ivc_exclude)
+            try:
+                val = data_dict_tmp["value"]
+            except KeyError:
+                raise KeyError('Data dict entry "%s" must have a "value" key' % ivc_exclude)
+            units = data_dict_tmp.get("units", None)
+            group.set_input_defaults(ivc_exclude, val, units=units)
+
+
 class STWTakeoffAnalysisGroup(om.Group):
     def initialize(self):
         self.options.declare("num_nodes", default=11)
+        self.options.declare(
+            "ivc_excludes",
+            default=None,
+            allow_none=True,
+            desc="List of variables to exclude from the indepvarcomp. Use this for variables that will instead come from the outputs of other components.",
+        )
 
     def setup(self):
         nn = self.options["num_nodes"]
 
-        # ==============================================================================
         # Create variables from aircraft data dictionary
-        # ==============================================================================
-        dv = self.add_subsystem("ac_vars", DictIndepVarComp(STWData), promotes_outputs=["*"])
-        dv_outputs = [
-            # -------------- Aero --------------
-            "ac|aero|polar|e",
-            "ac|aero|airfoil_Cl_max",
-            "ac|aero|takeoff_flap_deg",
-            # -------------- Propulsion --------------
-            "ac|propulsion|engine|rating",
-            "ac|propulsion|num_engines",
-            # -------------- Geometry --------------
-            # Wing
-            "ac|geom|wing|S_ref",  # To be passed in as design variable
-            "ac|geom|wing|AR",  # To be passed in as design variable
-            "ac|geom|wing|c4sweep",  # To be passed in as design variable
-            "ac|geom|wing|taper",  # To be passed in as design variable
-            "ac|geom|wing|toverc",  # To be passed in as design variable
-            # Horizontal stabilizer
-            "ac|geom|hstab|AR",
-            "ac|geom|hstab|taper",
-            "ac|geom|hstab|toverc",
-            "ac|geom|hstab|S_ref",
-            # Vertical stabilizer
-            "ac|geom|vstab|AR",
-            "ac|geom|vstab|taper",
-            "ac|geom|vstab|toverc",
-            "ac|geom|vstab|S_ref",
-            # Fuselage
-            "ac|geom|fuselage|length",
-            "ac|geom|fuselage|height",
-            "ac|geom|fuselage|S_wet",
-            # Nacelle
-            "ac|geom|nacelle|length",
-            "ac|geom|nacelle|S_wet",
-            # -------------- Weights --------------
-            "ac|weights|MTOW",  # To be passed in as design variable
-        ]
-        for output_name in dv_outputs:
-            dv.add_output_from_dict(output_name)
+        add_aircraft_data(self, excluded_inputs=self.options["ivc_excludes"])
 
         # CLmax Estimation
         self.add_subsystem(
@@ -156,10 +192,14 @@ class STWTakeoffAnalysisGroup(om.Group):
 
         self.add_subsystem(
             "analysis",
-            TakeoffAnalysis(num_nodes=nn, aircraft_model=STWAircraftModel, transition_method="simplified"),
+            TakeoffAnalysis(num_nodes=nn, aircraft_model=STWAircraftModel, transition_method="ode"),
             promotes_inputs=["*"],
             promotes_outputs=["*"],
         )
+
+        # Set nonlinear and linear solvers for the group
+        self.nonlinear_solver = om.NewtonSolver(iprint=2, solve_subsystems=True, maxiter=20)
+        self.linear_solver = om.DirectSolver()
 
 
 if __name__ == "__main__":
@@ -169,13 +209,11 @@ if __name__ == "__main__":
 
     plt.style.use(niceplots.get_style())
 
-    numNodes = 21  # Number of nodes for the analysis
+    numNodes = 11  # Number of nodes for the analysis
 
     # Example usage
     prob = om.Problem()
-    prob.model = STWTakeoffAnalysisGroup(num_nodes=numNodes)
-    prob.model.nonlinear_solver = om.NewtonSolver(iprint=2, solve_subsystems=True, maxiter=20)
-    prob.model.linear_solver = om.DirectSolver()
+    prob.model = STWTakeoffAnalysisGroup(num_nodes=numNodes, ivc_excludes=["ac|weights|MTOW"])
 
     prob.driver = om.ScipyOptimizeDriver()
     prob.driver.options["optimizer"] = "SLSQP"
@@ -186,19 +224,20 @@ if __name__ == "__main__":
 
     prob.setup()
 
-    # Do the takeoff at +15 deg C conditions
     # NOTE: It looks like there are some issues with the OpenConcept takeoff model not converting properly between true
-    # and equivalent airspeed, which makes the results a bit off, we'll just do the takepoff at standard sea-level
-    # conditions for now.
+    # and equivalent airspeed, which makes the results a bit off if you try to do the takeoff analysis at anything other
+    # than sea-level standard atmospheric conditions. So we'll just do the takeoff at standard sea-level conditions for now.
+
     # prob.set_val("takeoff|TempIncrement", np.full(numNodes, 15), units="degC")
 
     # Guesses for takeoff speeds to help with convergence
     prob.set_val("v0v1.fltcond|Utrue", np.full(numNodes, 50), units="kn")
     prob.set_val("v1vr.fltcond|Utrue", np.full(numNodes, 85), units="kn")
     prob.set_val("v1v0.fltcond|Utrue", np.full(numNodes, 85), units="kn")
+
     # Need these if using ODE transition method
-    # prob.set_val("rotate.fltcond|Utrue", np.full(numNodes, 90), units="kn")
-    # prob.set_val("rotate.accel_vert", np.full(numNodes, 0.1), units="m/s**2")
+    prob.set_val("rotate.fltcond|Utrue", np.full(numNodes, 90), units="kn")
+    prob.set_val("rotate.accel_vert", np.full(numNodes, 0.1), units="m/s**2")
 
     prob.run_driver()
 
@@ -218,7 +257,7 @@ if __name__ == "__main__":
         print(f"{var['name']}: {prob.get_val(var['var'], units=var['units']).item()} {var['units']}")
 
     takeoff_fig, takeoff_axs = plt.subplots(1, 3, figsize=[12, 5])
-    takeoff_axs = takeoff_axs.flatten()  # change 1x3 mtx of axes into 4-element vector
+    takeoff_axs = takeoff_axs.flatten()  # change 1x3 mtx of axes into 3-element vector
 
     # Define variables to plot
     takeoff_vars = [

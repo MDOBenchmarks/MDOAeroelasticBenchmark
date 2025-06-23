@@ -81,6 +81,9 @@ TAKEOFF_TEMP_OFFSET = 0.0  # degrees C
 TAKEOFF_FLAP_SETTING = (
     20.0  # degrees, takeoff flap setting (in reality this is variable betwee 0-20 but we'll assume the max)
 )
+MAX_BFL = (
+    5500 * 0.3048
+)  # 5500 ft in meters, max allowable balanced field length for the high gross weight version of the Boeing 717 at standard temperature seal-level conditions (eye-balled with some margin from the graph on page 27 of the 717 airport planning document, available at https://www.boeing.com/commercial/airports/plan-manuals)
 
 # ==============================================================================
 # Airframe drag estimate
