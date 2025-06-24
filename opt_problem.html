@@ -342,10 +342,10 @@ Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a c
 </ul>
 <p>Participants should enforce as many of these constraints as are applicable to their structural sizing parameterization in all three benchmark problems.</p>
 </section>
-<section id="taxi-bump-constraints">
-<h2>Taxi Bump Constraints<a class="headerlink" href="#taxi-bump-constraints" title="Link to this heading">¶</a></h2>
-<p>A taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by <span id="id6">Niu [<a class="reference internal" href="index.html#id12" title="M. Niu. Airframe Structural Design. Hong Kong Conmilit Press, 9th edition, 1988.">Niu88</a>]</span>. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.</p>
 </section>
+<section id="taxi-bump-constraints">
+<h1>Taxi Bump Constraints<a class="headerlink" href="#taxi-bump-constraints" title="Link to this heading">¶</a></h1>
+<p>For case 4, a taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by <span id="id6">Niu [<a class="reference internal" href="index.html#id12" title="M. Niu. Airframe Structural Design. Hong Kong Conmilit Press, 9th edition, 1988.">Niu88</a>]</span>. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.</p>
 <section id="geometric-constraints">
 <h2>Geometric Constraints<a class="headerlink" href="#geometric-constraints" title="Link to this heading">¶</a></h2>
 <p>Since the benchmark problems consider a limited selection of flight points, additional geometric constraints are required to ensure the optimizer produces a realistic wing geometry:</p>
@@ -371,6 +371,10 @@ Note that the total fuel mass, <span class="math notranslate nohighlight">\(M_\t
 The maneuvers are assumed to be performed at the LGM since the inertial relief of the fuel is not included in the structural model.
 The aircraft mass for the cruise condition is taken to be the mid-cruise mass, which is the geometric average of the cruise start and end masses.
 This accounts for the non-uniform rate of fuel burn over the segment.</p>
+</section>
+</section>
+<section id="buffet-onset-constraint">
+<h1>Buffet Onset Constraint<a class="headerlink" href="#buffet-onset-constraint" title="Link to this heading">¶</a></h1>
 <p>For case 4, a buffet onset constraint is added such that the lift at cruise has a 30% margin to the predicted buffet onset based on the semiempirical buffet envelope model of <span id="id8">Berard and Isikveren [<a class="reference internal" href="index.html#id16" title="Adrien Berard and Askin T. Isikveren. Conceptual design prediction of the buffet envelope of transport aircraft. Journal of Aircraft, September 2009. doi:10.2514/1.41367.">BI09</a>]</span>.</p>
 <table class="docutils align-default" id="taboptprob-constraints">
 <caption><span class="caption-number">Table 7 </span><span class="caption-text">Constraints to be enforced in the benchmark problems</span><a class="headerlink" href="#taboptprob-constraints" title="Link to this table">¶</a></caption>
@@ -510,9 +514,22 @@ This accounts for the non-uniform rate of fuel burn over the segment.</p>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(SR_\text{2.0g} \leq 1 / 1.5\)</span></p></td>
+<td><p>Taxi bump strength ratio (full fuel, no aerodynamics)</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(SR_\text{-2.0g} \leq 1 / 1.5\)</span></p></td>
+<td><p>Taxi bump strength ratio (full fuel, no aerodynamics)</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
 </tbody>
 </table>
-</section>
 </section>
 
 
@@ -533,11 +550,14 @@ This accounts for the non-uniform rate of fuel burn over the segment.</p>
 <li><a class="reference internal" href="#aerodynamic-variables">Aerodynamic Variables</a></li>
 <li><a class="reference internal" href="#constraints">Constraints</a></li>
 <li><a class="reference internal" href="#structural-constraints">Structural Constraints</a></li>
-<li><a class="reference internal" href="#taxi-bump-constraints">Taxi Bump Constraints</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#taxi-bump-constraints">Taxi Bump Constraints</a><ul>
 <li><a class="reference internal" href="#geometric-constraints">Geometric Constraints</a></li>
 <li><a class="reference internal" href="#aerodynamic-constraints">Aerodynamic Constraints</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#buffet-onset-constraint">Buffet Onset Constraint</a></li>
 </ul>
 
   </div>
