@@ -24,6 +24,7 @@ import copy
 # ==============================================================================
 import numpy as np
 import openmdao.api as om
+import matplotlib.pyplot as plt
 
 # ==============================================================================
 # Extension modules
@@ -196,6 +197,50 @@ class BFLCalculation:
             filename = f"{filename_no_ext}.html"
         om.n2(self.om_problem, show_browser=False, outfile=filename)
 
+    def plot_trajectory(self):
+        """Plot the takeoff trajectory based on the results of the last run of the model.
+
+        Returns
+        -------
+        matplob figure object
+            The figure object containing the plot.
+        list of 3 matplotlib axes objects
+            The axes for the 3 subplots in the figure.
+        """
+        takeoff_fig, takeoff_axes = plt.subplots(1, 3, figsize=[12, 5])
+        takeoff_axes = takeoff_axes.flatten()  # change 1x3 mtx of axes into 3-element vector
+
+        # Define variables to plot
+        takeoff_vars = [
+            {"var": "fltcond|h", "name": "Altitude", "units": "ft"},
+            {"var": "fltcond|Utrue", "name": "True airspeed", "units": "kn"},
+            {"var": "throttle", "name": "Throttle", "units": None},
+        ]
+
+        for idx_fig, var in enumerate(takeoff_vars):
+            takeoff_axes[idx_fig].set_xlabel("Range (ft)")
+            takeoff_axes[idx_fig].set_ylabel(
+                f"{var['name']}" if var["units"] is None else f"{var['name']} ({var['units']})"
+            )
+
+            # Loop through each flight phase and plot the current variable from each
+            for phase in ["v0v1", "v1vr", "rotate", "v1v0"]:
+                takeoff_axes[idx_fig].plot(
+                    self.om_problem.get_val(f"{phase}.range", units="ft"),
+                    self.om_problem.get_val(f"{phase}.{var['var']}", units=var["units"]),
+                    "-o",
+                    markersize=8.0,
+                    clip_on=False,
+                )
+
+        takeoff_fig.legend(
+            [r"V0 $\rightarrow$ V1", r"V1 $\rightarrow$ Vr", "Rotate", r"V1 $\rightarrow$ V0"],
+            loc=(0.067, 0.6),
+            fontsize="small",
+        )
+        takeoff_fig.suptitle("Takeoff phases")
+        return takeoff_fig, takeoff_axes
+
 
 if __name__ == "__main__":
     model = BFLCalculation()
@@ -232,6 +277,9 @@ if __name__ == "__main__":
     pprint(model.get_inputs())
     pprint(outputs)
     print("\n")
+
+    # Plot the trajectory
+    model.plot_trajectory()
 
     # Compute gradients
     gradients = model.compute_gradients()
@@ -272,3 +320,6 @@ if __name__ == "__main__":
                 f"    Finite Difference: {fd_grad:.6g}\n"
                 f"       Relative Error: {rel_error:.6g}\n"
             )
+
+    # Show the plot
+    plt.show()
