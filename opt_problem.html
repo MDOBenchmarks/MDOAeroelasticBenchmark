@@ -367,109 +367,141 @@ Note that the total fuel mass, <span class="math notranslate nohighlight">\(M_\t
 The maneuvers are assumed to be performed at the LGM since the inertial relief of the fuel is not included in the structural model.
 The aircraft mass for the cruise condition is taken to be the mid-cruise mass, which is the geometric average of the cruise start and end masses.
 This accounts for the non-uniform rate of fuel burn over the segment.</p>
+<p>For case 4, a buffet onset constraint is added such that the lift at cruise has a 30% margin to the predicted buffet onset based on the semiempirical buffet envelope model of <span id="id7">Berard and Isikveren [<a class="reference internal" href="index.html#id15" title="Adrien Berard and Askin T. Isikveren. Conceptual design prediction of the buffet envelope of transport aircraft. Journal of Aircraft, September 2009. doi:10.2514/1.41367.">BI09</a>]</span>.</p>
 <table class="docutils align-default" id="taboptprob-constraints">
 <caption><span class="caption-number">Table 7 </span><span class="caption-text">Constraints to be enforced in the benchmark problems</span><a class="headerlink" href="#taboptprob-constraints" title="Link to this table">¶</a></caption>
 <thead>
-<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(SR_\text{2.5g} \leq 1 / 1.5\)</span></p></th>
-<th class="head"><p>Pull-up maneuver strength ratio</p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></th>
-<th class="head"><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></th>
+<tr class="row-odd"><th class="head"><p>Equation</p></th>
+<th class="head"><p>Constraint</p></th>
+<th class="head"><p>Case 1</p></th>
+<th class="head"><p>Case 2</p></th>
+<th class="head"><p>Case 3</p></th>
+<th class="head"><p>Case 4</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(SR_\text{-1g} \leq 1 / 1.5\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(SR_\text{2.5g} \leq 1 / 1.5\)</span></p></td>
+<td><p>Pull-up maneuver strength ratio</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(SR_\text{-1g} \leq 1 / 1.5\)</span></p></td>
 <td><p>Push-down maneuver strength ratio</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{panel},i} - t_{\text{panel},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{panel},i} - t_{\text{panel},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
 <td><p>Skin/spar panel thickness adjacency</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
 <td><p>Skin/spar stiffener thickness adjacency</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq 10 \text{mm}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq 10 \text{mm}\)</span></p></td>
 <td><p>Skin/spar stiffener height adjacency tnote{*}</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t_{\text{stiff},i} \leq 15 t_{\text{panel},i}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t_{\text{stiff},i} \leq 15 t_{\text{panel},i}\)</span></p></td>
 <td><p>Maximum stiffener thickness tnote{*}</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \leq 30 t_{\text{stiff},i}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \leq 30 t_{\text{stiff},i}\)</span></p></td>
 <td><p>Maximum stiffener aspect-ratio tnote{*}</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \geq 5 t_{\text{stiff},i}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \geq 5 t_{\text{stiff},i}\)</span></p></td>
 <td><p>Minimum stiffener aspect-ratio tnote{*}</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(w_{\text{stiff},i} \leq p_{\text{stiff},i}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(w_{\text{stiff},i} \leq p_{\text{stiff},i}\)</span></p></td>
 <td><p>Minimum stiffener spacing tnote{*}</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(L_\text{2.5g} = 2.5 LGM g\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(L_\text{2.5g} = 2.5 LGM g\)</span></p></td>
 <td><p>Pull-up maneuver lift level</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(L_\text{-1g} = -LGM g\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(L_\text{-1g} = -LGM g\)</span></p></td>
 <td><p>Push-down maneuver lift level</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(L_\text{cruise} = M_\text{mid-cruise} g\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(L_\text{cruise} = M_\text{mid-cruise} g\)</span></p></td>
 <td><p>Cruise lift level</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t_\text{spar} \geq 0.75 t_{\text{spar},0}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t_\text{spar} \geq 0.75 t_{\text{spar},0}\)</span></p></td>
 <td><p>Minimum Spar height</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t \geq  0.5 t_{0}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t \geq  0.5 t_{0}\)</span></p></td>
 <td><p>Minimum TE thickness</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(R_\text{LE} \geq 0.9 R_{\text{LE},0}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_\text{LE} \geq 0.9 R_{\text{LE},0}\)</span></p></td>
 <td><p>Minimum Leading edge radius</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(M_\text{fuel}/\rho_\text{fuel} \leq V_\text{aux} + 2k_\text{tank} V_\text{wingbox}\)</span></p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(M_\text{fuel}/\rho_\text{fuel} \leq V_\text{aux} + 2k_\text{tank} V_\text{wingbox}\)</span></p></td>
 <td><p>Fuel volume</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(TOGM / 2S \leq 600 \text{kg}/\text{m}^{2}\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(TOGM / 2S \leq 600 \text{kg}/\text{m}^{2}\)</span></p></td>
 <td><p>Maximum wing loading</p></td>
+<td></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(1.3 L_\text{cruise} \leq L_\text{buffet}\)</span></p></td>
+<td><p>Cruise buffet margin</p></td>
+<td></td>
 <td></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
