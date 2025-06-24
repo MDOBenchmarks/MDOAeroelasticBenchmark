@@ -219,7 +219,7 @@ Some basic structural sizing rules suggested by :cite:t:`Kassapoglou2013` should
 Participants should enforce as many of these constraints as are applicable to their structural sizing parameterization in all three benchmark problems.
 
 Taxi Bump Constraints
-=====================
+---------------------
 
 For case 4, a taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by :cite:t:`Niu1988`. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.
 
@@ -258,7 +258,7 @@ The aircraft mass for the cruise condition is taken to be the mid-cruise mass, w
 This accounts for the non-uniform rate of fuel burn over the segment.
 
 Buffet Onset Constraint
-=======================
+-----------------------
 
 For case 4, a buffet onset constraint is added such that the lift at cruise has a 30\% margin to the predicted buffet onset based on the semiempirical buffet envelope model of :cite:t:`Berard2009`.
 
@@ -271,12 +271,19 @@ The balanced field length of the aircraft at its TOGM, on a dry runway, at sea-l
 The balanced field length is the distance required for the aircraft to accelerate, takeoff, and climb to 35 ft above the runway.
 An engine failure is assumed to occur at the "decision speed", v1, this decision speed must be solved for such that the distance required to continue the takeoff and climb to 35 ft is equal to the distance required to stop the aircraft.
 
-Participants are free to compute the balanced field length using any method they choose, we provide a simple model with analytic gradients that participants may use `here <https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files/BFLCalculation>`_.
+The figure below shows an example of the phases of such a balanced field length calculation:
+
+.. figure:: figures/takeoff_phases.png
+   :name: takeoff_phases
+   :align: center
+
+Participants are free to compute this balanced field length constraint using any method they choose, we provide a simple model with analytic gradients that participants may use `here <https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files/BFLCalculation>`_.
 
 The rotation speed of the aircraft should be 110% of its stall speed.
 Computing this stall speed requires participants to compute the maximum lift coefficient of the wing in it's takeoff configuration.
 To do this, participants can find assumed details of the size and location of slats and flaps on the STW in ``wingGeometry.py``, provided in our :ref:`stw_files`.
 A 20 degree flap setting should be assumed for the entire calculation.
+The provided model mentioned above includes a simple estimation of the maximum lift coefficient based on high level wing geometry parameters and an assumed sectional maximum lift coefficient.
 
 
 Constraints Summary

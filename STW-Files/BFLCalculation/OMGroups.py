@@ -295,6 +295,13 @@ if __name__ == "__main__":
             )
             niceplots.adjust_spines(takeoff_axs[idx_fig])
 
+    # Label the start, decision and end points on the x axis
+    xTicks = [0]
+    for phase in ["v0v1", "rotate"]:
+        xTicks.append(prob.get_val(f"{phase}.range", units="ft")[-1])
+    for ax in takeoff_axs:
+        ax.set_xticks(xTicks)
+
     takeoff_fig.legend(
         [r"V0 $\rightarrow$ V1", r"V1 $\rightarrow$ Vr", "Rotate", r"V1 $\rightarrow$ V0"],
         loc=(0.067, 0.6),
