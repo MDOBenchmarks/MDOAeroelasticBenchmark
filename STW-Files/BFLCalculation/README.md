@@ -35,6 +35,12 @@ The following parameters are assumed to vary during optimization:
 
 ## Using the Model
 
+The python packages required to run the model are listed in the `requirements.txt` file, which you can install using pip:
+
+```bash
+pip install -r requirements.txt
+```
+
 There are two ways to use the model.
 
 ### 1. In your own OpenMDAO model
