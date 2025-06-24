@@ -217,6 +217,11 @@ Some basic structural sizing rules suggested by :cite:t:`Kassapoglou2013` should
 
 Participants should enforce as many of these constraints as are applicable to their structural sizing parameterization in all three benchmark problems.
 
+Taxi Bump Constraints
+----------------------
+
+A taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by :cite:t:`Niu1988`. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.
+ 
 Geometric Constraints
 ---------------------
 

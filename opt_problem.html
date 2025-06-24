@@ -217,7 +217,7 @@ FB                     &amp; = \text{TOGM} - \text{LGM}
 <p>The lift and drag in the cruise condition are computed using an aeroelastic analysis, the values are doubled to get the full aircraft values, and the drag of un-modeled components (fuselage, tail, and nacelles) is added:</p>
 <div class="math notranslate nohighlight">
 \[L_\text{cruise} = 2L_\text{wing} \qquad D_\text{cruise} = 2\left(D_\text{wing} + q_\text{cruise} S C_{D,\text{frame}}\right)\]</div>
-<p>Where <span class="math notranslate nohighlight">\(C_{D,\text{frame}}\)</span> is estimated using a conceptual drag build-up implemented by <span id="id2">Adler and Martins [<a class="reference internal" href="index.html#id3" title="Eytan J. Adler and Joaquim R. R. A. Martins. Blended wing body configuration for hydrogen-powered aviation. In AIAA Aviation 2023 Forum. June 2023. doi:10.2514/6.2023-4020.">AM23</a>]</span> based on the methods of <span id="id3">Torenbeek [<a class="reference internal" href="index.html#id13" title="E. Torenbeek. Synthesis of Subsonic Airplane Design. Delft University Press and Kluwer Academic Publishers, 6th edition, 1990.">Tor90</a>]</span> and <span id="id4">Raymer [<a class="reference internal" href="index.html#id12" title="Daniel P. Raymer. Aircraft Design: A Conceptual Approach. AIAA, 2nd edition, 1992.">Ray92</a>]</span>.
+<p>Where <span class="math notranslate nohighlight">\(C_{D,\text{frame}}\)</span> is estimated using a conceptual drag build-up implemented by <span id="id2">Adler and Martins [<a class="reference internal" href="index.html#id3" title="Eytan J. Adler and Joaquim R. R. A. Martins. Blended wing body configuration for hydrogen-powered aviation. In AIAA Aviation 2023 Forum. June 2023. doi:10.2514/6.2023-4020.">AM23</a>]</span> based on the methods of <span id="id3">Torenbeek [<a class="reference internal" href="index.html#id14" title="E. Torenbeek. Synthesis of Subsonic Airplane Design. Delft University Press and Kluwer Academic Publishers, 6th edition, 1990.">Tor90</a>]</span> and <span id="id4">Raymer [<a class="reference internal" href="index.html#id13" title="Daniel P. Raymer. Aircraft Design: A Conceptual Approach. AIAA, 2nd edition, 1992.">Ray92</a>]</span>.
 <span class="math notranslate nohighlight">\(S\)</span> is the baseline single wing planform area from <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and does not vary during optimization since we assume that the remainder of the aircraft remains identical.</p>
 </section>
 <section id="design-variables">
@@ -342,12 +342,16 @@ Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a c
 </ul>
 <p>Participants should enforce as many of these constraints as are applicable to their structural sizing parameterization in all three benchmark problems.</p>
 </section>
+<section id="taxi-bump-constraints">
+<h2>Taxi Bump Constraints<a class="headerlink" href="#taxi-bump-constraints" title="Link to this heading">¶</a></h2>
+<p>A taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by <span id="id6">Niu [<a class="reference internal" href="index.html#id12" title="M. Niu. Airframe Structural Design. Hong Kong Conmilit Press, 9th edition, 1988.">Niu88</a>]</span>. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.</p>
+</section>
 <section id="geometric-constraints">
 <h2>Geometric Constraints<a class="headerlink" href="#geometric-constraints" title="Link to this heading">¶</a></h2>
 <p>Since the benchmark problems consider a limited selection of flight points, additional geometric constraints are required to ensure the optimizer produces a realistic wing geometry:</p>
 <ul class="simple">
 <li><p>The wing’s leading edge radius must be at least 90% of its baseline value throughout the span to maintain reasonable low-speed performance.</p></li>
-<li><p>The front and rear spars must be at least 75% of their baseline height throughout the span to maintain the space required to mount components such as control surface actuators <span id="id6">[<a class="reference internal" href="index.html#id9" title="Rhea P. Liem, Gaetan K. W. Kenway, and Joaquim R. R. A. Martins. Multimission aircraft fuel burn minimization via multipoint aerostructural optimization. AIAA Journal, 53(1):104–122, January 2015. doi:10.2514/1.J052940.">LKM15</a>]</span>.</p></li>
+<li><p>The front and rear spars must be at least 75% of their baseline height throughout the span to maintain the space required to mount components such as control surface actuators <span id="id7">[<a class="reference internal" href="index.html#id9" title="Rhea P. Liem, Gaetan K. W. Kenway, and Joaquim R. R. A. Martins. Multimission aircraft fuel burn minimization via multipoint aerostructural optimization. AIAA Journal, 53(1):104–122, January 2015. doi:10.2514/1.J052940.">LKM15</a>]</span>.</p></li>
 <li><p>The region between the rear spar and the trailing edge must be at least 50% of its baseline thickness to prevent the optimizer creating an unrealistically thin trailing edge.</p></li>
 <li><p>The wingbox volume must be large enough to store the amount of fuel required for the mission, as computed in the objective function.</p></li>
 <li><p>When the planform is varied, the wing loading <span class="math notranslate nohighlight">\(\left(\text{TOGM}/2S\right)\)</span> must be no greater than <span class="math notranslate nohighlight">\(600\,\text{kg} / \text{m}^2\)</span>.</p></li>
@@ -367,7 +371,7 @@ Note that the total fuel mass, <span class="math notranslate nohighlight">\(M_\t
 The maneuvers are assumed to be performed at the LGM since the inertial relief of the fuel is not included in the structural model.
 The aircraft mass for the cruise condition is taken to be the mid-cruise mass, which is the geometric average of the cruise start and end masses.
 This accounts for the non-uniform rate of fuel burn over the segment.</p>
-<p>For case 4, a buffet onset constraint is added such that the lift at cruise has a 30% margin to the predicted buffet onset based on the semiempirical buffet envelope model of <span id="id7">Berard and Isikveren [<a class="reference internal" href="index.html#id15" title="Adrien Berard and Askin T. Isikveren. Conceptual design prediction of the buffet envelope of transport aircraft. Journal of Aircraft, September 2009. doi:10.2514/1.41367.">BI09</a>]</span>.</p>
+<p>For case 4, a buffet onset constraint is added such that the lift at cruise has a 30% margin to the predicted buffet onset based on the semiempirical buffet envelope model of <span id="id8">Berard and Isikveren [<a class="reference internal" href="index.html#id16" title="Adrien Berard and Askin T. Isikveren. Conceptual design prediction of the buffet envelope of transport aircraft. Journal of Aircraft, September 2009. doi:10.2514/1.41367.">BI09</a>]</span>.</p>
 <table class="docutils align-default" id="taboptprob-constraints">
 <caption><span class="caption-number">Table 7 </span><span class="caption-text">Constraints to be enforced in the benchmark problems</span><a class="headerlink" href="#taboptprob-constraints" title="Link to this table">¶</a></caption>
 <thead>
@@ -529,6 +533,7 @@ This accounts for the non-uniform rate of fuel burn over the segment.</p>
 <li><a class="reference internal" href="#aerodynamic-variables">Aerodynamic Variables</a></li>
 <li><a class="reference internal" href="#constraints">Constraints</a></li>
 <li><a class="reference internal" href="#structural-constraints">Structural Constraints</a></li>
+<li><a class="reference internal" href="#taxi-bump-constraints">Taxi Bump Constraints</a></li>
 <li><a class="reference internal" href="#geometric-constraints">Geometric Constraints</a></li>
 <li><a class="reference internal" href="#aerodynamic-constraints">Aerodynamic Constraints</a></li>
 </ul>
