@@ -231,7 +231,7 @@ if __name__ == "__main__":
     prob.driver.options["optimizer"] = "SLSQP"
 
     # Solve and optimization problem to find the flap setting that minimizes the balanced field length
-    prob.model.add_design_var("ac|aero|takeoff_flap_deg", lower=0, upper=30, units="deg")
+    prob.model.add_design_var("ac|aero|takeoff_flap_deg", lower=0, upper=20, units="deg")
     prob.model.add_objective("bfl.distance_continue", scaler=1e-3, units="ft")  # Minimize balanced field length
 
     prob.setup()
@@ -250,6 +250,9 @@ if __name__ == "__main__":
     # Need these if using ODE transition method
     prob.set_val("rotate.fltcond|Utrue", np.full(numNodes, 90), units="kn")
     prob.set_val("rotate.accel_vert", np.full(numNodes, 0.1), units="m/s**2")
+
+    # Set an initial guess for the takeoff flap setting away from te upper bound
+    prob.set_val("ac|aero|takeoff_flap_deg", 10.0, units="deg")
 
     prob.run_driver()
 
@@ -287,8 +290,7 @@ if __name__ == "__main__":
             takeoff_axs[idx_fig].plot(
                 prob.get_val(f"{phase}.range", units="ft"),
                 prob.get_val(f"{phase}.{var['var']}", units=var["units"]),
-                "-o",
-                markersize=8.0,
+                "-",
                 clip_on=False,
             )
             niceplots.adjust_spines(takeoff_axs[idx_fig])
