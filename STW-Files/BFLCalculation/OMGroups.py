@@ -203,23 +203,35 @@ class STWTakeoffAnalysisGroup(om.Group):
 
 
 if __name__ == "__main__":
+    # ==============================================================================
+    # Example OpenMDAO group use
+    # ==============================================================================
+    # This is a simple demonstration of using the STWTakeoffAnalysisGroup in an OpenMDAO problem.
+    # It runs a basic optimization to find the flap setting that minimizes the balanced field length.
     import numpy as np
     import niceplots
     import matplotlib.pyplot as plt
 
     plt.style.use(niceplots.get_style())
 
-    numNodes = 11  # Number of nodes for the analysis
+    numNodes = 11  # Number of nodes for each ODE phase
 
-    # Example usage
     prob = om.Problem()
+
+    # By default, all the "variables" we expect to change during optimization will be included in an IndepVarComp within the group. If you are using this takeoff analysis group as part of a larger OpenMDAO model, where you want these values to instead come from the outputs of other components, you can exclude them from the indepvarcomp by passing a list of variable names to the ivc_excludes argument. These variables are:
+    # - "ac|geom|wing|S_ref"
+    # - "ac|geom|wing|AR"
+    # - "ac|geom|wing|c4sweep"
+    # - "ac|geom|wing|taper"
+    # - "ac|geom|wing|toverc"
+    # - "ac|weights|MTOW"
     prob.model = STWTakeoffAnalysisGroup(num_nodes=numNodes, ivc_excludes=["ac|weights|MTOW"])
 
     prob.driver = om.ScipyOptimizeDriver()
     prob.driver.options["optimizer"] = "SLSQP"
 
     # Solve and optimization problem to find the flap setting that minimizes the balanced field length
-    prob.model.add_design_var("ac|aero|takeoff_flap_deg", lower=0, upper=20, units="deg")
+    prob.model.add_design_var("ac|aero|takeoff_flap_deg", lower=0, upper=30, units="deg")
     prob.model.add_objective("bfl.distance_continue", scaler=1e-3, units="ft")  # Minimize balanced field length
 
     prob.setup()
@@ -230,7 +242,7 @@ if __name__ == "__main__":
 
     # prob.set_val("takeoff|TempIncrement", np.full(numNodes, 15), units="degC")
 
-    # Guesses for takeoff speeds to help with convergence
+    # Initial guesses for takeoff speeds to help with convergence
     prob.set_val("v0v1.fltcond|Utrue", np.full(numNodes, 50), units="kn")
     prob.set_val("v1vr.fltcond|Utrue", np.full(numNodes, 85), units="kn")
     prob.set_val("v1v0.fltcond|Utrue", np.full(numNodes, 85), units="kn")
