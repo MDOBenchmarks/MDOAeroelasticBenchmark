@@ -218,6 +218,11 @@ Some basic structural sizing rules suggested by :cite:t:`Kassapoglou2013` should
 
 Participants should enforce as many of these constraints as are applicable to their structural sizing parameterization in all three benchmark problems.
 
+Taxi Bump Constraints
+----------------------
+
+A taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by :cite:t:`Niu1988`. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.
+ 
 Geometric Constraints
 ---------------------
 
@@ -251,6 +256,9 @@ The lift produced by the wing at each flight point must be equal to the aircraft
 The maneuvers are assumed to be performed at the LGM since the inertial relief of the fuel is not included in the structural model.
 The aircraft mass for the cruise condition is taken to be the mid-cruise mass, which is the geometric average of the cruise start and end masses.
 This accounts for the non-uniform rate of fuel burn over the segment.
+
+
+For case 4, a buffet onset constraint is added such that the lift at cruise has a 30\% margin to the predicted buffet onset based on the semiempirical buffet envelope model of :cite:t:`Berard2009`.
 
 .. \input{\tablepath/ConstraintsGeneric.tex}
 
@@ -313,4 +321,6 @@ Constraints Summary
    | :math:`TOGM / 2S \leq 600 \text{kg}/\text{m}^{2}`                                          | Maximum wing loading                           |                     |                     | :math:`\checkmark`  | :math:`\checkmark`  |
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+---------------------+
    | :math:`BFL \leq 5500 \text{ft}`                                                            | Maximum balanced field length                  |                     |                     |                     | :math:`\checkmark`  |
+   +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+---------------------+
+   | :math:`1.3 L_\text{cruise} \leq L_\text{buffet}`                                           | Cruise buffet margin                           |                     |                     |                     | :math:`\checkmark`  |
    +--------------------------------------------------------------------------------------------+------------------------------------------------+---------------------+---------------------+---------------------+---------------------+

@@ -1,0 +1,22 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true, // black on save
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "always" // isort on save
+        }
+    },
+    "flake8.args": [
+        "--config",
+        ".flake8"
+    ],
+    "black-formatter.args": [
+        "--line-length",
+        "120"
+    ],
+    "python.testing.pytestArgs": [
+        "STW-Files"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
