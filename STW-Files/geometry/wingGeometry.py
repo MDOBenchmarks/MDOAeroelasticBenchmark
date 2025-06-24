@@ -68,6 +68,7 @@ quarterChordSweep = np.abs(np.rad2deg(np.arctan2(quarterChordLine[chordIndex], q
 # --- High lift devices ---
 # These fracttions are measured very roughly from the planform drawing at the start of the Boeing 717 airport planning
 # document. The span/area fractions assume the flaps and slats are not present inboard of the SOB
+
 SOB = 1.5  # Spanwise coordinate of the side-of-body junction in metres
 FLAP_INBOARD_SPAN_FRAC = SOB / semiSpan
 FLAP_OUTBOARD_SPAN_FRAC = 0.625
@@ -81,7 +82,7 @@ midFlapSpanFrac = 0.5 * (FLAP_OUTBOARD_SPAN_FRAC - FLAP_INBOARD_SPAN_FRAC)
 midFlapChord = rootChord * (1.0 - midFlapSpanFrac) + tipChord * midFlapSpanFrac
 FLAP_AREA_FRAC = semiSpan * (FLAP_OUTBOARD_SPAN_FRAC - FLAP_INBOARD_SPAN_FRAC) * midFlapChord / planformArea
 
-# --- Now do the same for the tails ---
+# --- Now define the tails ---
 hTailRootChord = 3.25
 hTailTipChord = 1.22
 hTailSemiSpan = 6.5
