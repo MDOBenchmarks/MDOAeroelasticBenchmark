@@ -12,11 +12,13 @@ Table of contents
 *****************
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    model.rst
    opt_problem.rst
    required_results.rst
+
+.. _stw_files:
 
 Simple Transonic Wing Files
 ---------------------------
@@ -28,7 +30,7 @@ These files include:
 * Aerodynamic and structural meshes
 * FFD control volumes
 * Geometry and aircraft specifications
-* An OpenMDAO model for performing the necessary aircraft performance calculations
+* Python code for performing the necessary aircraft performance calculations
 
 Acknowledgements
 ----------------
