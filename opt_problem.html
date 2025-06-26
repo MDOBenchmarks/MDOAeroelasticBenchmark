@@ -192,6 +192,18 @@ The three problems build on one another with the intention of allowing researche
 <td><p>-1</p></td>
 <td><p><span class="math notranslate nohighlight">\(LGM\)</span></p></td>
 </tr>
+<tr class="row-odd"><td><p>High Lift Buffet</p></td>
+<td><p><span class="math notranslate nohighlight">\(37000\,\text{ft}\)</span></p></td>
+<td><p>0.82</p></td>
+<td><p>1.3</p></td>
+<td><p><span class="math notranslate nohighlight">\(M_\text{cruise, start}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>High Speed Buffet</p></td>
+<td><p><span class="math notranslate nohighlight">\(37000\,\text{ft}\)</span></p></td>
+<td><p>0.89</p></td>
+<td><p>1</p></td>
+<td><p><span class="math notranslate nohighlight">\(M_\text{cruise, start}\)</span></p></td>
+</tr>
 </tbody>
 </table>
 <section id="objectives">
@@ -371,11 +383,17 @@ Note that the total fuel mass, <span class="math notranslate nohighlight">\(M_\t
 The maneuvers are assumed to be performed at the LGM since the inertial relief of the fuel is not included in the structural model.
 The aircraft mass for the cruise condition is taken to be the mid-cruise mass, which is the geometric average of the cruise start and end masses.
 This accounts for the non-uniform rate of fuel burn over the segment.</p>
-</section>
-</section>
-<section id="buffet-onset-constraint">
-<h1>Buffet Onset Constraint<a class="headerlink" href="#buffet-onset-constraint" title="Link to this heading">¶</a></h1>
-<p>For case 4, a buffet onset constraint is added such that the lift at cruise has a 30% margin to the predicted buffet onset based on the semiempirical buffet envelope model of <span id="id8">Berard and Isikveren [<a class="reference internal" href="index.html#id16" title="Adrien Berard and Askin T. Isikveren. Conceptual design prediction of the buffet envelope of transport aircraft. Journal of Aircraft, September 2009. doi:10.2514/1.41367.">BI09</a>]</span>.</p>
+<section id="buffet-onset-constraints">
+<h3>Buffet Onset Constraints<a class="headerlink" href="#buffet-onset-constraints" title="Link to this heading">¶</a></h3>
+<p>For case 4, a buffet constraints are added.
+These constraints enforce that the wing must be free from buffet at a load factor of 1.3 up to its maximum operating Mach number, <span class="math notranslate nohighlight">\(M_\text{MO}=0.82\)</span>, and up to the dive Mach number, <span class="math notranslate nohighlight">\(M_D=0.89\)</span>, at a load factor of 1.
+As shown in <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a>, both these constraints are applied at the aircraft’s service ceiling of <span class="math notranslate nohighlight">\(37000\,\text{ft}\)</span> and at the starting cruise mass, <span class="math notranslate nohighlight">\(M_\text{cruise, start}\)</span> (see the fuel burn objective computation).</p>
+<p>Participants are free to implement these buffet constraints as they wish, we provide a semi-empirical model <a class="reference external" href="https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files/buffet">here</a> based on the method of <span id="id8">Berard and Isikveren [<a class="reference internal" href="index.html#id16" title="Adrien Berard and Askin T. Isikveren. Conceptual design prediction of the buffet envelope of transport aircraft. Journal of Aircraft, September 2009. doi:10.2514/1.41367.">BI09</a>]</span>.
+This model computes the buffet onset lift coefficient (<span class="math notranslate nohighlight">\(C_{L_\text{buffet}}\)</span>) for a range of Mach numbers based on some basic geometric parameters of the wing.
+The constraint for both buffet conditions can then be written as:</p>
+<div class="math notranslate nohighlight">
+\[C_{L,n} \leq C_{L_\text{buffet}}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(C_{L,n}\)</span> is the lift coefficient required to produce the necessary load factor at each buffet flight point and <span class="math notranslate nohighlight">\(C{L_\text{buffet}}\)</span> is the buffet onset lift coefficient at the relevant Mach number for each flight point.</p>
 <table class="docutils align-default" id="taboptprob-constraints">
 <caption><span class="caption-number">Table 7 </span><span class="caption-text">Constraints to be enforced in the benchmark problems</span><a class="headerlink" href="#taboptprob-constraints" title="Link to this table">¶</a></caption>
 <thead>
@@ -507,21 +525,28 @@ This accounts for the non-uniform rate of fuel burn over the segment.</p>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(1.3 L_\text{cruise} \leq L_\text{buffet}\)</span></p></td>
-<td><p>Cruise buffet margin</p></td>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(C_{L,1.3g} \leq C_{L_\text{buffet},M=0.82}\)</span></p></td>
+<td><p>Buffet onset margin - High lift condition</p></td>
 <td></td>
 <td></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(SR_\text{2.0g} \leq 1 / 1.5\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C_{L,1g} \leq C_{L_\text{buffet},M=0.89}\)</span></p></td>
+<td><p>Buffet onset margin - High speed condition</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(SR_\text{2.0g} \leq 1 / 1.5\)</span></p></td>
 <td><p>Taxi bump strength ratio (full fuel, no aerodynamics)</p></td>
 <td></td>
 <td></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(SR_\text{-2.0g} \leq 1 / 1.5\)</span></p></td>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(SR_\text{-2.0g} \leq 1 / 1.5\)</span></p></td>
 <td><p>Taxi bump strength ratio (full fuel, no aerodynamics)</p></td>
 <td></td>
 <td></td>
@@ -530,6 +555,8 @@ This accounts for the non-uniform rate of fuel burn over the segment.</p>
 </tr>
 </tbody>
 </table>
+</section>
+</section>
 </section>
 
 
@@ -554,10 +581,12 @@ This accounts for the non-uniform rate of fuel burn over the segment.</p>
 </li>
 <li><a class="reference internal" href="#taxi-bump-constraints">Taxi Bump Constraints</a><ul>
 <li><a class="reference internal" href="#geometric-constraints">Geometric Constraints</a></li>
-<li><a class="reference internal" href="#aerodynamic-constraints">Aerodynamic Constraints</a></li>
+<li><a class="reference internal" href="#aerodynamic-constraints">Aerodynamic Constraints</a><ul>
+<li><a class="reference internal" href="#buffet-onset-constraints">Buffet Onset Constraints</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#buffet-onset-constraint">Buffet Onset Constraint</a></li>
+</ul>
+</li>
 </ul>
 
   </div>
