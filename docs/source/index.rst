@@ -12,22 +12,25 @@ Table of contents
 *****************
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    model.rst
    opt_problem.rst
    required_results.rst
+
+.. _stw_files:
 
 Simple Transonic Wing Files
 ---------------------------
 
 A collection of files to help participants get started with the simple transonic wing benchmark problems can be found `here <https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files>`_.
 These files include:
-- OML and wingbox CAD files
-- Aerodynamic and structural meshes
-- FFD control volumes
-- Geometry and aircraft specifications
-- An OpenMDAO model for performing the necessary aircraft performance calculations
+
+* OML and wingbox CAD files
+* Aerodynamic and structural meshes
+* FFD control volumes
+* Geometry and aircraft specifications
+* Python code for performing the necessary aircraft performance calculations
 
 Acknowledgements
 ----------------

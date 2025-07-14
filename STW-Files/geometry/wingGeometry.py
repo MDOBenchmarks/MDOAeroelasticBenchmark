@@ -53,7 +53,6 @@ TECoords[:, spanIndex] = semiSpan * sectionEta
 TECoords[:, chordIndex] = sectionChordwiseOffset + sectionChord * np.cos(np.deg2rad(sectionTwist))
 TECoords[:, verticalIndex] = sectionVerticalOffset - sectionChord * np.sin(np.deg2rad(sectionTwist))
 
-
 rootChord = sectionChord[0]
 tipChord = sectionChord[1]
 planformArea = semiSpan * (rootChord + tipChord) * 0.5
@@ -61,7 +60,29 @@ meanAerodynamicChord = (2.0 / 3.0) * (rootChord + tipChord - rootChord * tipChor
 aspectRatio = 2 * (semiSpan**2) / planformArea
 taperRatio = tipChord / rootChord
 
-# --- No do the same for the tails ---
+# quarter-chord sweep angle (quarter chord tip point minus quarter chord root point)
+quarterChordCoords = 0.75 * LECoords + 0.25 * TECoords
+quarterChordLine = quarterChordCoords[1] - quarterChordCoords[0]
+quarterChordSweep = np.abs(np.rad2deg(np.arctan2(quarterChordLine[chordIndex], quarterChordLine[spanIndex])))
+
+# --- High lift devices ---
+# These fracttions are measured very roughly from the planform drawing at the start of the Boeing 717 airport planning
+# document. The span/area fractions assume the flaps and slats are not present inboard of the SOB
+
+SOB = 1.5  # Spanwise coordinate of the side-of-body junction in metres
+FLAP_INBOARD_SPAN_FRAC = SOB / semiSpan
+FLAP_OUTBOARD_SPAN_FRAC = 0.625
+FLAP_CHORD_FRAC = 0.2
+SLAT_INBOARD_SPAN_FRAC = FLAP_INBOARD_SPAN_FRAC
+SLAT_OUTBOARD_SPAN_FRAC = 0.96
+SLAT_CHORD_FRAC = 0.15
+
+# Compute the fraction of the wing area that is flapped
+midFlapSpanFrac = 0.5 * (FLAP_OUTBOARD_SPAN_FRAC - FLAP_INBOARD_SPAN_FRAC)
+midFlapChord = rootChord * (1.0 - midFlapSpanFrac) + tipChord * midFlapSpanFrac
+FLAP_AREA_FRAC = semiSpan * (FLAP_OUTBOARD_SPAN_FRAC - FLAP_INBOARD_SPAN_FRAC) * midFlapChord / planformArea
+
+# --- Now define the tails ---
 hTailRootChord = 3.25
 hTailTipChord = 1.22
 hTailSemiSpan = 6.5
@@ -84,10 +105,18 @@ vTailaspectRatio = 2 * (vTailSemiSpan**2) / vTailPlanformArea
 vTailSweep = 37.0
 vTailTaperRatio = vTailTipChord / vTailRootChord
 
+# Values for textbook drag estimate
+Q_TAIL = 1.03  # Interference factor for clean tail, presumably from Raymer sec 12?
+TAIL_THICKNESS = 0.1  # Guess of tail t/c
+
 # --- Nacelle ---
 nacelleLength = 5.865
 nacelleDiameter = 1.8
 nacelleArea = np.pi * nacelleDiameter * nacelleLength
+nacelle_f = nacelleLength / nacelleDiameter
+NACELLE_FORM_FACTOR = 1.3 * (
+    1.0 + 0.35 / (nacelle_f)
+)  # Raymer sec 12.5.4 eq 12.32, Multiply by form factor of 1.3 for nacelle mounted with one diameter of fuselage, Raymer sec 12.5.5
 
 # --- Fuselage ---
 fuselageLength = 112 * 0.3048  # 112 ft in metres
@@ -97,7 +126,6 @@ fuselageArea = fuselageLength * np.pi * fuselageWidth  # very approximate
 # ==============================================================================
 # Wingbox Definition
 # ==============================================================================
-SOB = 1.5  # Spanwise coordinate of the side-of-body junction in metres
 LESparFrac = 0.15  # Normalised chordwise location of the leading-edge spar
 TESparFrac = 0.65  # Normalised chordwise location of the trailing-edge spar
 numRibsCentrebody = 4  # Number of ribs in the centre wingbox
@@ -168,6 +196,14 @@ wingGeometry["wing"] = {
     "meanAerodynamicChord": meanAerodynamicChord,
     "aspectRatio": aspectRatio,
     "taperRatio": taperRatio,
+    "quarterChordSweep": quarterChordSweep,
+    "flapInboardSpanFrac": FLAP_INBOARD_SPAN_FRAC,
+    "flapOutboardSpanFrac": FLAP_OUTBOARD_SPAN_FRAC,
+    "flapChordFrac": FLAP_CHORD_FRAC,
+    "slatInboardSpanFrac": SLAT_INBOARD_SPAN_FRAC,
+    "slatOutboardSpanFrac": SLAT_OUTBOARD_SPAN_FRAC,
+    "slatChordFrac": SLAT_CHORD_FRAC,
+    "FlapAreaFrac": FLAP_AREA_FRAC,
 }
 wingGeometry["hTail"] = {
     "rootChord": hTailRootChord,
@@ -178,6 +214,8 @@ wingGeometry["hTail"] = {
     "aspectRatio": hTailaspectRatio,
     "taperRatio": hTailTaperRatio,
     "sweep": hTailSweep,
+    "QFactor": Q_TAIL,
+    "toverc": TAIL_THICKNESS,
 }
 wingGeometry["vTail"] = {
     "rootChord": vTailRootChord,
@@ -188,11 +226,14 @@ wingGeometry["vTail"] = {
     "aspectRatio": vTailaspectRatio,
     "taperRatio": vTailTaperRatio,
     "sweep": vTailSweep,
+    "QFactor": Q_TAIL,
+    "toverc": TAIL_THICKNESS,
 }
 wingGeometry["nacelle"] = {
     "length": nacelleLength,
     "diameter": nacelleDiameter,
     "area": nacelleArea,
+    "formFactor": NACELLE_FORM_FACTOR,
 }
 wingGeometry["fuselage"] = {
     "length": fuselageLength,

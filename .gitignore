@@ -1,3 +1,10 @@
+# Ignore html files, except those in the docs build
+*.html
+!docs/build/*.html
+
+# Ignore OpenMDAO output files
+*.openmdao_out
+
 # ==============================================================================
 # Standard Python gitignore
 # ==============================================================================

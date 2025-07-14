@@ -7,6 +7,6 @@ This directory includes:
 - Aerodynamic and structural meshes
 - FFD control volumes
 - Geometry and aircraft specifications
-- An OpenMDAO model for performing the necessary aircraft performance calculations (`performanceCalc.py`)
+- Python code for performing the necessary aircraft performance calculations (`performanceCalc.py`, `BFLCalculation`, and `buffet`)
 
 Further details on the files and their descriptions can be found in the subdirectories.

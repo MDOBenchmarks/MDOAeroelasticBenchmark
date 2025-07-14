@@ -1,0 +1,5 @@
+numpy
+mdolab-baseclasses
+openmdao
+openconcept
+matplotlib

@@ -2,7 +2,7 @@ Required Results
 ================
 
 Benchmark Analyses
-------------------
+******************
 
 In order to quantify the differences between the codes and meshes used by participants separately from differences in optimized designs, participants should provide the following results for the baseline wing.
 These analyses should be performed using the same meshes participants use for their optimizations.
@@ -38,7 +38,7 @@ The tip deflection and twist should be calculated using the deflections at the t
 
 .. figure:: figures/TipDisp/TipDispEquations.png
    :name: figTipDispEquations
-   
+
    Method for calculating wing tip deflections.
 
 Benchmark Aeroelastic Analysis
@@ -48,7 +48,7 @@ Perform aeroelastic analyss of the baseline wing in the cruise condition at an a
 Report :math:`C_L`, :math:`C_D`, and the same values reported for the benchmark structural analysis.
 
 Optimization Results
---------------------
+********************
 
 Participants are free to start their optimizations from any initial design they choose, a sensible progression would be:
 
