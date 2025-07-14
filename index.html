@@ -59,41 +59,52 @@ It should be considered the up to date reference for those planning to take part
 </li>
 <li class="toctree-l1"><a class="reference internal" href="opt_problem.html">Optimization Problems</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="opt_problem.html#objectives">Objectives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#design-variables">Design Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#structural-variables">Structural Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#geometric-variables">Geometric Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#aerodynamic-variables">Aerodynamic Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#constraints">Constraints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#structural-constraints">Structural Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#design-variables">Design Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#structural-variables">Structural Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#geometric-variables">Geometric Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#aerodynamic-variables">Aerodynamic Variables</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="opt_problem.html#taxi-bump-constraints">Taxi Bump Constraints</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#geometric-constraints">Geometric Constraints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#aerodynamic-constraints">Aerodynamic Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#constraints">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#structural-constraints">Structural Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#taxi-bump-constraints">Taxi Bump Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#geometric-constraints">Geometric Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#lift-constraints">Lift Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#buffet-onset-constraints">Buffet Onset Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#takeoff-constraint">Takeoff Constraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opt_problem.html#constraints-summary">Constraints Summary</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="required_results.html">Required Results</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="required_results.html#benchmark-analyses">Benchmark Analyses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="required_results.html#benchmark-aerodynamic-analysis">Benchmark Aerodynamic Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="required_results.html#benchmark-structural-analysis">Benchmark Structural Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="required_results.html#benchmark-aeroelastic-analysis">Benchmark Aeroelastic Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="required_results.html#optimization-results">Optimization Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="required_results.html#case-1">Case 1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="required_results.html#case-2">Case 2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="required_results.html#case-3">Case 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="required_results.html#benchmark-analyses">Benchmark Analyses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="required_results.html#benchmark-aerodynamic-analysis">Benchmark Aerodynamic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="required_results.html#benchmark-structural-analysis">Benchmark Structural Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="required_results.html#benchmark-aeroelastic-analysis">Benchmark Aeroelastic Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="required_results.html#optimization-results">Optimization Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="required_results.html#case-1">Case 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="required_results.html#case-2">Case 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="required_results.html#case-3">Case 3</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 <section id="simple-transonic-wing-files">
-<h3>Simple Transonic Wing Files<a class="headerlink" href="#simple-transonic-wing-files" title="Link to this heading">¶</a></h3>
+<span id="stw-files"></span><h3>Simple Transonic Wing Files<a class="headerlink" href="#simple-transonic-wing-files" title="Link to this heading">¶</a></h3>
 <p>A collection of files to help participants get started with the simple transonic wing benchmark problems can be found <a class="reference external" href="https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files">here</a>.
-These files include:
-- OML and wingbox CAD files
-- Aerodynamic and structural meshes
-- FFD control volumes
-- Geometry and aircraft specifications
-- An OpenMDAO model for performing the necessary aircraft performance calculations</p>
+These files include:</p>
+<ul class="simple">
+<li><p>OML and wingbox CAD files</p></li>
+<li><p>Aerodynamic and structural meshes</p></li>
+<li><p>FFD control volumes</p></li>
+<li><p>Geometry and aircraft specifications</p></li>
+<li><p>Python code for performing the necessary aircraft performance calculations</p></li>
+</ul>
 </section>
 <section id="acknowledgements">
 <h3>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">¶</a></h3>

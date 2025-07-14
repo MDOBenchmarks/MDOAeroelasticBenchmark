@@ -71,13 +71,12 @@ They should be performed using the baseline geometry and the following structura
 </tr>
 </tbody>
 </table>
-</section>
 <section id="benchmark-aerodynamic-analysis">
-<h2>Benchmark Aerodynamic Analysis<a class="headerlink" href="#benchmark-aerodynamic-analysis" title="Link to this heading">¶</a></h2>
+<h3>Benchmark Aerodynamic Analysis<a class="headerlink" href="#benchmark-aerodynamic-analysis" title="Link to this heading">¶</a></h3>
 <p>Report the values of <span class="math notranslate nohighlight">\(C_L\)</span> and <span class="math notranslate nohighlight">\(C_D\)</span> for the baseline OML in the cruise condition at angles of attack from 0 to <span class="math notranslate nohighlight">\(5^{\circ}\)</span> in steps of at most <span class="math notranslate nohighlight">\(1^{\circ}\)</span>.</p>
 </section>
 <section id="benchmark-structural-analysis">
-<h2>Benchmark Structural Analysis<a class="headerlink" href="#benchmark-structural-analysis" title="Link to this heading">¶</a></h2>
+<h3>Benchmark Structural Analysis<a class="headerlink" href="#benchmark-structural-analysis" title="Link to this heading">¶</a></h3>
 <p>Simulate the baseline wing under a uniform pressure load of <span class="math notranslate nohighlight">\(30kPa\)</span> applied to the lower skin of the wingbox, include 2.5g inertial (a.k.a self-weight) loads.
 Report the tip deflection and twist, compliance (total strain energy), and separate factors of safety for material and buckling failure.
 The tip deflection and twist should be calculated using the deflections at the top corners of the tip rib, as shown in <a class="reference internal" href="#figtipdispequations"><span class="std std-numref">Fig. 7</span></a>.</p>
@@ -89,9 +88,10 @@ The tip deflection and twist should be calculated using the deflections at the t
 </figure>
 </section>
 <section id="benchmark-aeroelastic-analysis">
-<h2>Benchmark Aeroelastic Analysis<a class="headerlink" href="#benchmark-aeroelastic-analysis" title="Link to this heading">¶</a></h2>
+<h3>Benchmark Aeroelastic Analysis<a class="headerlink" href="#benchmark-aeroelastic-analysis" title="Link to this heading">¶</a></h3>
 <p>Perform aeroelastic analyss of the baseline wing in the cruise condition at an angle of attack of <span class="math notranslate nohighlight">\(3.25^{\circ}\)</span>, include 1g inertial (a.k.a self-weight) loads.
 Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="math notranslate nohighlight">\(C_D\)</span>, and the same values reported for the benchmark structural analysis.</p>
+</section>
 </section>
 <section id="optimization-results">
 <h2>Optimization Results<a class="headerlink" href="#optimization-results" title="Link to this heading">¶</a></h2>
@@ -104,9 +104,8 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
 </ul>
 <p>However, participants should ensure that the reference values used in the geometric constraints (e.g leading edge radii, spar heights etc) are from the baseline geometry.</p>
 <p>Participants should provide the following results at a minimum:</p>
-</section>
 <section id="case-1">
-<h2>Case 1<a class="headerlink" href="#case-1" title="Link to this heading">¶</a></h2>
+<h3>Case 1<a class="headerlink" href="#case-1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Wall clock time and total number of CPU hours required for each optimization and a brief description of the hardware used.</p></li>
 <li><p>Convergence plots showing the objective value along with measures of constraint violation and optimality vs iterations, function evaluations, or wall time. The criteria used to terminate the optimization should also be described. Most gradient-based optimizers report some norm of the gradient of the Lagrangian as an <em>Optimality</em> value which is used to judge satisfaction of the KKT conditions <span id="id1">[<a class="reference internal" href="index.html#id11" title="Joaquim R. R. A. Martins and Andrew Ning. Engineering Design Optimization. Cambridge University Press, Cambridge, UK, January 2022. ISBN 9781108833417. URL: https://mdobook.github.io, doi:10.1017/9781108980647.">MN22</a>]</span> (Section 5.3). If your optimizer does not provide such a value then you should describe the stopping criteria of your optimization.</p></li>
@@ -125,7 +124,7 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
 </ul>
 </section>
 <section id="case-2">
-<h2>Case 2<a class="headerlink" href="#case-2" title="Link to this heading">¶</a></h2>
+<h3>Case 2<a class="headerlink" href="#case-2" title="Link to this heading">¶</a></h3>
 <p>As for <strong>Case 1</strong> plus:</p>
 <ul class="simple">
 <li><p>Plots of in-flight twist distributions for each flight condition for the initial and optimized designs.</p></li>
@@ -151,7 +150,7 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
 </figure>
 </section>
 <section id="case-3">
-<h2>Case 3<a class="headerlink" href="#case-3" title="Link to this heading">¶</a></h2>
+<h3>Case 3<a class="headerlink" href="#case-3" title="Link to this heading">¶</a></h3>
 <p>As for <strong>Case 2</strong> plus:</p>
 <p>Additional quantities of interest for the optimized design:</p>
 <ul class="simple">
@@ -162,6 +161,7 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
 <li><p>Wing area</p></li>
 <li><p>Wing loading</p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -176,14 +176,18 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Required Results</a><ul>
-<li><a class="reference internal" href="#benchmark-analyses">Benchmark Analyses</a></li>
+<li><a class="reference internal" href="#benchmark-analyses">Benchmark Analyses</a><ul>
 <li><a class="reference internal" href="#benchmark-aerodynamic-analysis">Benchmark Aerodynamic Analysis</a></li>
 <li><a class="reference internal" href="#benchmark-structural-analysis">Benchmark Structural Analysis</a></li>
 <li><a class="reference internal" href="#benchmark-aeroelastic-analysis">Benchmark Aeroelastic Analysis</a></li>
-<li><a class="reference internal" href="#optimization-results">Optimization Results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#optimization-results">Optimization Results</a><ul>
 <li><a class="reference internal" href="#case-1">Case 1</a></li>
 <li><a class="reference internal" href="#case-2">Case 2</a></li>
 <li><a class="reference internal" href="#case-3">Case 3</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

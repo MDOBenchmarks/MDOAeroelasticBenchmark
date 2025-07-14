@@ -48,12 +48,13 @@
             
   <section id="optimization-problems">
 <h1>Optimization Problems<a class="headerlink" href="#optimization-problems" title="Link to this heading">¶</a></h1>
-<p>This section describes our three proposed benchmark optimization problems to be applied to the STW.
-The three problems build on one another with the intention of allowing researchers to test their tools on increasingly complex problems:</p>
+<p>This section describes our proposed benchmark optimization problems to be applied to the STW.
+The problems build on one another with the intention of allowing researchers to test their tools on increasingly complex problems:</p>
 <ol class="arabic simple">
 <li><p><strong>Case 1</strong>: Structural mass minimization with a fixed geometry.</p></li>
 <li><p><strong>Case 2</strong>: Fuel burn minimization with a fixed wing planform.</p></li>
 <li><p><strong>Case 3</strong>: Fuel burn minimization with a variable wing planform.</p></li>
+<li><p><strong>Case 4</strong>: Fuel burn minimization with a variable wing planform and additional performance constraints.</p></li>
 </ol>
 <p><a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a> list information about the aircraft and the flight conditions used in the optimization problems, which are all based on publicly available data on the high gross-weight variant of the Boeing 717.</p>
 <table class="docutils align-default" id="tabaircraftspec">
@@ -243,7 +244,7 @@ Note that, the exact number and form of some design variables will depend on the
 <tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
 <th class="head"><p><strong>Case 1</strong></p></th>
 <th class="head"><p><strong>Case 2</strong></p></th>
-<th class="head"><p><strong>Case 3</strong></p></th>
+<th class="head"><p><strong>Cases 3 &amp; 4</strong></p></th>
 </tr>
 </thead>
 <tbody>
@@ -294,9 +295,8 @@ Note that, the exact number and form of some design variables will depend on the
 </tr>
 </tbody>
 </table>
-</section>
 <section id="structural-variables">
-<h2>Structural Variables<a class="headerlink" href="#structural-variables" title="Link to this heading">¶</a></h2>
+<h3>Structural Variables<a class="headerlink" href="#structural-variables" title="Link to this heading">¶</a></h3>
 <p>Due to the variety of structural modeling approaches we want to support in these benchmark problems, we do not prescribe a specific set of structural sizing variables.
 Instead we specify the following requirements for the parameterization of the wingbox:</p>
 <ol class="arabic simple">
@@ -314,7 +314,7 @@ Instead we specify the following requirements for the parameterization of the wi
 </figure>
 </section>
 <section id="geometric-variables">
-<h2>Geometric Variables<a class="headerlink" href="#geometric-variables" title="Link to this heading">¶</a></h2>
+<h3>Geometric Variables<a class="headerlink" href="#geometric-variables" title="Link to this heading">¶</a></h3>
 <p>In <strong>Case 1</strong>, the wing geometry is fixed and thus there are no geometric design variables.
 In <strong>Case 2</strong>, the section shapes of the wing may be changed in the z direction, and the twist distribution may be varied.
 In <strong>Case 3</strong>, the optimizer may also vary the span, sweep, and chord distribution.
@@ -329,16 +329,16 @@ However, the following requirements must be satisfied:</p>
 </ul>
 </section>
 <section id="aerodynamic-variables">
-<h2>Aerodynamic Variables<a class="headerlink" href="#aerodynamic-variables" title="Link to this heading">¶</a></h2>
+<h3>Aerodynamic Variables<a class="headerlink" href="#aerodynamic-variables" title="Link to this heading">¶</a></h3>
 <p>Finally, the optimizer can control the angles of attack at each flight point to meet the lift constraints described in the Constraints section.</p>
+</section>
 </section>
 <section id="constraints">
 <h2>Constraints<a class="headerlink" href="#constraints" title="Link to this heading">¶</a></h2>
 <p><a class="reference internal" href="#taboptprob-constraints"><span class="std std-numref">Table 7</span></a> provides a high-level summary the constraints applied in the 3 benchmark problems.
 As with the design variables, the exact formulation of the constraints in each benchmark problem will depend to some extent on the structural modeling and geometric parameterization approaches used by participants.</p>
-</section>
 <section id="structural-constraints">
-<h2>Structural Constraints<a class="headerlink" href="#structural-constraints" title="Link to this heading">¶</a></h2>
+<h3>Structural Constraints<a class="headerlink" href="#structural-constraints" title="Link to this heading">¶</a></h3>
 <p>The primary structural constraints enforce that the wingbox has a safety factor of 1.5 to both material and buckling failure in both maneuver flight conditions.
 How this is achieved is left free.</p>
 <p>Adjacency constraints are enforced to avoid abrupt changes in panel sizing.
@@ -354,12 +354,12 @@ Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a c
 </ul>
 <p>Participants should enforce as many of these constraints as are applicable to their structural sizing parameterization in all three benchmark problems.</p>
 </section>
-</section>
 <section id="taxi-bump-constraints">
-<h1>Taxi Bump Constraints<a class="headerlink" href="#taxi-bump-constraints" title="Link to this heading">¶</a></h1>
+<h3>Taxi Bump Constraints<a class="headerlink" href="#taxi-bump-constraints" title="Link to this heading">¶</a></h3>
 <p>For case 4, a taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by <span id="id6">Niu [<a class="reference internal" href="index.html#id12" title="M. Niu. Airframe Structural Design. Hong Kong Conmilit Press, 9th edition, 1988.">Niu88</a>]</span>. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.</p>
+</section>
 <section id="geometric-constraints">
-<h2>Geometric Constraints<a class="headerlink" href="#geometric-constraints" title="Link to this heading">¶</a></h2>
+<h3>Geometric Constraints<a class="headerlink" href="#geometric-constraints" title="Link to this heading">¶</a></h3>
 <p>Since the benchmark problems consider a limited selection of flight points, additional geometric constraints are required to ensure the optimizer produces a realistic wing geometry:</p>
 <ul class="simple">
 <li><p>The wing’s leading edge radius must be at least 90% of its baseline value throughout the span to maintain reasonable low-speed performance.</p></li>
@@ -377,12 +377,13 @@ Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a c
 <p>which is better scaled.
 Note that the total fuel mass, <span class="math notranslate nohighlight">\(M_\text{fuel}\)</span>, is the sum of the fuel burn computed using <a class="reference internal" href="#equation-eqfuelburn">(1)</a> and the reserve fuel mass given in <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a>.</p>
 </section>
-<section id="aerodynamic-constraints">
-<h2>Aerodynamic Constraints<a class="headerlink" href="#aerodynamic-constraints" title="Link to this heading">¶</a></h2>
+<section id="lift-constraints">
+<h3>Lift Constraints<a class="headerlink" href="#lift-constraints" title="Link to this heading">¶</a></h3>
 <p>The lift produced by the wing at each flight point must be equal to the aircraft weight multiplied by the relevant load factor.
 The maneuvers are assumed to be performed at the LGM since the inertial relief of the fuel is not included in the structural model.
 The aircraft mass for the cruise condition is taken to be the mid-cruise mass, which is the geometric average of the cruise start and end masses.
 This accounts for the non-uniform rate of fuel burn over the segment.</p>
+</section>
 <section id="buffet-onset-constraints">
 <h3>Buffet Onset Constraints<a class="headerlink" href="#buffet-onset-constraints" title="Link to this heading">¶</a></h3>
 <p>For case 4, a buffet constraints are added.
@@ -394,159 +395,184 @@ The constraint for both buffet conditions can then be written as:</p>
 <div class="math notranslate nohighlight">
 \[C_{L,n} \leq C_{L_\text{buffet}}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(C_{L,n}\)</span> is the lift coefficient required to produce the necessary load factor at each buffet flight point and <span class="math notranslate nohighlight">\(C{L_\text{buffet}}\)</span> is the buffet onset lift coefficient at the relevant Mach number for each flight point.</p>
+</section>
+<section id="takeoff-constraint">
+<h3>Takeoff Constraint<a class="headerlink" href="#takeoff-constraint" title="Link to this heading">¶</a></h3>
+<p>The balanced field length of the aircraft at its TOGM, on a dry runway, at sea-level standard temperature conditions must be less than 5500 ft.
+The balanced field length is the distance required for the aircraft to accelerate, takeoff, and climb to 35 ft above the runway.
+An engine failure is assumed to occur at the “decision speed”, v1, this decision speed must be solved for such that the distance required to continue the takeoff and climb to 35 ft is equal to the distance required to stop the aircraft.</p>
+<p>The figure below shows an example of the phases of such a balanced field length calculation:</p>
+<figure class="align-center" id="takeoff-phases">
+<img alt="_images/takeoff_phases.png" src="_images/takeoff_phases.png" />
+</figure>
+<p>Participants are free to compute this balanced field length constraint using any method they choose, we provide a simple model with analytic gradients that participants may use <a class="reference external" href="https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files/BFLCalculation">here</a>.</p>
+<p>The rotation speed of the aircraft should be 110% of its stall speed.
+Computing this stall speed requires participants to compute the maximum lift coefficient of the wing in it’s takeoff configuration.
+To do this, participants can find assumed details of the size and location of slats and flaps on the STW in <code class="docutils literal notranslate"><span class="pre">wingGeometry.py</span></code>, provided in our <a class="reference internal" href="index.html#stw-files"><span class="std std-ref">Simple Transonic Wing Files</span></a>.
+A 20 degree flap setting should be assumed for the entire calculation.
+The provided model mentioned above includes a simple estimation of the maximum lift coefficient based on high level wing geometry parameters and an assumed sectional maximum lift coefficient.</p>
+</section>
+<section id="constraints-summary">
+<h3>Constraints Summary<a class="headerlink" href="#constraints-summary" title="Link to this heading">¶</a></h3>
 <table class="docutils align-default" id="taboptprob-constraints">
 <caption><span class="caption-number">Table 7 </span><span class="caption-text">Constraints to be enforced in the benchmark problems</span><a class="headerlink" href="#taboptprob-constraints" title="Link to this table">¶</a></caption>
 <thead>
-<tr class="row-odd"><th class="head"><p>Equation</p></th>
-<th class="head"><p>Constraint</p></th>
-<th class="head"><p>Case 1</p></th>
-<th class="head"><p>Case 2</p></th>
-<th class="head"><p>Case 3</p></th>
-<th class="head"><p>Case 4</p></th>
+<tr class="row-odd"><th class="head" colspan="3"><p><strong>Constraint</strong>                                                                             | <strong>Description</strong></p></th>
+<th class="head"><p><strong>Case 1</strong></p></th>
+<th class="head"><p><strong>Case 2</strong></p></th>
+<th class="head"><p><strong>Case 3</strong></p></th>
+<th class="head"><p><strong>Case 4</strong></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(SR_\text{2.5g} \leq 1 / 1.5\)</span></p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(SR_\text{2.5g} \leq 1 / 1.5\)</span></p></td>
 <td><p>Pull-up maneuver strength ratio</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(SR_\text{-1g} \leq 1 / 1.5\)</span></p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(SR_\text{-1g} \leq 1 / 1.5\)</span></p></td>
 <td><p>Push-down maneuver strength ratio</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{panel},i} - t_{\text{panel},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(\left|t_{\text{panel},i} - t_{\text{panel},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
 <td><p>Skin/spar panel thickness adjacency</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq 2.5 \text{mm}\)</span></p></td>
 <td><p>Skin/spar stiffener thickness adjacency</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq 10 \text{mm}\)</span></p></td>
-<td><p>Skin/spar stiffener height adjacency tnote{*}</p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq 10 \text{mm}\)</span></p></td>
+<td><p>Skin/spar stiffener height adjacency <a class="reference internal" href="#a" id="id10"><span>[a]</span></a></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t_{\text{stiff},i} \leq 15 t_{\text{panel},i}\)</span></p></td>
-<td><p>Maximum stiffener thickness tnote{*}</p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(t_{\text{stiff},i} \leq 15 t_{\text{panel},i}\)</span></p></td>
+<td><p>Maximum stiffener thickness <a class="reference internal" href="#a" id="id11"><span>[a]</span></a></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \leq 30 t_{\text{stiff},i}\)</span></p></td>
-<td><p>Maximum stiffener aspect-ratio tnote{*}</p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \leq 30 t_{\text{stiff},i}\)</span></p></td>
+<td><p>Maximum stiffener aspect-ratio <a class="reference internal" href="#a" id="id12"><span>[a]</span></a></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \geq 5 t_{\text{stiff},i}\)</span></p></td>
-<td><p>Minimum stiffener aspect-ratio tnote{*}</p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(h_{\text{stiff},i} \geq 5 t_{\text{stiff},i}\)</span></p></td>
+<td><p>Minimum stiffener aspect-ratio <a class="reference internal" href="#a" id="id13"><span>[a]</span></a></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(w_{\text{stiff},i} \leq p_{\text{stiff},i}\)</span></p></td>
-<td><p>Minimum stiffener spacing tnote{*}</p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(w_{\text{stiff},i} \leq p_{\text{stiff},i}\)</span></p></td>
+<td><p>Minimum stiffener spacing <a class="reference internal" href="#a" id="id14"><span>[a]</span></a></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(L_\text{2.5g} = 2.5 LGM g\)</span></p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(L_\text{2.5g} = 2.5 LGM g\)</span></p></td>
 <td><p>Pull-up maneuver lift level</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(L_\text{-1g} = -LGM g\)</span></p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(L_\text{-1g} = -LGM g\)</span></p></td>
 <td><p>Push-down maneuver lift level</p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(L_\text{cruise} = M_\text{mid-cruise} g\)</span></p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(L_\text{cruise} = M_\text{mid-cruise} g\)</span></p></td>
 <td><p>Cruise lift level</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t_\text{spar} \geq 0.75 t_{\text{spar},0}\)</span></p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(t_\text{spar} \geq 0.75 t_{\text{spar},0}\)</span></p></td>
 <td><p>Minimum Spar height</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t \geq  0.5 t_{0}\)</span></p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(t \geq  0.5 t_{0}\)</span></p></td>
 <td><p>Minimum TE thickness</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(R_\text{LE} \geq 0.9 R_{\text{LE},0}\)</span></p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(R_\text{LE} \geq 0.9 R_{\text{LE},0}\)</span></p></td>
 <td><p>Minimum Leading edge radius</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(M_\text{fuel}/\rho_\text{fuel} \leq V_\text{aux} + 2k_\text{tank} V_\text{wingbox}\)</span></p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(M_\text{fuel}/\rho_\text{fuel} \leq V_\text{aux} + 2k_\text{tank} V_\text{wingbox}\)</span></p></td>
 <td><p>Fuel volume</p></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(TOGM / 2S \leq 600 \text{kg}/\text{m}^{2}\)</span></p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(TOGM / 2S \leq 600 \text{kg}/\text{m}^{2}\)</span></p></td>
 <td><p>Maximum wing loading</p></td>
 <td></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(C_{L,1.3g} \leq C_{L_\text{buffet},M=0.82}\)</span></p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(BFL \leq 5500 \text{ft}\)</span></p></td>
+<td><p>Maximum balanced field length</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(C_{L,1.3g} \leq C_{L_\text{buffet},M=0.82}\)</span></p></td>
 <td><p>Buffet onset margin - High lift condition</p></td>
 <td></td>
 <td></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(C_{L,1g} \leq C_{L_\text{buffet},M=0.89}\)</span></p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(C_{L,1g} \leq C_{L_\text{buffet},M=0.89}\)</span></p></td>
 <td><p>Buffet onset margin - High speed condition</p></td>
 <td></td>
 <td></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(SR_\text{2.0g} \leq 1 / 1.5\)</span></p></td>
+<tr class="row-even"><td colspan="2"><p><span class="math notranslate nohighlight">\(SR_\text{2.0g} \leq 1 / 1.5\)</span></p></td>
 <td><p>Taxi bump strength ratio (full fuel, no aerodynamics)</p></td>
 <td></td>
 <td></td>
 <td></td>
 <td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
 </tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(SR_\text{-2.0g} \leq 1 / 1.5\)</span></p></td>
+<tr class="row-odd"><td colspan="2"><p><span class="math notranslate nohighlight">\(SR_\text{-2.0g} \leq 1 / 1.5\)</span></p></td>
 <td><p>Taxi bump strength ratio (full fuel, no aerodynamics)</p></td>
 <td></td>
 <td></td>
@@ -555,6 +581,13 @@ The constraint for both buffet conditions can then be written as:</p>
 </tr>
 </tbody>
 </table>
+<div role="list" class="citation-list">
+<div class="citation" id="a" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>a<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id10">1</a>,<a role="doc-backlink" href="#id11">2</a>,<a role="doc-backlink" href="#id12">3</a>,<a role="doc-backlink" href="#id13">4</a>,<a role="doc-backlink" href="#id14">5</a>)</span>
+<p>May not be applicable depending on structural parameterization.</p>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -571,18 +604,20 @@ The constraint for both buffet conditions can then be written as:</p>
     <ul>
 <li><a class="reference internal" href="#">Optimization Problems</a><ul>
 <li><a class="reference internal" href="#objectives">Objectives</a></li>
-<li><a class="reference internal" href="#design-variables">Design Variables</a></li>
+<li><a class="reference internal" href="#design-variables">Design Variables</a><ul>
 <li><a class="reference internal" href="#structural-variables">Structural Variables</a></li>
 <li><a class="reference internal" href="#geometric-variables">Geometric Variables</a></li>
 <li><a class="reference internal" href="#aerodynamic-variables">Aerodynamic Variables</a></li>
-<li><a class="reference internal" href="#constraints">Constraints</a></li>
-<li><a class="reference internal" href="#structural-constraints">Structural Constraints</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#taxi-bump-constraints">Taxi Bump Constraints</a><ul>
+<li><a class="reference internal" href="#constraints">Constraints</a><ul>
+<li><a class="reference internal" href="#structural-constraints">Structural Constraints</a></li>
+<li><a class="reference internal" href="#taxi-bump-constraints">Taxi Bump Constraints</a></li>
 <li><a class="reference internal" href="#geometric-constraints">Geometric Constraints</a></li>
-<li><a class="reference internal" href="#aerodynamic-constraints">Aerodynamic Constraints</a><ul>
+<li><a class="reference internal" href="#lift-constraints">Lift Constraints</a></li>
 <li><a class="reference internal" href="#buffet-onset-constraints">Buffet Onset Constraints</a></li>
+<li><a class="reference internal" href="#takeoff-constraint">Takeoff Constraint</a></li>
+<li><a class="reference internal" href="#constraints-summary">Constraints Summary</a></li>
 </ul>
 </li>
 </ul>

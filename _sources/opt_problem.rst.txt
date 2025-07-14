@@ -1,12 +1,13 @@
 Optimization Problems
 =====================
 
-This section describes our three proposed benchmark optimization problems to be applied to the STW.
-The three problems build on one another with the intention of allowing researchers to test their tools on increasingly complex problems:
+This section describes our proposed benchmark optimization problems to be applied to the STW.
+The problems build on one another with the intention of allowing researchers to test their tools on increasingly complex problems:
 
 1. **Case 1**: Structural mass minimization with a fixed geometry.
 2. **Case 2**: Fuel burn minimization with a fixed wing planform.
 3. **Case 3**: Fuel burn minimization with a variable wing planform.
+4. **Case 4**: Fuel burn minimization with a variable wing planform and additional performance constraints.
 
 :numref:`tabAircraftSpec` and :numref:`tabFlightConditions` list information about the aircraft and the flight conditions used in the optimization problems, which are all based on publicly available data on the high gross-weight variant of the Boeing 717.
 
@@ -78,7 +79,7 @@ The three problems build on one another with the intention of allowing researche
    +--------------------+-------------------------+-----------------+-----------------+-------------------------------------------------+
 
 Objectives
-----------
+**********
 
 The objective function to be minimized in **Case 1** is the wingbox mass, computed from the FE model.
 The objective function for cases 2 and 3 is the fuel burn over a given mission.
@@ -121,7 +122,7 @@ Where :math:`C_{D,\text{frame}}` is estimated using a conceptual drag build-up i
 :math:`S` is the baseline single wing planform area from :numref:`tabAircraftSpec` and does not vary during optimization since we assume that the remainder of the aircraft remains identical.
 
 Design Variables
-----------------
+****************
 
 The primary differences between the three benchmark problems are the amount of design freedom given to the optimizer through the design variables.
 :numref:`tabOptProb-DVs` summarizes these design variables.
@@ -133,7 +134,7 @@ Note that, the exact number and form of some design variables will depend on the
    :name: tabOptProb-DVs
 
    +-------------------------------------+----------------------+---------------------+----------------------+
-   |  **Variable**                       | **Case 1**           | **Case 2**          | **Case 3**           |
+   |  **Variable**                       | **Case 1**           | **Case 2**          | **Cases 3 & 4**      |
    +=====================================+======================+=====================+======================+
    |  Structural sizing                  | :math:`\checkmark`   | :math:`\checkmark`  | :math:`\checkmark`   |
    +-------------------------------------+----------------------+---------------------+----------------------+
@@ -197,7 +198,7 @@ Aerodynamic Variables
 Finally, the optimizer can control the angles of attack at each flight point to meet the lift constraints described in the Constraints section.
 
 Constraints
------------
+***********
 
 :numref:`tabOptProb-Constraints` provides a high-level summary the constraints applied in the 3 benchmark problems.
 As with the design variables, the exact formulation of the constraints in each benchmark problem will depend to some extent on the structural modeling and geometric parameterization approaches used by participants.
@@ -222,7 +223,7 @@ Some basic structural sizing rules suggested by :cite:t:`Kassapoglou2013` should
 Participants should enforce as many of these constraints as are applicable to their structural sizing parameterization in all three benchmark problems.
 
 Taxi Bump Constraints
-=====================
+---------------------
 
 For case 4, a taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by :cite:t:`Niu1988`. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.
 
@@ -252,8 +253,8 @@ or:
 which is better scaled.
 Note that the total fuel mass, :math:`M_\text{fuel}`, is the sum of the fuel burn computed using :eq:`eqFuelBurn` and the reserve fuel mass given in :numref:`tabAircraftSpec`.
 
-Aerodynamic Constraints
------------------------
+Lift Constraints
+----------------
 
 The lift produced by the wing at each flight point must be equal to the aircraft weight multiplied by the relevant load factor.
 The maneuvers are assumed to be performed at the LGM since the inertial relief of the fuel is not included in the structural model.
@@ -261,7 +262,7 @@ The aircraft mass for the cruise condition is taken to be the mid-cruise mass, w
 This accounts for the non-uniform rate of fuel burn over the segment.
 
 Buffet Onset Constraints
-************************
+------------------------
 
 For case 4, a buffet constraints are added.
 These constraints enforce that the wing must be free from buffet at a load factor of 1.3 up to its maximum operating Mach number, :math:`M_\text{MO}=0.82`, and up to the dive Mach number, :math:`M_D=0.89`, at a load factor of 1.
@@ -280,11 +281,36 @@ Where :math:`C_{L,n}` is the lift coefficient required to produce the necessary 
 
 .. \input{\tablepath/ConstraintsGeneric.tex}
 
+Takeoff Constraint
+------------------
+
+The balanced field length of the aircraft at its TOGM, on a dry runway, at sea-level standard temperature conditions must be less than 5500 ft.
+The balanced field length is the distance required for the aircraft to accelerate, takeoff, and climb to 35 ft above the runway.
+An engine failure is assumed to occur at the "decision speed", v1, this decision speed must be solved for such that the distance required to continue the takeoff and climb to 35 ft is equal to the distance required to stop the aircraft.
+
+The figure below shows an example of the phases of such a balanced field length calculation:
+
+.. figure:: figures/takeoff_phases.png
+   :name: takeoff_phases
+   :align: center
+
+Participants are free to compute this balanced field length constraint using any method they choose, we provide a simple model with analytic gradients that participants may use `here <https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files/BFLCalculation>`_.
+
+The rotation speed of the aircraft should be 110% of its stall speed.
+Computing this stall speed requires participants to compute the maximum lift coefficient of the wing in it's takeoff configuration.
+To do this, participants can find assumed details of the size and location of slats and flaps on the STW in ``wingGeometry.py``, provided in our :ref:`stw_files`.
+A 20 degree flap setting should be assumed for the entire calculation.
+The provided model mentioned above includes a simple estimation of the maximum lift coefficient based on high level wing geometry parameters and an assumed sectional maximum lift coefficient.
+
+
+Constraints Summary
+-------------------
+
 .. table:: Constraints to be enforced in the benchmark problems
    :name: tabOptProb-Constraints
 
-   +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
-   | Equation                                                                                   | Constraint                                                    | Case 1              | Case 2              | Case 3              | Case 4             |
+   +-----------------------------------------------------------------------------------------+------------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
+   | **Constraint**                                                                             | **Description**                                               | **Case 1**          | **Case 2**          | **Case 3**          | **Case 4**         |
    +============================================================================================+===============================================================+=====================+=====================+=====================+====================+
    | :math:`SR_\text{2.5g} \leq 1 / 1.5`                                                        | Pull-up maneuver strength ratio                               | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
@@ -294,15 +320,15 @@ Where :math:`C_{L,n}` is the lift coefficient required to produce the necessary 
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
    | :math:`\left|t_{\text{stiff},i} - t_{\text{stiff},j}\right| \leq 2.5 \text{mm}`            | Skin/spar stiffener thickness adjacency                       | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
-   | :math:`\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq 10 \text{mm}`             | Skin/spar stiffener height adjacency \tnote{*}                | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
+   | :math:`\left|h_{\text{stiff},i} - h_{\text{stiff},j}\right| \leq 10 \text{mm}`             | Skin/spar stiffener height adjacency [a]_                     | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
-   | :math:`t_{\text{stiff},i} \leq 15 t_{\text{panel},i}`                                      | Maximum stiffener thickness \tnote{*}                         | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
+   | :math:`t_{\text{stiff},i} \leq 15 t_{\text{panel},i}`                                      | Maximum stiffener thickness [a]_                              | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
-   | :math:`h_{\text{stiff},i} \leq 30 t_{\text{stiff},i}`                                      | Maximum stiffener aspect-ratio \tnote{*}                      | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
+   | :math:`h_{\text{stiff},i} \leq 30 t_{\text{stiff},i}`                                      | Maximum stiffener aspect-ratio [a]_                           | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
-   | :math:`h_{\text{stiff},i} \geq 5 t_{\text{stiff},i}`                                       | Minimum stiffener aspect-ratio \tnote{*}                      | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
+   | :math:`h_{\text{stiff},i} \geq 5 t_{\text{stiff},i}`                                       | Minimum stiffener aspect-ratio [a]_                           | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
-   | :math:`w_{\text{stiff},i} \leq p_{\text{stiff},i}`                                         | Minimum stiffener spacing \tnote{*}                           | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
+   | :math:`w_{\text{stiff},i} \leq p_{\text{stiff},i}`                                         | Minimum stiffener spacing [a]_                                | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
    | :math:`L_\text{2.5g} = 2.5 LGM g`                                                          | Pull-up maneuver lift level                                   | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark`  | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
@@ -320,6 +346,8 @@ Where :math:`C_{L,n}` is the lift coefficient required to produce the necessary 
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
    | :math:`TOGM / 2S \leq 600 \text{kg}/\text{m}^{2}`                                          | Maximum wing loading                                          |                     |                     | :math:`\checkmark`  | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
+   | :math:`BFL \leq 5500 \text{ft}`                                                            | Maximum balanced field length                                 |                     |                     |                     | :math:`\checkmark` |
+   +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
    | :math:`C_{L,1.3g} \leq C_{L_\text{buffet},M=0.82}`                                         | Buffet onset margin - High lift condition                     |                     |                     |                     | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
    | :math:`C_{L,1g} \leq C_{L_\text{buffet},M=0.89}`                                           | Buffet onset margin - High speed condition                    |                     |                     |                     | :math:`\checkmark` |
@@ -328,3 +356,5 @@ Where :math:`C_{L,n}` is the lift coefficient required to produce the necessary 
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
    | :math:`SR_\text{-2.0g} \leq 1 / 1.5`                                                       | Taxi bump strength ratio (full fuel, no aerodynamics)         |                     |                     |                     | :math:`\checkmark` |
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
+
+.. [a] May not be applicable depending on structural parameterization.
