@@ -3,7 +3,6 @@ MDO Benchmarks for Aircraft Design
 ==================================
 
 This website hosts benchmark problems for multidisciplinary design optimization (MDO) of aircraft.
-The benchmarks are developed to support special sessions at the AIAA SciTech Forum, enabling researchers to compare and validate their high-fidelity aeroelastic design optimization methods.
 
 Benchmarks
 ----------
