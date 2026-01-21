@@ -29,6 +29,11 @@ These files include:
 * Geometry and aircraft specifications
 * Python code for performing the necessary aircraft performance calculations
 
+Reference results
+-----------------
+
+Reference results for the STW benchmark problems, and instructions for submitting your own results, can be found at X...
+
 Acknowledgements
 ----------------
 

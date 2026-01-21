@@ -8,7 +8,7 @@ Benchmarks
 ----------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    stw/index
    dlr-f25/index
