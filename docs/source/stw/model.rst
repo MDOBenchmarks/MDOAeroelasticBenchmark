@@ -1,4 +1,4 @@
-Wing Model 
+Wing Model
 ==========
 
 The benchmark model is based on an OML geometry originally defined by :cite:t:`Kenway2013`, who referred to it is as the STW.
@@ -71,7 +71,7 @@ CAD files of both the wing OML and wingbox geometries are provided in the reposi
 ..   \label{fig:SimpleTransonicWing}
 .. \end{figure}
 
-Aerodynamic Model 
+Aerodynamic Model
 -----------------
 
 A family of 3 structured multiblock CFD meshes for the wing are provided in the repository, which are summarized in :numref:`tabAeroMeshes`.
@@ -226,3 +226,8 @@ For the sake of simplicity, we do not include any inertial forces due to non-str
 Although such loads are simple enough to include in a standalone analysis, they are difficult to include in an optimization problem due to the need to keep them consistent with the wing's geometry as it changes.
 
 
+Bibliography
+------------
+
+.. bibliography:: stw_refs.bib
+   :filter: docname in docnames

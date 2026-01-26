@@ -22,7 +22,7 @@ extensions = ["sphinxcontrib.bibtex"]
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-bibtex_bibfiles = ["refs.bib"]
+bibtex_bibfiles = ["stw/stw_refs.bib", "stw/stw_papers.bib"]
 
 numfig = True
 

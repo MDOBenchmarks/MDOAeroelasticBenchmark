@@ -14,6 +14,7 @@ It should be considered the up to date reference for those planning to take part
    model
    opt_problem
    required_results
+   stw_papers
 
 .. _stw_files:
 
@@ -34,7 +35,16 @@ Reference results
 
 Reference results for the STW benchmark problems, and instructions for submitting your own results, can be found at X...
 
+You can also find a list of papers that contain results using the STW on the :ref:`stw-papers` page.
+
 Acknowledgements
 ----------------
 
 We would like to thank Gaetan Kenway, who originally created the simple transonic wing geometry, and Anil Yildirim for creating the supplied CFD meshes.
+
+
+Bibliography
+------------
+
+.. bibliography:: stw_refs.bib
+   :filter: docname in docnames
