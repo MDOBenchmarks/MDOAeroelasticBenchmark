@@ -1,0 +1,100 @@
+@inproceedings{AGray2024,
+  author    = {Alasdair C. Gray and Joaquim R. R. A. Martins},
+  title     = {A Proposed Benchmark Model for Practical Aerostructural Optimization of Aircraft Wings},
+  address   = {Orlando, FL},
+  booktitle = {AIAA SciTech Forum},
+  doi       = {10.2514/6.2024-2775},
+  keywords  = {xsede, ank, OpenMDAO, MPhys},
+  month     = {January},
+  year      = {2024},
+  abstract  = {The increasing flexibility of modern aircraft wings makes the consideration of aeroelasticity increasingly important in the earliest stages of the design process. In response to this need, the past decades have seen significant advances in the development of tools for the numerical optimization of aircraft wings considering aeroelastic interactions. These aeroelastic optimization tools optimize the structural sizing, and occasionally surface geometry, of a wing, subject to constraints such as structural failure and flutter stability, computed using aeroelastic analyses. The models used by these tools range from simple lifting line and beam models to RANS CFD and shell finite element models, each with their advantages and drawbacks. However, there have been few, if any, efforts to compare these different frameworks, mainly due to a lack of open benchmark models. In this paper, we propose a new benchmark model intended to be accessible to different researchers while remaining relevant to industrial use cases in modern transport aircraft. The proposed model consists of a wing-only outer mold line, based on that of a small single-aisle transport aircraft, and a moderately detailed conformal wingbox model. We also define a set of aeroelastic optimization problems of varying complexity, ranging from a structural sizing problem with fixed geometry to more complex problems involving optimization of the structural sizing and geometry for minimum fuel burn. We present results for each of the three optimization problems generated using RANS CFD, a shell finite element model, and the MPhys multiphysics coupling library. We show that allowing the wing planform to vary from the baseline results in a 17.5% reduction in fuel burn. These models and optimization problems are intended to act as a starting point for discussions on the choice of benchmark problems for the aeroelastic optimization community.}
+}
+
+@inproceedings{AGray2025a,
+  author    = {Alasdair C. Gray and Joaquim R. R. A. Martins},
+  title     = {Aerostructural Optimization of the Simple Transonic Wing Using {MPhys}, {ADflow}, and {TACS}},
+  address   = {Orlando, FL},
+  booktitle = {AIAA SciTech Forum},
+  doi       = {10.2514/6.2025-2813},
+  keywords  = {xsede, ank, OpenMDAO, MPhys},
+  month     = {January},
+  year      = {2025},
+  abstract  = {The past decades have seen significant advances in the development of tools for the numerical optimization of aircraft wings considering aeroelastic interactions. These aeroelastic optimization tools optimize the structural sizing, and occasionally surface geometry, of a wing, subject to constraints such as structural failure and flutter stability, computed using aeroelastic analyses. The models used by these tools range from simple lifting line and beam models to RANS CFD and shell finite element models, each with their advantages and drawbacks. Recently, the High-Fidelity Aeroelastic Optimization Benchmark Working Group has been formed to bring together practitioners across the field in order to compare their methods on a common set of optimization problems. In this paper, we present solutions to all three benchmark problems using a set of open source codes developed for high-fidelity gradient-based design optimization. In Case~1, we generate a feasible wingbox design under aeroelastic loads, in Case~2 we improve the fuel burn over a nominal mission by 3\% by optimizing the wing twist and section shapes along with the structural sizing, and in Case~3 adding planform variables results in a doubling of the wing's aspect ratio and at 10.1\% reduction in fuel burn.}
+}
+
+@phdthesis{AGray2025b,
+  author  = {Alasdair Christison Gray},
+  title   = {Geometrically Nonlinear Methods for High-Fidelity {MDO} of Very Flexible Aircraft},
+  address = {Ann Arbor, MI},
+  doi     = {10.7302/26927},
+  month   = {June},
+  school  = {University of Michigan},
+  year    = {2025}
+}
+
+@inproceedings{AGray2026a,
+  author    = {Alasdair C. Gray and Joaquim R. R. A. Martins and Fabian A. Volle and Brian J. Burke and Sean P. Engelstad and Graeme J. Kennedy},
+  title     = {Comparisons of Results for a High-fidelity Aeroelastic Optimization Benchmark Problem},
+  address   = {Orlando, FL},
+  booktitle = {AIAA SciTech Forum},
+  doi       = {10.2514/6.2026-0762},
+  month     = {1},
+  year      = {2026},
+  abstract  = {As the aerospace industry looks to improve fuel efficiency and reduce design cycle time, high-fidelity aeroelastic analysis and optimization are becoming increasingly relevant for the more flexible aircraft designs required to achieve sustainable aviation goals. Not having a consistent benchmark optimization problem with a common configuration, set of design variables, objectives, constraints, etc. makes it difficult to compare approaches and creates an obstacle for the aerospace community to collaborate to advance the state of the art for high-fidelity aeroelastic optimization. The High-fidelity Aeroelastic Optimization Benchmark Working Group was established at AIAA SciTech 2024 to create and study a set of benchmark aeroelastic optimization cases that the community can use to compare methods on the same aeroelastic optimization problems. Three benchmark optimization problems were developed and refined during 2024, and participants presented results for these benchmark problems at AIAA SciTech 2025. In this paper we compare the computational tools, methods, and results across these participants. In general, despite different modeling approaches and design parameterizations, the designs resulting from each participant's optimizations often achieved similar performance. These differences stem from a multitude of choices made by participants in how they modeled the benchmark wing and solved the benchmark optimization problems. In particular, different approaches to modeling the stiffened panels of the wingbox resulted in significantly different structural designs. We end by discussing the most significant challenges and bottlenecks faced by participants.}
+}
+
+@inproceedings{AGray2026b,
+  author    = {Alasdair C. Gray and Joaquim R. R. A. Martins},
+  title     = {Aerostructural Optimization of the {S}imple {T}ransonic {W}ing Considering Buffet and Takeoff Performance},
+  address   = {Orlando, FL},
+  booktitle = {AIAA SciTech Forum},
+  doi       = {10.2514/6.2026-1010},
+  keywords  = {ank, OpenMDAO, MPhys},
+  month     = {January},
+  year      = {2026},
+  abstract  = {The past decades have seen significant advances in the development of tools for the numerical optimization of aircraft wings considering aeroelastic interactions. These aeroelastic optimization tools optimize the structural sizing, and occasionally surface geometry, of a wing, subject to constraints such as structural failure and flutter stability, computed using aeroelastic analyses. Recently, the High-Fidelity Aeroelastic Optimization Benchmark Working Group has been formed to bring together practitioners across the field and compare their methods on a common set of optimization problems based on a benchmark model known as the Simple Transonic Wing. Building on the success of our special session at SciTech 2025, the working group has continued to develop the benchmark problems, adding new constraints to the optimization problems with the aim of producing more realistic designs. In this paper, we present our solution to the latest and most complex of these benchmark problems which includes new constraints on buffet onset, takeoff performance, and ground loads. We find that satisfying these new constraints requires a thinner wing with a larger planform area and a lower aspect ratio compared to our previous results. We also find that designing the wing considering buffet onset increases the wing's optimum cruise Mach number significantly beyond the value it is optimized to operate at.}
+}
+
+@article{AGray2026c,
+  author   = {Alasdair C. Gray and Graeme J. Kennedy and Joaquim R. R. A. Martins},
+  title    = {Geometrically Nonlinear High-fidelity Aerostructural Optimization for Highly Flexible Wings},
+  doi      = {10.1007/s00158-025-04181-x},
+  journal  = {Structural and Multidisciplinary Optimization},
+  keywords = {ank, OpenMDAO, MPhys},
+  number   = {6},
+  volume   = {69},
+  year     = {2026}
+}
+
+@inproceedings{Jacobson2025,
+  author    = {Jacobson, Kevin and Stanford, Bret and Thelen, Andrew},
+  booktitle = {AIAA Scitech 2025 Forum},
+  doi       = {10.2514/6.2025-2812},
+  month     = jan,
+  publisher = {American Institute of Aeronautics and Astronautics},
+  title     = {Investigations of an Aeroelastic Optimization Benchmark Problem With {MPhys} and {FUN3D}},
+  address   = {Orlando, FL},
+  year      = {2025}
+}
+
+@inproceedings{Burke2025,
+  author    = {Burke, Brian J. and Engelstad, Sean P. and Kennedy, Graeme J.},
+  booktitle = {AIAA Scitech 2025 Forum},
+  doi       = {10.2514/6.2025-2814},
+  month     = jan,
+  publisher = {American Institute of Aeronautics and Astronautics},
+  title     = {Evaluation and Optimization of the Open AeroelasticBenchmark Model using {FUNtoFEM}},
+  address   = {Orlando, FL},
+  year      = {2025}
+}
+
+@inproceedings{Volle2025,
+  author    = {Volle, Fabian A. },
+  booktitle = {AIAA Scitech 2025 Forum},
+  doi       = {10.2514/6.2025-2815},
+  month     = jan,
+  publisher = {American Institute of Aeronautics and Astronautics},
+  title     = {Aero-Structural Optimization of the {AIAA} {MDO} Benchmark Model with {TAU} and {Lagrange}},
+  address   = {Orlando, FL},
+  year      = {2025}
+}
