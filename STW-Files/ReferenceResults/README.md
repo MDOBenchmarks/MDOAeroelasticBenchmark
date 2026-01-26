@@ -5,8 +5,6 @@ Please follow the folder/file/column naming conventions exactly to ensure everyo
 
 To create all the necessary folders and CSV template files, following the instructions below, you can use the provided `CreateSubmissionDirs.py` script:
 
-e.g
-
 ```bash
 python CreateSubmissionDirs.py ParticipantName
 ```
@@ -27,7 +25,7 @@ Data
 
 ## 2 Benchmark Analysis Results
 
-If you ran benchmark analyses with multiple meshes, **please only upload results for the meshes you used in your optimisations.**
+If you ran benchmark analyses with multiple meshes, **please only upload results for the meshes you used in your optimizations.**
 
 Create the following folder and file structure for benchmark analysis results:
 
