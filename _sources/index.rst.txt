@@ -1,44 +1,32 @@
 
-Aeroelastic Optimization Benchmark
+MDO Benchmarks for Aircraft Design
 ==================================
 
-This website describes the benchmark model and optimization problems to be used by working group 1 for the special session on High-Fidelity Aeroelastic Design Optimization Applications and Benchmarks at the 2025 AIAA SciTech Forum.
-These were first proposed in our paper at the 2024 AIAA SciTech Forum :cite:t:`AGray2024a`.
+This website hosts benchmark problems for multidisciplinary design optimization (MDO) of aircraft.
 
-This website contains the model and problem description sections of that paper, with some small changes.
-It should be considered the up to date reference for those planning to take part in the special session.
+.. TODO: Write more here
 
-Table of contents
-*****************
+.. TODO: Add some nice figures?
 
-.. toctree::
-   :maxdepth: 3
-
-   model.rst
-   opt_problem.rst
-   required_results.rst
-
-.. _stw_files:
-
-Simple Transonic Wing Files
----------------------------
-
-A collection of files to help participants get started with the simple transonic wing benchmark problems can be found `here <https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files>`_.
-These files include:
-
-* OML and wingbox CAD files
-* Aerodynamic and structural meshes
-* FFD control volumes
-* Geometry and aircraft specifications
-* Python code for performing the necessary aircraft performance calculations
-
-Acknowledgements
-----------------
-
-We would like to thank Gaetan Kenway, who originally created the simple transonic wing geometry, and Anil Yildirim for creating the supplied CFD meshes.
-
-Bibliography
+Get Involved
 ------------
 
-.. bibliography:: refs.bib
-   :cited:
+Our working group holds a regular meeting once a month to discuss progress on the benchmark problems and plan future activities.
+Anyone interested in participating in the working group is welcome to join.
+We welcome contributions both from those working on the benchmark problems themselves, and those in industry interested in helping us shape the future direction of the benchmarks.
+
+.. TODO: Add contact information.
+If you'd like to be added to the working group mailing list, please contact X.
+
+We hold a special session each year at the AIAA SciTech Forum where participants can present their progress and results on the benchmark problems.
+We recongnize that tackling these benchmark problems can be a significant undertaking, so we encourage participants to present preliminary results even if they have not yet completed the full benchmark problems.
+
+
+Benchmarks
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   stw/index
+   dlr-f25/index

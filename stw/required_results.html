@@ -1,22 +1,23 @@
 
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="./">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Required Results &#8212; Aeroelastic Optimization Benchmark</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=649a27d8" />
-    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css?v=5283bb3d" />
+    <title>Required Results &#8212; MDO Benchmarks for Aircraft Design</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="../_static/bizstyle.css?v=5283bb3d" />
     
-    <script src="_static/documentation_options.js?v=d45e8c67"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="_static/bizstyle.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Papers Using the Simple Transonic Wing" href="stw_papers.html" />
     <link rel="prev" title="Optimization Problems" href="opt_problem.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -27,12 +28,16 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
+          <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="stw_papers.html" title="Papers Using the Simple Transonic Wing"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="opt_problem.html" title="Optimization Problems"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">AOB</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MDO BAD</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Simple Transonic Wing (STW)</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Required Results</a></li> 
       </ul>
     </div>  
@@ -81,7 +86,7 @@ They should be performed using the baseline geometry and the following structura
 Report the tip deflection and twist, compliance (total strain energy), and separate factors of safety for material and buckling failure.
 The tip deflection and twist should be calculated using the deflections at the top corners of the tip rib, as shown in <a class="reference internal" href="#figtipdispequations"><span class="std std-numref">Fig. 7</span></a>.</p>
 <figure class="align-default" id="figtipdispequations">
-<img alt="_images/TipDispEquations.png" src="_images/TipDispEquations.png" />
+<img alt="../_images/TipDispEquations.png" src="../_images/TipDispEquations.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 7 </span><span class="caption-text">Method for calculating wing tip deflections.</span><a class="headerlink" href="#figtipdispequations" title="Link to this image">¶</a></p>
 </figcaption>
@@ -108,7 +113,7 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
 <h3>Case 1<a class="headerlink" href="#case-1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Wall clock time and total number of CPU hours required for each optimization and a brief description of the hardware used.</p></li>
-<li><p>Convergence plots showing the objective value along with measures of constraint violation and optimality vs iterations, function evaluations, or wall time. The criteria used to terminate the optimization should also be described. Most gradient-based optimizers report some norm of the gradient of the Lagrangian as an <em>Optimality</em> value which is used to judge satisfaction of the KKT conditions <span id="id1">[<a class="reference internal" href="index.html#id11" title="Joaquim R. R. A. Martins and Andrew Ning. Engineering Design Optimization. Cambridge University Press, Cambridge, UK, January 2022. ISBN 9781108833417. URL: https://mdobook.github.io, doi:10.1017/9781108980647.">MN22</a>]</span> (Section 5.3). If your optimizer does not provide such a value then you should describe the stopping criteria of your optimization.</p></li>
+<li><p>Convergence plots showing the objective value along with measures of constraint violation and optimality vs iterations, function evaluations, or wall time. The criteria used to terminate the optimization should also be described. Most gradient-based optimizers report some norm of the gradient of the Lagrangian as an <em>Optimality</em> value which is used to judge satisfaction of the KKT conditions <span id="id1">[<a class="reference internal" href="#id11" title="Joaquim R. R. A. Martins and Andrew Ning. Engineering Design Optimization. Cambridge University Press, Cambridge, UK, January 2022. ISBN 9781108833417. URL: https://mdobook.github.io, doi:10.1017/9781108980647.">MN22</a>]</span> (Section 5.3). If your optimizer does not provide such a value then you should describe the stopping criteria of your optimization.</p></li>
 <li><p>Spanwise lift distribution plots for the initial and optimized designs in all flight conditions.</p></li>
 <li><p>Plots of the spanwise structural sizing distributions in the upper and lower skins, and the leading and trailing edge spars. Participants should plot the equivalent axial thickness, which is the thickness of an unstiffened panel with the same axial stiffness as the stiffened panel. This can be computed as <span class="math notranslate nohighlight">\(t_\text{eq} = t_\text{panel}+A_\text{stiff}/P_\text{stiff}\)</span>, where <span class="math notranslate nohighlight">\(t_\text{panel}\)</span> is the panel thickness, <span class="math notranslate nohighlight">\(A_\text{stiff}\)</span> is the stiffener cross-sectional area, and <span class="math notranslate nohighlight">\(P_\text{stiff}\)</span> is the stiffener pitch.</p></li>
 <li><dl class="simple">
@@ -143,7 +148,7 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
 </li>
 </ul>
 <figure class="align-default" id="figpostoptimalitypolarstencil">
-<img alt="_images/PostOptimalityPolarStencil.png" src="_images/PostOptimalityPolarStencil.png" />
+<img alt="../_images/PostOptimalityPolarStencil.png" src="../_images/PostOptimalityPolarStencil.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 8 </span><span class="caption-text">Minimum required stencil for the post-optimality study.</span><a class="headerlink" href="#figpostoptimalitypolarstencil" title="Link to this image">¶</a></p>
 </figcaption>
@@ -162,6 +167,17 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
 <li><p>Wing loading</p></li>
 </ul>
 </section>
+<section id="bibliography">
+<h3>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">¶</a></h3>
+<div class="docutils container" id="id2">
+<div role="list" class="citation-list">
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">MN22</a><span class="fn-bracket">]</span></span>
+<p>Joaquim R. R. A. Martins and Andrew Ning. <em>Engineering Design Optimization</em>. Cambridge University Press, Cambridge, UK, January 2022. ISBN 9781108833417. URL: <a class="reference external" href="https://mdobook.github.io">https://mdobook.github.io</a>, <a class="reference external" href="https://doi.org/10.1017/9781108980647">doi:10.1017/9781108980647</a>.</p>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -173,7 +189,7 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
   <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
+    <h3><a href="../index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">Required Results</a><ul>
 <li><a class="reference internal" href="#benchmark-analyses">Benchmark Analyses</a><ul>
@@ -186,6 +202,7 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
 <li><a class="reference internal" href="#case-1">Case 1</a></li>
 <li><a class="reference internal" href="#case-2">Case 2</a></li>
 <li><a class="reference internal" href="#case-3">Case 3</a></li>
+<li><a class="reference internal" href="#bibliography">Bibliography</a></li>
 </ul>
 </li>
 </ul>
@@ -198,10 +215,15 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
     <p class="topless"><a href="opt_problem.html"
                           title="previous chapter">Optimization Problems</a></p>
   </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="stw_papers.html"
+                          title="next chapter">Papers Using the Simple Transonic Wing</a></p>
+  </div>
 <search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
+    <form class="search" action="../search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
@@ -216,18 +238,22 @@ Report <span class="math notranslate nohighlight">\(C_L\)</span>, <span class="m
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
+          <a href="../genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="stw_papers.html" title="Papers Using the Simple Transonic Wing"
+             >next</a> |</li>
         <li class="right" >
           <a href="opt_problem.html" title="Optimization Problems"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">AOB</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MDO BAD</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Simple Transonic Wing (STW)</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Required Results</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-    &#169; Copyright 2025, Aeroelastic Optimization Benchmark organizers.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    &#169; Copyright 2026, MDO Benchmarks organizers.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
     </div>
   </body>
 </html>

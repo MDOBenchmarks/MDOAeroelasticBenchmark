@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Simple Transonic Wing (STW) &#8212; MDO Benchmarks for Aircraft Design</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
+    <link rel="stylesheet" type="text/css" href="../_static/bizstyle.css?v=5283bb3d" />
+    
+    <script src="../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Wing Model" href="model.html" />
+    <link rel="prev" title="MDO Benchmarks for Aircraft Design" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="model.html" title="Wing Model"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="MDO Benchmarks for Aircraft Design"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MDO BAD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simple Transonic Wing (STW)</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="simple-transonic-wing-stw">
+<h1>Simple Transonic Wing (STW)<a class="headerlink" href="#simple-transonic-wing-stw" title="Link to this heading">¶</a></h1>
+<p>This section describes the Simple Transonic Wing (STW) benchmark model and optimization problems.
+These were first proposed in our paper at the 2024 AIAA SciTech Forum <span id="id1">Gray and Martins [<a class="reference internal" href="#id5" title="Alasdair C. Gray and Joaquim R. R. A. Martins. A proposed benchmark model for practical aerostructural optimization of aircraft wings. In AIAA SciTech Forum. Orlando, FL, January 2024. doi:10.2514/6.2024-2775.">GM24</a>]</span>.</p>
+<p>This section contains the model and problem description sections of that paper, with some small changes.
+It should be considered the up to date reference for those planning to take part in the special session.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="model.html">Wing Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model.html#wing-geometry">Wing Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html#aerodynamic-model">Aerodynamic Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html#structural-model">Structural Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html#bibliography">Bibliography</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opt_problem.html">Optimization Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#objectives">Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#design-variables">Design Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opt_problem.html#constraints">Constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="required_results.html">Required Results</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="required_results.html#benchmark-analyses">Benchmark Analyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="required_results.html#optimization-results">Optimization Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stw_papers.html">Papers Using the Simple Transonic Wing</a></li>
+</ul>
+</div>
+<section id="stw-files">
+<span id="id2"></span><h2>STW Files<a class="headerlink" href="#stw-files" title="Link to this heading">¶</a></h2>
+<p>A collection of files to help participants get started with the simple transonic wing benchmark problems can be found <a class="reference external" href="https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files">here</a>.
+These files include:</p>
+<ul class="simple">
+<li><p>OML and wingbox CAD files</p></li>
+<li><p>Aerodynamic and structural meshes</p></li>
+<li><p>FFD control volumes</p></li>
+<li><p>Geometry and aircraft specifications</p></li>
+<li><p>Python code for performing the necessary aircraft performance calculations</p></li>
+</ul>
+</section>
+<section id="reference-results">
+<h2>Reference results<a class="headerlink" href="#reference-results" title="Link to this heading">¶</a></h2>
+<p>Reference results for the STW benchmark problems, and instructions for submitting your own results, can be found at X…</p>
+<p>You can also find a list of papers that contain results using the STW on the <a class="reference internal" href="stw_papers.html#stw-papers"><span class="std std-ref">Papers Using the Simple Transonic Wing</span></a> page.</p>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">¶</a></h2>
+<p>We would like to thank Gaetan Kenway, who originally created the simple transonic wing geometry, and Anil Yildirim for creating the supplied CFD meshes.</p>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">¶</a></h2>
+<div class="docutils container" id="id3">
+<div role="list" class="citation-list">
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">GM24</a><span class="fn-bracket">]</span></span>
+<p>Alasdair C. Gray and Joaquim R. R. A. Martins. A proposed benchmark model for practical aerostructural optimization of aircraft wings. In <em>AIAA SciTech Forum</em>. Orlando, FL, January 2024. <a class="reference external" href="https://doi.org/10.2514/6.2024-2775">doi:10.2514/6.2024-2775</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Simple Transonic Wing (STW)</a><ul>
+<li><a class="reference internal" href="#stw-files">STW Files</a></li>
+<li><a class="reference internal" href="#reference-results">Reference results</a></li>
+<li><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+<li><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../index.html"
+                          title="previous chapter">MDO Benchmarks for Aircraft Design</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="model.html"
+                          title="next chapter">Wing Model</a></p>
+  </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="model.html" title="Wing Model"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="MDO Benchmarks for Aircraft Design"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MDO BAD</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Simple Transonic Wing (STW)</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, MDO Benchmarks organizers.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </body>
+</html>

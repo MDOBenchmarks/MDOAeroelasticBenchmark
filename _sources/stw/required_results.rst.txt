@@ -115,3 +115,9 @@ Additional quantities of interest for the optimized design:
 * Wing area
 * Wing loading
 
+
+Bibliography
+------------
+
+.. bibliography:: stw_refs.bib
+   :filter: docname in docnames
