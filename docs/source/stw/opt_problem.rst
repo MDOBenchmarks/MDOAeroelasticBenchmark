@@ -358,3 +358,9 @@ Constraints Summary
    +--------------------------------------------------------------------------------------------+---------------------------------------------------------------+---------------------+---------------------+---------------------+--------------------+
 
 .. [a] May not be applicable depending on structural parameterization.
+
+Bibliography
+------------
+
+.. bibliography:: stw_refs.bib
+   :filter: docname in docnames
