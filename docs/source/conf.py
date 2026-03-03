@@ -33,11 +33,11 @@ numfig = True
 # a list of builtin themes.
 #
 
-html_theme = "bizstyle"
-# html_theme = "sphinx_book_theme"
+html_theme = "shibuya"
+html_theme_options = {"github_url": "https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark"}
 
 html_title = "MDO Benchmarks for Aircraft Design"
-html_short_title = "MDO BAD"
+# html_short_title = "MDO BAD"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
