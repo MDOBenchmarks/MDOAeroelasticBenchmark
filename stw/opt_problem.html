@@ -1,53 +1,138 @@
-
 <!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Optimization Problems - MDO Benchmarks for Aircraft Design</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Required Results" href="required_results.html" /><link rel="prev" title="Wing Model" href="model.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1c6635e" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=44020203" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="Optimization Problems"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>MDO Benchmarks for Aircraft Design</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Simple Transonic Wing (STW)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="model.html">Wing Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Optimization Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="required_results.html">Required Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stw_papers.html">Papers Using the Simple Transonic Wing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dlr-f25/index.html">DLR-F25</a><ul class="simple">
+</ul>
+</li>
+</ul>
 
-<html lang="en" data-content_root="../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Optimization Problems &#8212; MDO Benchmarks for Aircraft Design</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
-    <link rel="stylesheet" type="text/css" href="../_static/bizstyle.css?v=5283bb3d" />
-    
-    <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-    <script src="../_static/bizstyle.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Required Results" href="required_results.html" />
-    <link rel="prev" title="Wing Model" href="model.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <!--[if lt IE 9]>
-    <script src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
-  </head><body>
-    <div class="related" role="navigation" aria-label="Related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="required_results.html" title="Required Results"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="model.html" title="Wing Model"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">MDO BAD</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Simple Transonic Wing (STW)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Optimization Problems</a></li> 
-      </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <section id="optimization-problems">
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#objectives">Objectives</a></li>
+<li><a class="reference internal" href="#design-variables">Design Variables</a><ul>
+<li><a class="reference internal" href="#structural-variables">Structural Variables</a></li>
+<li><a class="reference internal" href="#geometric-variables">Geometric Variables</a></li>
+<li><a class="reference internal" href="#aerodynamic-variables">Aerodynamic Variables</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#constraints">Constraints</a><ul>
+<li><a class="reference internal" href="#structural-constraints">Structural Constraints</a></li>
+<li><a class="reference internal" href="#taxi-bump-constraints">Taxi Bump Constraints</a></li>
+<li><a class="reference internal" href="#geometric-constraints">Geometric Constraints</a></li>
+<li><a class="reference internal" href="#lift-constraints">Lift Constraints</a></li>
+<li><a class="reference internal" href="#buffet-onset-constraints">Buffet Onset Constraints</a></li>
+<li><a class="reference internal" href="#takeoff-constraint">Takeoff Constraint</a></li>
+<li><a class="reference internal" href="#constraints-summary">Constraints Summary</a></li>
+<li><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">MDO Benchmarks for Aircraft Design</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Simple Transonic Wing (STW)</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Optimization Problems</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="optimization-problems">
 <h1>Optimization Problems<a class="headerlink" href="#optimization-problems" title="Link to this heading">¶</a></h1>
 <p>This section describes our proposed benchmark optimization problems to be applied to the STW.
 The problems build on one another with the intention of allowing researchers to test their tools on increasingly complex problems:</p>
@@ -58,6 +143,7 @@ The problems build on one another with the intention of allowing researchers to 
 <li><p><strong>Case 4</strong>: Fuel burn minimization with a variable wing planform and additional performance constraints.</p></li>
 </ol>
 <p><a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a> list information about the aircraft and the flight conditions used in the optimization problems, which are all based on publicly available data on the high gross-weight variant of the Boeing 717.</p>
+<div class="table-wrapper docutils container" id="tabaircraftspec">
 <table class="docutils align-default" id="tabaircraftspec">
 <caption><span class="caption-number">Table 4 </span><span class="caption-text">Aircraft and mission specifications, based on the Boeing 717 high gross-weight variant.</span><a class="headerlink" href="#tabaircraftspec" title="Link to this table">¶</a></caption>
 <thead>
@@ -165,6 +251,8 @@ The problems build on one another with the intention of allowing researchers to 
 </tr>
 </tbody>
 </table>
+</div>
+<div class="table-wrapper docutils container" id="tabflightconditions">
 <table class="docutils align-default" id="tabflightconditions">
 <caption><span class="caption-number">Table 5 </span><span class="caption-text">Flight conditions</span><a class="headerlink" href="#tabflightconditions" title="Link to this table">¶</a></caption>
 <thead>
@@ -208,29 +296,38 @@ The problems build on one another with the intention of allowing researchers to 
 </tr>
 </tbody>
 </table>
+</div>
 <section id="objectives">
 <h2>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">¶</a></h2>
 <p>The objective function to be minimized in <strong>Case 1</strong> is the wingbox mass, computed from the FE model.
 The objective function for cases 2 and 3 is the fuel burn over a given mission.
 The fuel burn is computed using a two-stage process that accounts for the fuel burn in both cruise and climb.
 This process starts by computing the landing gross mass (<span class="math notranslate nohighlight">\(\text{LGM}\)</span>):</p>
+<div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\text{LGM} = M_\text{payload} + M_\text{frame} + M_\text{fuel, res} + 2M_\text{wing}\]</div>
+</div>
 <p>The total mass of a single wing is computed using the regression model created by <span id="id1">Mariens <em>et al.</em> [<a class="reference internal" href="#id23" title="J. Mariens, A. Elham, and M. J.L. Van Tooren. Influence of weight modelling on the outcome of wing design using multidisciplinary design optimisation techniques. Aeronautical Journal, 117(1195):871–895, 2013. doi:10.1017/S0001924000008563.">MEVanTooren13</a>]</span>:</p>
+<div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[M_\text{wing} = 10.147  M_\text{wingbox}^{0.8162}\]</div>
+</div>
 <p>Where <span class="math notranslate nohighlight">\(M_\text{wingbox}\)</span> is the wingbox mass.</p>
 <p>Assuming the fuel burn during descent and landing is negligible, the mass at the start of the cruise phase, and then the takeoff gross mass (<span class="math notranslate nohighlight">\(\text{TOGM}\)</span>) are computed by rearranging the Breguet range equation:</p>
+<div class="math-wrapper docutils container" id="equation-eqfuelburn">
 <div class="math notranslate nohighlight" id="equation-eqfuelburn">
 <span class="eqno">(1)<a class="headerlink" href="#equation-eqfuelburn" title="Link to this equation">¶</a></span>\[\begin{split}\begin{align}
 M_\text{cruise, start} &amp; = \text{LGM} \exp\left(\frac{R \times TSFC}{V_\text{cruise}}  \left(\frac{D_\text{cruise}}{L_\text{cruise}}\right)\right)                                                      \\
 \text{TOGM}            &amp; = M_\text{cruise, start} \exp\left(\frac{R_\text{climb} \times TSFC}{V_\text{climb}}  \left(\frac{\cos(\gamma) }{L_\text{cruise}/D_\text{cruise}} + \sin(\gamma)\right)\right) \\
 FB                     &amp; = \text{TOGM} - \text{LGM}
 \end{align}\end{split}\]</div>
+</div>
 <p>Where <span class="math notranslate nohighlight">\(\gamma\)</span> is the climb angle (SI{2.054}{degree}), computed based on the assumed climb range and cruise altitude given in <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a>.</p>
 <p>The lift and drag in the cruise condition are computed using an aeroelastic analysis, the values are doubled to get the full aircraft values, and the drag of un-modeled components (fuselage, tail, and nacelles) is added:</p>
+<div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[L_\text{cruise} = 2L_\text{wing} \qquad D_\text{cruise} = 2\left(D_\text{wing} + q_\text{cruise} S C_{D,\text{frame}}\right)\]</div>
+</div>
 <p>Where <span class="math notranslate nohighlight">\(C_{D,\text{frame}}\)</span> is estimated using a conceptual drag build-up implemented by <span id="id2">Adler and Martins [<a class="reference internal" href="#id16" title="Eytan J. Adler and Joaquim R. R. A. Martins. Blended wing body configuration for hydrogen-powered aviation. In AIAA Aviation 2023 Forum. June 2023. doi:10.2514/6.2023-4020.">AM23</a>]</span> based on the methods of <span id="id3">Torenbeek [<a class="reference internal" href="#id27" title="E. Torenbeek. Synthesis of Subsonic Airplane Design. Delft University Press and Kluwer Academic Publishers, 6th edition, 1990.">Tor90</a>]</span> and <span id="id4">Raymer [<a class="reference internal" href="#id26" title="Daniel P. Raymer. Aircraft Design: A Conceptual Approach. AIAA, 2nd edition, 1992.">Ray92</a>]</span>.
 <span class="math notranslate nohighlight">\(S\)</span> is the baseline single wing planform area from <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and does not vary during optimization since we assume that the remainder of the aircraft remains identical.</p>
 </section>
@@ -239,6 +336,7 @@ FB                     &amp; = \text{TOGM} - \text{LGM}
 <p>The primary differences between the three benchmark problems are the amount of design freedom given to the optimizer through the design variables.
 <a class="reference internal" href="#taboptprob-dvs"><span class="std std-numref">Table 6</span></a> summarizes these design variables.
 Note that, the exact number and form of some design variables will depend on the structural modeling and geometric parameterization approaches used, as is explained in the following sections.</p>
+<div class="table-wrapper docutils container" id="taboptprob-dvs">
 <table class="docutils align-default" id="taboptprob-dvs">
 <caption><span class="caption-number">Table 6 </span><span class="caption-text">Design variables to be used in the benchmark problems</span><a class="headerlink" href="#taboptprob-dvs" title="Link to this table">¶</a></caption>
 <thead>
@@ -296,6 +394,7 @@ Note that, the exact number and form of some design variables will depend on the
 </tr>
 </tbody>
 </table>
+</div>
 <section id="structural-variables">
 <h3>Structural Variables<a class="headerlink" href="#structural-variables" title="Link to this heading">¶</a></h3>
 <p>Due to the variety of structural modeling approaches we want to support in these benchmark problems, we do not prescribe a specific set of structural sizing variables.
@@ -370,11 +469,15 @@ Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a c
 <li><p>When the planform is varied, the wing loading <span class="math notranslate nohighlight">\(\left(\text{TOGM}/2S\right)\)</span> must be no greater than <span class="math notranslate nohighlight">\(600\,\text{kg} / \text{m}^2\)</span>.</p></li>
 </ul>
 <p>When computing the fuel volume constraint, the total available fuel tank volume is the auxiliary tank volume plus the fraction of both wingboxes that is assumed to be available for fuel storage, the constraint can therefore be written as:</p>
+<div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[M_\text{fuel}/\rho_\text{fuel} \leq V_\text{aux} + 2k_\text{tank} V_\text{wingbox}\]</div>
+</div>
 <p>or:</p>
+<div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[\frac{M_\text{fuel}/\rho_\text{fuel} - V_\text{aux}}{2k_\text{tank} V_\text{wingbox}} \leq 1\]</div>
+</div>
 <p>which is better scaled.
 Note that the total fuel mass, <span class="math notranslate nohighlight">\(M_\text{fuel}\)</span>, is the sum of the fuel burn computed using <a class="reference internal" href="#equation-eqfuelburn">(1)</a> and the reserve fuel mass given in <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a>.</p>
 </section>
@@ -393,8 +496,10 @@ As shown in <a class="reference internal" href="#tabflightconditions"><span clas
 <p>Participants are free to implement these buffet constraints as they wish, we provide a semi-empirical model <a class="reference external" href="https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files/buffet">here</a> based on the method of <span id="id8">Berard and Isikveren [<a class="reference internal" href="#id29" title="Adrien Berard and Askin T. Isikveren. Conceptual design prediction of the buffet envelope of transport aircraft. Journal of Aircraft, September 2009. doi:10.2514/1.41367.">BI09</a>]</span>.
 This model computes the buffet onset lift coefficient (<span class="math notranslate nohighlight">\(C_{L_\text{buffet}}\)</span>) for a range of Mach numbers based on some basic geometric parameters of the wing.
 The constraint for both buffet conditions can then be written as:</p>
+<div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[C_{L,n} \leq C_{L_\text{buffet}}\]</div>
+</div>
 <p>Where <span class="math notranslate nohighlight">\(C_{L,n}\)</span> is the lift coefficient required to produce the necessary load factor at each buffet flight point and <span class="math notranslate nohighlight">\(C{L_\text{buffet}}\)</span> is the buffet onset lift coefficient at the relevant Mach number for each flight point.</p>
 </section>
 <section id="takeoff-constraint">
@@ -415,6 +520,7 @@ The provided model mentioned above includes a simple estimation of the maximum l
 </section>
 <section id="constraints-summary">
 <h3>Constraints Summary<a class="headerlink" href="#constraints-summary" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper docutils container" id="taboptprob-constraints">
 <table class="docutils align-default" id="taboptprob-constraints">
 <caption><span class="caption-number">Table 7 </span><span class="caption-text">Constraints to be enforced in the benchmark problems</span><a class="headerlink" href="#taboptprob-constraints" title="Link to this table">¶</a></caption>
 <thead>
@@ -582,6 +688,7 @@ The provided model mentioned above includes a simple estimation of the maximum l
 </tr>
 </tbody>
 </table>
+</div>
 <div role="list" class="citation-list">
 <div class="citation" id="a" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>a<span class="fn-bracket">]</span></span>
@@ -632,84 +739,52 @@ The provided model mentioned above includes a simple estimation of the maximum l
 </section>
 </section>
 
-
-            <div class="clearer"></div>
-          </div>
-        </div>
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="model.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Wing Model</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="required_results.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">Required Results</div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="../index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Optimization Problems</a><ul>
-<li><a class="reference internal" href="#objectives">Objectives</a></li>
-<li><a class="reference internal" href="#design-variables">Design Variables</a><ul>
-<li><a class="reference internal" href="#structural-variables">Structural Variables</a></li>
-<li><a class="reference internal" href="#geometric-variables">Geometric Variables</a></li>
-<li><a class="reference internal" href="#aerodynamic-variables">Aerodynamic Variables</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#constraints">Constraints</a><ul>
-<li><a class="reference internal" href="#structural-constraints">Structural Constraints</a></li>
-<li><a class="reference internal" href="#taxi-bump-constraints">Taxi Bump Constraints</a></li>
-<li><a class="reference internal" href="#geometric-constraints">Geometric Constraints</a></li>
-<li><a class="reference internal" href="#lift-constraints">Lift Constraints</a></li>
-<li><a class="reference internal" href="#buffet-onset-constraints">Buffet Onset Constraints</a></li>
-<li><a class="reference internal" href="#takeoff-constraint">Takeoff Constraint</a></li>
-<li><a class="reference internal" href="#constraints-summary">Constraints Summary</a></li>
-<li><a class="reference internal" href="#bibliography">Bibliography</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, MDO Benchmarks organizers</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="model.html"
-                          title="previous chapter">Wing Model</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="required_results.html"
-                          title="next chapter">Required Results</a></p>
-  </div>
-<search id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="Related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="required_results.html" title="Required Results"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="model.html" title="Wing Model"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">MDO BAD</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Simple Transonic Wing (STW)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Optimization Problems</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2026, MDO Benchmarks organizers.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
-    </div>
-  </body>
+</footer>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/shibuya.js?v=cac61aee"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script></body>
 </html>

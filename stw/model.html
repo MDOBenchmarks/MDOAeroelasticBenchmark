@@ -1,53 +1,124 @@
-
 <!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wing Model - MDO Benchmarks for Aircraft Design</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Optimization Problems" href="opt_problem.html" /><link rel="prev" title="Simple Transonic Wing (STW)" href="index.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1c6635e" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=44020203" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="Wing Model"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>MDO Benchmarks for Aircraft Design</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Simple Transonic Wing (STW)</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Wing Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opt_problem.html">Optimization Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="required_results.html">Required Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stw_papers.html">Papers Using the Simple Transonic Wing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dlr-f25/index.html">DLR-F25</a><ul class="simple">
+</ul>
+</li>
+</ul>
 
-<html lang="en" data-content_root="../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Wing Model &#8212; MDO Benchmarks for Aircraft Design</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=649a27d8" />
-    <link rel="stylesheet" type="text/css" href="../_static/bizstyle.css?v=5283bb3d" />
-    
-    <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-    <script src="../_static/bizstyle.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Optimization Problems" href="opt_problem.html" />
-    <link rel="prev" title="Simple Transonic Wing (STW)" href="index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <!--[if lt IE 9]>
-    <script src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
-  </head><body>
-    <div class="related" role="navigation" aria-label="Related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="opt_problem.html" title="Optimization Problems"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Simple Transonic Wing (STW)"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">MDO BAD</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Simple Transonic Wing (STW)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Wing Model</a></li> 
-      </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <section id="wing-model">
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#wing-geometry">Wing Geometry</a></li>
+<li><a class="reference internal" href="#aerodynamic-model">Aerodynamic Model</a></li>
+<li><a class="reference internal" href="#structural-model">Structural Model</a></li>
+<li><a class="reference internal" href="#bibliography">Bibliography</a></li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">MDO Benchmarks for Aircraft Design</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Simple Transonic Wing (STW)</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Wing Model</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="wing-model">
 <h1>Wing Model<a class="headerlink" href="#wing-model" title="Link to this heading">¶</a></h1>
 <p>The benchmark model is based on an OML geometry originally defined by <span id="id1">Kenway [<a class="reference internal" href="#id11" title="Gaetan K. W. Kenway. A Scalable, Parallel Approach for Multi-Point, High-Fidelity Aerostructural Optimization of Aircraft Configurations. PhD thesis, University of Toronto, 2013.">Ken13</a>]</span>, who referred to it is as the STW.
 In this document we simply refer to it as <cite>the wing</cite> or <cite>the benchmark model</cite>.</p>
@@ -91,6 +162,7 @@ The advantage of this approach is that it results in higher quality volume meshe
 The disadvantage is that it does not provide the parametrically-similar series of grids necessary for a mathematically rigorous convergence study <span id="id2">[<a class="reference internal" href="#id18" title="John Vassberg. A unified baseline grid about the Common Research Model wing/body for the Fifth AIAA CFD Drag Prediction Workshop (invited). In 29th AIAA Applied Aerodynamics Conference. Jul 2011. doi:10.2514/6.2011-3508.">Vas11</a>]</span>.</p>
 <p>Use of these meshes is not required.
 Participants are encouraged to submit results using meshes with topologies and sizes that are suitable for their CFD codes and available computational resources.</p>
+<div class="table-wrapper docutils container" id="tabaeromeshes">
 <table class="docutils align-default" id="tabaeromeshes">
 <caption><span class="caption-number">Table 1 </span><span class="caption-text">CFD mesh information.</span><a class="headerlink" href="#tabaeromeshes" title="Link to this table">¶</a></caption>
 <thead>
@@ -118,12 +190,14 @@ Participants are encouraged to submit results using meshes with topologies and s
 </tr>
 </tbody>
 </table>
+</div>
 </section>
 <section id="structural-model">
 <h2>Structural Model<a class="headerlink" href="#structural-model" title="Link to this heading">¶</a></h2>
 <p>A series of shell FE meshes of the wingbox are also provided in the repository in BDF format.
 These are summarized in <a class="reference internal" href="#tabstructmeshes"><span class="std std-numref">Table 2</span></a> and consist of 4-node quad elements.
 Equivalent meshes with higher order 9 and 16-node quad elements are also available in the repository however, these element types are not widely supported by commercial FE codes.</p>
+<div class="table-wrapper docutils container" id="tabstructmeshes">
 <table class="docutils align-default" id="tabstructmeshes">
 <caption><span class="caption-number">Table 2 </span><span class="caption-text">FE mesh information.</span><a class="headerlink" href="#tabstructmeshes" title="Link to this table">¶</a></caption>
 <thead>
@@ -169,6 +243,7 @@ Equivalent meshes with higher order 9 and 16-node quad elements are also availab
 </tr>
 </tbody>
 </table>
+</div>
 <figure class="align-center" id="figstructmesh">
 <img alt="Structural mesh" src="../_images/L1StructMesh.png" />
 <figcaption>
@@ -196,6 +271,7 @@ However, the models used by participants should:</p>
 <li><p>Be able to model the presence of panel stiffeners and, ideally, be able to parameterize their cross-section.</p></li>
 <li><p>Use sufficient failure criteria to constrain that the structure has a safety factor of at least 1.5 to both material and buckling failure.</p></li>
 </ol>
+<div class="table-wrapper docutils container" id="tabcompositeproperties">
 <table class="docutils align-default" id="tabcompositeproperties">
 <caption><span class="caption-number">Table 3 </span><span class="caption-text">Composite ply properties.</span><a class="headerlink" href="#tabcompositeproperties" title="Link to this table">¶</a></caption>
 <thead>
@@ -255,6 +331,7 @@ However, the models used by participants should:</p>
 </tr>
 </tbody>
 </table>
+</div>
 <p>In all flight conditions, the structural model is subject to aerodynamic forces and the wingbox’s self-weight.
 For the sake of simplicity, we do not include any inertial forces due to non-structural masses such as fuel, or leading and trailing edge devices.
 Although such loads are simple enough to include in a standalone analysis, they are difficult to include in an optimization problem due to the need to keep them consistent with the wing’s geometry as it changes.</p>
@@ -284,70 +361,52 @@ Although such loads are simple enough to include in a standalone analysis, they 
 </section>
 </section>
 
-
-            <div class="clearer"></div>
-          </div>
-        </div>
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="index.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Simple Transonic Wing (STW)</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="opt_problem.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">Optimization Problems</div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="Main">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="../index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Wing Model</a><ul>
-<li><a class="reference internal" href="#wing-geometry">Wing Geometry</a></li>
-<li><a class="reference internal" href="#aerodynamic-model">Aerodynamic Model</a></li>
-<li><a class="reference internal" href="#structural-model">Structural Model</a></li>
-<li><a class="reference internal" href="#bibliography">Bibliography</a></li>
-</ul>
-</li>
-</ul>
-
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, MDO Benchmarks organizers</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="index.html"
-                          title="previous chapter">Simple Transonic Wing (STW)</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="opt_problem.html"
-                          title="next chapter">Optimization Problems</a></p>
-  </div>
-<search id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="Related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="opt_problem.html" title="Optimization Problems"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Simple Transonic Wing (STW)"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">MDO BAD</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Simple Transonic Wing (STW)</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Wing Model</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2026, MDO Benchmarks organizers.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
-    </div>
-  </body>
+</footer>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/shibuya.js?v=cac61aee"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script></body>
 </html>
