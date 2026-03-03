@@ -11,8 +11,6 @@ This is the home of the MDO Benchmarks for Aircraft Design working group.
 Similar to the drag prediction and aeroelastic prediction workshops, our goal is to pose a set of benchmark problems that practitioners can use to directly compare their tools to others in the community.
 Simultaneously, we aim to use these benchmark problems to identify and close gaps between the current state of the art and the needs of industry.
 
-.. TODO: Add some nice figures?
-
 Background
 ----------
 
@@ -34,8 +32,11 @@ We welcome contributions both from those working on the benchmark problems thems
 If you'd like to be added to the working group mailing list, please contact `Kevin Jacobson <kevin.e.jacobson@nasa.gov>`_ or `Graeme Kennedy <graeme.kennedy@aerospace.gatech.edu>`_.
 
 We hold a special session each year at the AIAA SciTech Forum where participants can present their progress and results on the benchmark problems.
-We recongnize that tackling these benchmark problems can be a significant undertaking, so we encourage participants to present preliminary results even if they have not yet completed the full benchmark problems.
+Look for the "MDO Benchmarks for Aircraft Design" special session under the Multidisciplinary Design Optimization technical committee in the SciTech 2027 call for papers, and consider submitting your work!
 
+We recongnize that tackling these benchmark problems can be a significant undertaking, so we encourage participants to present preliminary results even if they have not yet completed the full benchmark problems.
+While the majority of participants to date have tackled the benchmark problems using high-fidelity methods (e.g RANS CFD and built-up finite element models), the problems themselves are posed in a model-agnostic way, and we encourage participants to use whatever methods they think are best suited to the problems.
+Finally, we are happy for participants to present additional results on variations of the benchmark problems (e.g introducing new objectives, constraints, and design variables, or investigating the impact of different modelling choices on the optimization results).
 
 Benchmarks
 ----------
