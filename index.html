@@ -80,8 +80,14 @@ data-aria-dark="Switch to auto color mode">
       <i class="i-lucide close"></i>
     </button>
     <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
 <li><a class="reference internal" href="#get-involved">Get Involved</a></li>
 <li><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
+<li><a class="reference internal" href="#related-works">Related Works</a><ul>
+<li><a class="reference internal" href="#simple-transonic-wing-stw-papers">Simple Transonic Wing (STW) Papers</a></li>
+<li><a class="reference internal" href="#dlr-f25-papers">DLR-F25 Papers</a></li>
+</ul>
+</li>
 </ul>
 </div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
   </aside>
@@ -110,15 +116,31 @@ data-aria-dark="Switch to auto color mode">
   <article class="yue" role="main">
           <section id="mdo-benchmarks-for-aircraft-design">
 <h1>MDO Benchmarks for Aircraft Design<a class="headerlink" href="#mdo-benchmarks-for-aircraft-design" title="Link to this heading">¶</a></h1>
-<p>This website hosts benchmark problems for multidisciplinary design optimization (MDO) of aircraft.</p>
+<figure class="align-center" id="figcase4-4view">
+<img alt="Results for the simple transonic wing Case 4 benchmark problem." src="_images/Case4-4View.png" />
+</figure>
+<p>This is the home of the MDO Benchmarks for Aircraft Design working group.
+Similar to the drag prediction and aeroelastic prediction workshops, our goal is to pose a set of benchmark problems that practitioners can use to directly compare their tools to others in the community.
+Simultaneously, we aim to use these benchmark problems to identify and close gaps between the current state of the art and the needs of industry.</p>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Link to this heading">¶</a></h2>
+<p>The MDO Benchmarks for Aircraft Design working group was formed at the 2024 AIAA SciTech Forum, when the Simple Transonic Wing (STW) benchmark model and problems were proposed <span id="id1">[<a class="reference internal" href="stw/index.html#id5" title="Alasdair C. Gray and Joaquim R. R. A. Martins. A proposed benchmark model for practical aerostructural optimization of aircraft wings. In AIAA SciTech Forum. Orlando, FL, January 2024. doi:10.2514/6.2024-2775.">GM24</a>]</span>.
+Since then, the working group has refined the STW benchmark problems, and multiple participants have presented results in special sessions at the AIAA SciTech Forums in 2025 and 2026.</p>
+<p>A new, more complex, benchmark model, the DLR-F25, was proposed at SciTech 2026 <span id="id2">[<a class="reference internal" href="#id14" title="Mohammad Abu-Zurayk, Antoine DeBlois, Joël Brezillon, Ben D. Phillips, Ögmundur Petersson, Raul llamas, Časlav Ilić, Eliot Aretskin-Hariton, Jeffryes W. Chapman, Patrick Wegener, Jan Himisch, Matthias Schulze, Jannik Häßy, Sascha Dähne, Cian Conlan-Smith, Jasveer Singh, Sebastian Wöhler, Christophe Blondeau, Michael Meheut, Sven Geisbauer, and Stefan Görtz. Establishing a joint research-industry MDO benchmark based on the DLR-F25 aircraft configuration. In AIAA SciTech Forum. Orlando, FL, 1 2026. doi:10.2514/6.2026-0763.">AZDB+26</a>]</span>, and the working group is currently in the process of finalizing benchmark problems for this model.
+For 2026, the working group will continue to work on both the STW and DLR-F25 benchmarks, with the STW acting as a simpler starting point for those new to the benchmarks, and the DLR-F25 acting as a grand-challenge problem.</p>
+<p>We encourage participants to present results on either or both of these benchmark problems at the 2027 AIAA SciTech Forum.</p>
+</section>
 <section id="get-involved">
 <h2>Get Involved<a class="headerlink" href="#get-involved" title="Link to this heading">¶</a></h2>
 <p>Our working group holds a regular meeting once a month to discuss progress on the benchmark problems and plan future activities.
 Anyone interested in participating in the working group is welcome to join.
 We welcome contributions both from those working on the benchmark problems themselves, and those in industry interested in helping us shape the future direction of the benchmarks.</p>
-<p>If you’d like to be added to the working group mailing list, please contact X.</p>
+<p>If you’d like to be added to the working group mailing list, please contact <a class="reference external" href="mailto:kevin&#46;e&#46;jacobson&#37;&#52;&#48;nasa&#46;gov">Kevin Jacobson</a> or <a class="reference external" href="mailto:graeme&#46;kennedy&#37;&#52;&#48;aerospace&#46;gatech&#46;edu">Graeme Kennedy</a>.</p>
 <p>We hold a special session each year at the AIAA SciTech Forum where participants can present their progress and results on the benchmark problems.
-We recongnize that tackling these benchmark problems can be a significant undertaking, so we encourage participants to present preliminary results even if they have not yet completed the full benchmark problems.</p>
+Look for the “MDO Benchmarks for Aircraft Design” special session under the Multidisciplinary Design Optimization technical committee in the SciTech 2027 call for papers, and consider submitting your work!</p>
+<p>We recongnize that tackling these benchmark problems can be a significant undertaking, so we encourage participants to present preliminary results even if they have not yet completed the full benchmark problems.
+While the majority of participants to date have tackled the benchmark problems using high-fidelity methods (e.g RANS CFD and built-up finite element models), the problems themselves are posed in a model-agnostic way, and we encourage participants to use whatever methods they think are best suited to the problems.
+Finally, we are happy for participants to present additional results on variations of the benchmark problems (e.g introducing new objectives, constraints, and design variables, or investigating the impact of different modelling choices on the optimization results).</p>
 </section>
 <section id="benchmarks">
 <h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Link to this heading">¶</a></h2>
@@ -128,6 +150,63 @@ We recongnize that tackling these benchmark problems can be a significant undert
 <li class="toctree-l1"><a class="reference internal" href="dlr-f25/index.html">DLR-F25</a></li>
 </ul>
 </div>
+</section>
+<section id="related-works">
+<h2>Related Works<a class="headerlink" href="#related-works" title="Link to this heading">¶</a></h2>
+<section id="simple-transonic-wing-stw-papers">
+<h3>Simple Transonic Wing (STW) Papers<a class="headerlink" href="#simple-transonic-wing-stw-papers" title="Link to this heading">¶</a></h3>
+<div class="docutils container" id="id3">
+<div role="list" class="citation-list">
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>BEK25<span class="fn-bracket">]</span></span>
+<p>Brian J. Burke, Sean P. Engelstad, and Graeme J. Kennedy. Evaluation and optimization of the open aeroelasticbenchmark model using FUNtoFEM. In <em>AIAA Scitech 2025 Forum</em>. Orlando, FL, January 2025. American Institute of Aeronautics and Astronautics. <a class="reference external" href="https://doi.org/10.2514/6.2025-2814">doi:10.2514/6.2025-2814</a>.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>GKM26<span class="fn-bracket">]</span></span>
+<p>Alasdair C. Gray, Graeme J. Kennedy, and Joaquim R. R. A. Martins. Geometrically nonlinear high-fidelity aerostructural optimization for highly flexible wings. <em>Structural and Multidisciplinary Optimization</em>, 2026. <a class="reference external" href="https://doi.org/10.1007/s00158-025-04181-x">doi:10.1007/s00158-025-04181-x</a>.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>GM24<span class="fn-bracket">]</span></span>
+<p>Alasdair C. Gray and Joaquim R. R. A. Martins. A proposed benchmark model for practical aerostructural optimization of aircraft wings. In <em>AIAA SciTech Forum</em>. Orlando, FL, January 2024. <a class="reference external" href="https://doi.org/10.2514/6.2024-2775">doi:10.2514/6.2024-2775</a>.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>GM25<span class="fn-bracket">]</span></span>
+<p>Alasdair C. Gray and Joaquim R. R. A. Martins. Aerostructural optimization of the simple transonic wing using MPhys, ADflow, and TACS. In <em>AIAA SciTech Forum</em>. Orlando, FL, January 2025. <a class="reference external" href="https://doi.org/10.2514/6.2025-2813">doi:10.2514/6.2025-2813</a>.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>GM26<span class="fn-bracket">]</span></span>
+<p>Alasdair C. Gray and Joaquim R. R. A. Martins. Aerostructural optimization of the Simple Transonic Wing considering buffet and takeoff performance. In <em>AIAA SciTech Forum</em>. Orlando, FL, January 2026. <a class="reference external" href="https://doi.org/10.2514/6.2026-1010">doi:10.2514/6.2026-1010</a>.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>GMV+26<span class="fn-bracket">]</span></span>
+<p>Alasdair C. Gray, Joaquim R. R. A. Martins, Fabian A. Volle, Brian J. Burke, Sean P. Engelstad, and Graeme J. Kennedy. Comparisons of results for a high-fidelity aeroelastic optimization benchmark problem. In <em>AIAA SciTech Forum</em>. Orlando, FL, 1 2026. <a class="reference external" href="https://doi.org/10.2514/6.2026-0762">doi:10.2514/6.2026-0762</a>.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Gra25<span class="fn-bracket">]</span></span>
+<p>Alasdair Christison Gray. <em>Geometrically Nonlinear Methods for High-Fidelity MDO of Very Flexible Aircraft</em>. PhD thesis, University of Michigan, Ann Arbor, MI, June 2025. <a class="reference external" href="https://doi.org/10.7302/26927">doi:10.7302/26927</a>.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>JST25<span class="fn-bracket">]</span></span>
+<p>Kevin Jacobson, Bret Stanford, and Andrew Thelen. Investigations of an aeroelastic optimization benchmark problem with MPhys and FUN3D. In <em>AIAA Scitech 2025 Forum</em>. Orlando, FL, January 2025. American Institute of Aeronautics and Astronautics. <a class="reference external" href="https://doi.org/10.2514/6.2025-2812">doi:10.2514/6.2025-2812</a>.</p>
+</div>
+<div class="citation" id="id12" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Vol25<span class="fn-bracket">]</span></span>
+<p>Fabian A. Volle. Aero-structural optimization of the AIAA MDO benchmark model with TAU and Lagrange. In <em>AIAA Scitech 2025 Forum</em>. Orlando, FL, January 2025. American Institute of Aeronautics and Astronautics. <a class="reference external" href="https://doi.org/10.2514/6.2025-2815">doi:10.2514/6.2025-2815</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="dlr-f25-papers">
+<h3>DLR-F25 Papers<a class="headerlink" href="#dlr-f25-papers" title="Link to this heading">¶</a></h3>
+<div class="docutils container" id="id13">
+<div role="list" class="citation-list">
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">AZDB+26</a><span class="fn-bracket">]</span></span>
+<p>Mohammad Abu-Zurayk, Antoine DeBlois, Joël Brezillon, Ben D. Phillips, Ögmundur Petersson, Raul llamas, Časlav Ilić, Eliot Aretskin-Hariton, Jeffryes W. Chapman, Patrick Wegener, Jan Himisch, Matthias Schulze, Jannik Häßy, Sascha Dähne, Cian Conlan-Smith, Jasveer Singh, Sebastian Wöhler, Christophe Blondeau, Michael Meheut, Sven Geisbauer, and Stefan Görtz. Establishing a joint research-industry MDO benchmark based on the DLR-F25 aircraft configuration. In <em>AIAA SciTech Forum</em>. Orlando, FL, 1 2026. <a class="reference external" href="https://doi.org/10.2514/6.2026-0763">doi:10.2514/6.2026-0763</a>.</p>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 
