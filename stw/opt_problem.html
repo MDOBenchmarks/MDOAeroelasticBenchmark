@@ -316,13 +316,13 @@ This process starts by computing the landing gross mass (<span class="math notra
 <p>Assuming the fuel burn during descent and landing is negligible, the mass at the start of the cruise phase, and then the takeoff gross mass (<span class="math notranslate nohighlight">\(\text{TOGM}\)</span>) are computed by rearranging the Breguet range equation:</p>
 <div class="math-wrapper docutils container" id="equation-eqfuelburn">
 <div class="math notranslate nohighlight" id="equation-eqfuelburn">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eqfuelburn" title="Link to this equation">¶</a></span>\[\begin{split}\begin{align}
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqfuelburn" title="Link to this equation">¶</a></span>\[\begin{split}\begin{aligned}
 M_\text{cruise, start} &amp; = \text{LGM} \exp\left(\frac{R \times TSFC}{V_\text{cruise}}  \left(\frac{D_\text{cruise}}{L_\text{cruise}}\right)\right)                                                      \\
 \text{TOGM}            &amp; = M_\text{cruise, start} \exp\left(\frac{R_\text{climb} \times TSFC}{V_\text{climb}}  \left(\frac{\cos(\gamma) }{L_\text{cruise}/D_\text{cruise}} + \sin(\gamma)\right)\right) \\
 FB                     &amp; = \text{TOGM} - \text{LGM}
-\end{align}\end{split}\]</div>
+\end{aligned}\end{split}\]</div>
 </div>
-<p>Where <span class="math notranslate nohighlight">\(\gamma\)</span> is the climb angle (SI{2.054}{degree}), computed based on the assumed climb range and cruise altitude given in <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a>.</p>
+<p>Where <span class="math notranslate nohighlight">\(\gamma\)</span> is the climb angle (<span class="math notranslate nohighlight">\(2.054^{\circ}\)</span>), computed based on the assumed climb range and cruise altitude given in <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a>.</p>
 <p>The lift and drag in the cruise condition are computed using an aeroelastic analysis, the values are doubled to get the full aircraft values, and the drag of un-modeled components (fuselage, tail, and nacelles) is added:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
