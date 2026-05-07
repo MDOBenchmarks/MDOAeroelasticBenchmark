@@ -3,7 +3,7 @@
 These instructions describe the folder and file structure required for uploading your results for the three optimization cases and benchmark analyses.
 Please follow the folder/file/column naming conventions exactly to ensure everyone's results can be processed automatically.
 
-To create all the necessary folders and CSV template files, following the instructions below, you can use the provided `CreateSubmissionDirs.py` script:
+To create all the necessary folders and CSV template files, following the instructions below, you can use the provided `CreateSubmissionDirs.py` script in the `Data` directory:
 
 ```bash
 python CreateSubmissionDirs.py ParticipantName
