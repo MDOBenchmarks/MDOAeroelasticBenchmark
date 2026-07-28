@@ -103,13 +103,13 @@ Assuming the fuel burn during descent and landing is negligible, the mass at the
 .. math::
    :label: eqFuelBurn
 
-   \begin{align}
+   \begin{aligned}
    M_\text{cruise, start} & = \text{LGM} \exp\left(\frac{R \times TSFC}{V_\text{cruise}}  \left(\frac{D_\text{cruise}}{L_\text{cruise}}\right)\right)                                                      \\
    \text{TOGM}            & = M_\text{cruise, start} \exp\left(\frac{R_\text{climb} \times TSFC}{V_\text{climb}}  \left(\frac{\cos(\gamma) }{L_\text{cruise}/D_\text{cruise}} + \sin(\gamma)\right)\right) \\
    FB                     & = \text{TOGM} - \text{LGM}
-   \end{align}
+   \end{aligned}
 
-Where :math:`\gamma` is the climb angle (\SI{2.054}{\degree}), computed based on the assumed climb range and cruise altitude given in :numref:`tabAircraftSpec` and :numref:`tabFlightConditions`.
+Where :math:`\gamma` is the climb angle (:math:`2.054^{\circ}`), computed based on the assumed climb range and cruise altitude given in :numref:`tabAircraftSpec` and :numref:`tabFlightConditions`.
 
 The lift and drag in the cruise condition are computed using an aeroelastic analysis, the values are doubled to get the full aircraft values, and the drag of un-modeled components (fuselage, tail, and nacelles) is added:
 
