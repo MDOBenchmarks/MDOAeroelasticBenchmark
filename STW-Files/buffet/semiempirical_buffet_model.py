@@ -58,9 +58,9 @@ def get_reference_data(mach=0.77):
 
 
 def compute_sweep_max_thickness_from_sweep_quarter_chord(geom: BuffetGeometryParameters, sweep_quarter_chord: float):
-    geom.sweep_max_thickness = np.rad2deg(
+    geom.sweep_max_thickness = (180/np.pi)*(
         np.arctan(
-            np.tan(np.deg2rad(sweep_quarter_chord))
+            np.tan(sweep_quarter_chord*np.pi/180)
             + 4.0
             / geom.aspect_ratio
             * (geom.taper_ratio - 1.0)
@@ -118,7 +118,7 @@ class SemiEmpiricalBuffetModel:
         """
 
         data_2d_0 = BuffetData2d()
-        cos0 = np.cos(np.deg2rad(data0.geom.sweep_max_thickness))
+        cos0 = np.cos(data0.geom.sweep_max_thickness*np.pi/180)
 
         # equations 8-11
         data_2d_0.mach = data0.mach * cos0
@@ -127,7 +127,7 @@ class SemiEmpiricalBuffetModel:
         data_2d_0.camber = data0.geom.camber / cos0
 
         data_2d_1 = BuffetData2d()
-        cos1 = np.cos(np.deg2rad(geom.sweep_max_thickness))
+        cos1 = np.cos(geom.sweep_max_thickness*np.pi/180)
 
         # equations 12 - 13
         data_2d_1.thickness_to_chord_ratio = geom.thickness_to_chord_ratio / cos1
@@ -167,11 +167,11 @@ class SemiEmpiricalBuffetModel:
 
     def _compute_3d_buffet_mach_number(self, geom: BuffetGeometryParameters, data_2d_1: BuffetData2d):
         # equation 20
-        return data_2d_1.mach * 1.0 / np.cos(np.deg2rad(geom.sweep_max_thickness))
+        return data_2d_1.mach * 1.0 / np.cos(geom.sweep_max_thickness*np.pi/180)
 
     def _compute_3d_buffet_lift_coefficent(self, geom: BuffetGeometryParameters, cl_buffet1_2d: float):
         # equation 21
-        return cl_buffet1_2d * np.cos(np.deg2rad(geom.sweep_max_thickness)) ** 2.0
+        return cl_buffet1_2d * np.cos(geom.sweep_max_thickness*np.pi/180) ** 2.0
 
     def differentiate_buffet_lift(self, geom: BuffetGeometryParameters, data0: BuffetData):
         """

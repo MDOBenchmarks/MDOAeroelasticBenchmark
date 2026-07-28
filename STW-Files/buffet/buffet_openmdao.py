@@ -64,21 +64,21 @@ class BuffetOnsetConstraint(om.ExplicitComponent):
     def compute(self, inputs, outputs):
         geom = BuffetGeometryParameters(
             sweep_max_thickness=-1,
-            aspect_ratio=inputs["aspect_ratio"],
-            taper_ratio=inputs["taper_ratio"],
-            thickness_to_chord_ratio=inputs["tc_ratio"],
-            camber=inputs["camber"],
-            chord_position_of_max_thickness=inputs["xc_max_thickness"],
+            aspect_ratio=inputs["aspect_ratio"].item() if hasattr(inputs["aspect_ratio"],'__len__') else inputs["aspect_ratio"],
+            taper_ratio=inputs["taper_ratio"].item() if hasattr(inputs["taper_ratio"],'__len__') else inputs["taper_ratio"],
+            thickness_to_chord_ratio=inputs["tc_ratio"].item() if hasattr(inputs["tc_ratio"],'__len__') else inputs["tc_ratio"],
+            camber=inputs["camber"].item() if hasattr(inputs["camber"],'__len__') else inputs["camber"],
+            chord_position_of_max_thickness=inputs["xc_max_thickness"].item() if hasattr(inputs["xc_max_thickness"],'__len__') else inputs["xc_max_thickness"],
         )
-        compute_sweep_max_thickness_from_sweep_quarter_chord(geom, sweep_quarter_chord=inputs["sweep_quarter_chord"])
+        compute_sweep_max_thickness_from_sweep_quarter_chord(geom, sweep_quarter_chord=inputs["sweep_quarter_chord"].item() if hasattr(inputs["sweep_quarter_chord"],'__len__') else inputs["sweep_quarter_chord"])
 
         # Compute a semiempirical buffet boundary
         num = 16
-        ref_machs = np.zeros(num)
-        ref_cl_buffet = np.zeros(num)
+        ref_machs = np.zeros(num, dtype=complex)
+        ref_cl_buffet = np.zeros(num, dtype=complex)
 
-        machs = np.zeros(num)
-        cl_buffet = np.zeros(num)
+        machs = np.zeros(num, dtype=complex)
+        cl_buffet = np.zeros(num, dtype=complex)
         for i, mach in enumerate(np.linspace(0.4, 0.9, num=num)):
             ref_data = get_reference_data(mach)
             ref_machs[i] = ref_data.mach
@@ -133,3 +133,35 @@ class BuffetOnsetConstraint(om.ExplicitComponent):
             mach_of_interest - machs[i]
         ) / (machs[i + 1] - machs[i])
         return cl_at_condition * load_factor - cl_buffet_at_mach_of_interest
+
+
+if __name__ == "__main__":
+
+    from STWFlightPoints import flightPointSets
+
+    prob = om.Problem()
+    prob.model.add_subsystem("ivc", om.IndepVarComp(), promotes=["*"])
+    ivcs = {"aspect_ratio"        : 8.61013,
+            "taper_ratio"         : 0.30000,
+            "sweep_quarter_chord" : 25.3242,
+            "tc_ratio"            : 0.123655,
+            "camber"              : 0.0,
+            "xc_max_thickness"    : 0.25,
+            "cl_high_lift"        : 0.836473,
+            "cl_high_speed"       : 0.644893}
+    for ivc in ivcs.keys():
+        prob.model.ivc.add_output(ivc,  ivcs[ivc])
+    prob.model.add_subsystem("Buffet",
+        BuffetOnsetConstraint(
+            mach_high_lift=flightPointSets["buffet_high_lift"][0].mach,
+            load_factor_high_lift=flightPointSets["buffet_high_lift"][0].loadFactor,
+            mach_high_speed=flightPointSets["buffet_high_speed"][0].mach,
+            load_factor_high_speed=flightPointSets["buffet_high_speed"][0].loadFactor),
+        promotes=["*"])
+    prob.setup(mode="rev")
+    om.n2(prob, show_browser=False, outfile="n2.html")
+    prob.run_model()
+    prob.check_totals(of=["high_lift_buffet_constraint","high_speed_buffet_constraint"],
+                      wrt=list(ivcs.keys()),
+                      step=[1e-8,1e-6,1e-4],
+                      compact_print=True)
