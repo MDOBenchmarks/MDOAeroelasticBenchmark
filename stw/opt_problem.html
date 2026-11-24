@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Optimization Problems - MDO Benchmarks for Aircraft Design</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Required Results" href="required_results.html" /><link rel="prev" title="Wing Model" href="model.html" /><script>
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
-  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1c6635e" />
-    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=44020203" />
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=2ceb65ce" />
     <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,8 @@
   --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
 }
 </style>
-    <meta property="og:type" content="website"/><meta property="og:title" content="Optimization Problems"/>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="Optimization Problems"/>
     <meta name="twitter:card" content="summary"/>
   </head>
 <body><div class="sy-head">
@@ -65,9 +66,7 @@ data-aria-dark="Switch to auto color mode">
 <li class="toctree-l2"><a class="reference internal" href="stw_papers.html">Papers Using the Simple Transonic Wing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../dlr-f25/index.html">DLR-F25</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../dlr-f25/index.html">DLR-F25</a></li>
 </ul>
 
         </div>
@@ -133,7 +132,7 @@ data-aria-dark="Switch to auto color mode">
       <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
   <article class="yue" role="main">
           <section id="optimization-problems">
-<h1>Optimization Problems<a class="headerlink" href="#optimization-problems" title="Link to this heading">¶</a></h1>
+<h1>Optimization Problems<a class="headerlink" href="#optimization-problems" title="Link to this heading">#</a></h1>
 <p>This section describes our proposed benchmark optimization problems to be applied to the STW.
 The problems build on one another with the intention of allowing researchers to test their tools on increasingly complex problems:</p>
 <ol class="arabic simple">
@@ -145,7 +144,7 @@ The problems build on one another with the intention of allowing researchers to 
 <p><a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a> list information about the aircraft and the flight conditions used in the optimization problems, which are all based on publicly available data on the high gross-weight variant of the Boeing 717.</p>
 <div class="table-wrapper docutils container" id="tabaircraftspec">
 <table class="docutils align-default" id="tabaircraftspec">
-<caption><span class="caption-number">Table 4 </span><span class="caption-text">Aircraft and mission specifications, based on the Boeing 717 high gross-weight variant.</span><a class="headerlink" href="#tabaircraftspec" title="Link to this table">¶</a></caption>
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Aircraft and mission specifications, based on the Boeing 717 high gross-weight variant.</span><a class="headerlink" href="#tabaircraftspec" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"></th>
 <th class="head"><p><strong>Quantity</strong></p></th>
@@ -254,7 +253,7 @@ The problems build on one another with the intention of allowing researchers to 
 </div>
 <div class="table-wrapper docutils container" id="tabflightconditions">
 <table class="docutils align-default" id="tabflightconditions">
-<caption><span class="caption-number">Table 5 </span><span class="caption-text">Flight conditions</span><a class="headerlink" href="#tabflightconditions" title="Link to this table">¶</a></caption>
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Flight conditions</span><a class="headerlink" href="#tabflightconditions" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Flight point</strong></p></th>
 <th class="head"><p><strong>Altitude</strong></p></th>
@@ -298,7 +297,7 @@ The problems build on one another with the intention of allowing researchers to 
 </table>
 </div>
 <section id="objectives">
-<h2>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">¶</a></h2>
+<h2>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
 <p>The objective function to be minimized in <strong>Case 1</strong> is the wingbox mass, computed from the FE model.
 The objective function for cases 2 and 3 is the fuel burn over a given mission.
 The fuel burn is computed using a two-stage process that accounts for the fuel burn in both cruise and climb.
@@ -307,7 +306,7 @@ This process starts by computing the landing gross mass (<span class="math notra
 <div class="math notranslate nohighlight">
 \[\text{LGM} = M_\text{payload} + M_\text{frame} + M_\text{fuel, res} + 2M_\text{wing}\]</div>
 </div>
-<p>The total mass of a single wing is computed using the regression model created by <span id="id1">Mariens <em>et al.</em> [<a class="reference internal" href="#id23" title="J. Mariens, A. Elham, and M. J.L. Van Tooren. Influence of weight modelling on the outcome of wing design using multidisciplinary design optimisation techniques. Aeronautical Journal, 117(1195):871–895, 2013. doi:10.1017/S0001924000008563.">MEVanTooren13</a>]</span>:</p>
+<p>The total mass of a single wing is computed using the regression model created by <span class="bibtex-citation" id="id1">Mariens <em>et al.</em> [<a class="reference internal" href="#id23" title="J. Mariens, A. Elham, and M. J.L. Van Tooren. Influence of weight modelling on the outcome of wing design using multidisciplinary design optimisation techniques. Aeronautical Journal, 117(1195):871–895, 2013. doi:10.1017/S0001924000008563.">MEVanTooren13</a>]</span>:</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
 \[M_\text{wing} = 10.147  M_\text{wingbox}^{0.8162}\]</div>
@@ -316,7 +315,7 @@ This process starts by computing the landing gross mass (<span class="math notra
 <p>Assuming the fuel burn during descent and landing is negligible, the mass at the start of the cruise phase, and then the takeoff gross mass (<span class="math notranslate nohighlight">\(\text{TOGM}\)</span>) are computed by rearranging the Breguet range equation:</p>
 <div class="math-wrapper docutils container" id="equation-eqfuelburn">
 <div class="math notranslate nohighlight" id="equation-eqfuelburn">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eqfuelburn" title="Link to this equation">¶</a></span>\[\begin{split}\begin{aligned}
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqfuelburn" title="Link to this equation">#</a></span>\[\begin{split}\begin{aligned}
 M_\text{cruise, start} &amp; = \text{LGM} \exp\left(\frac{R \times TSFC}{V_\text{cruise}}  \left(\frac{D_\text{cruise}}{L_\text{cruise}}\right)\right)                                                      \\
 \text{TOGM}            &amp; = M_\text{cruise, start} \exp\left(\frac{R_\text{climb} \times TSFC}{V_\text{climb}}  \left(\frac{\cos(\gamma) }{L_\text{cruise}/D_\text{cruise}} + \sin(\gamma)\right)\right) \\
 FB                     &amp; = \text{TOGM} - \text{LGM}
@@ -328,17 +327,17 @@ FB                     &amp; = \text{TOGM} - \text{LGM}
 <div class="math notranslate nohighlight">
 \[L_\text{cruise} = 2L_\text{wing} \qquad D_\text{cruise} = 2\left(D_\text{wing} + q_\text{cruise} S C_{D,\text{frame}}\right)\]</div>
 </div>
-<p>Where <span class="math notranslate nohighlight">\(C_{D,\text{frame}}\)</span> is estimated using a conceptual drag build-up implemented by <span id="id2">Adler and Martins [<a class="reference internal" href="#id16" title="Eytan J. Adler and Joaquim R. R. A. Martins. Blended wing body configuration for hydrogen-powered aviation. In AIAA Aviation 2023 Forum. June 2023. doi:10.2514/6.2023-4020.">AM23</a>]</span> based on the methods of <span id="id3">Torenbeek [<a class="reference internal" href="#id27" title="E. Torenbeek. Synthesis of Subsonic Airplane Design. Delft University Press and Kluwer Academic Publishers, 6th edition, 1990.">Tor90</a>]</span> and <span id="id4">Raymer [<a class="reference internal" href="#id26" title="Daniel P. Raymer. Aircraft Design: A Conceptual Approach. AIAA, 2nd edition, 1992.">Ray92</a>]</span>.
+<p>Where <span class="math notranslate nohighlight">\(C_{D,\text{frame}}\)</span> is estimated using a conceptual drag build-up implemented by <span class="bibtex-citation" id="id2">Adler and Martins [<a class="reference internal" href="#id16" title="Eytan J. Adler and Joaquim R. R. A. Martins. Blended wing body configuration for hydrogen-powered aviation. In AIAA Aviation 2023 Forum. June 2023. doi:10.2514/6.2023-4020.">AM23</a>]</span> based on the methods of <span class="bibtex-citation" id="id3">Torenbeek [<a class="reference internal" href="#id27" title="E. Torenbeek. Synthesis of Subsonic Airplane Design. Delft University Press and Kluwer Academic Publishers, 6th edition, 1990.">Tor90</a>]</span> and <span class="bibtex-citation" id="id4">Raymer [<a class="reference internal" href="#id26" title="Daniel P. Raymer. Aircraft Design: A Conceptual Approach. AIAA, 2nd edition, 1992.">Ray92</a>]</span>.
 <span class="math notranslate nohighlight">\(S\)</span> is the baseline single wing planform area from <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a> and does not vary during optimization since we assume that the remainder of the aircraft remains identical.</p>
 </section>
 <section id="design-variables">
-<h2>Design Variables<a class="headerlink" href="#design-variables" title="Link to this heading">¶</a></h2>
+<h2>Design Variables<a class="headerlink" href="#design-variables" title="Link to this heading">#</a></h2>
 <p>The primary differences between the three benchmark problems are the amount of design freedom given to the optimizer through the design variables.
 <a class="reference internal" href="#taboptprob-dvs"><span class="std std-numref">Table 6</span></a> summarizes these design variables.
 Note that, the exact number and form of some design variables will depend on the structural modeling and geometric parameterization approaches used, as is explained in the following sections.</p>
 <div class="table-wrapper docutils container" id="taboptprob-dvs">
 <table class="docutils align-default" id="taboptprob-dvs">
-<caption><span class="caption-number">Table 6 </span><span class="caption-text">Design variables to be used in the benchmark problems</span><a class="headerlink" href="#taboptprob-dvs" title="Link to this table">¶</a></caption>
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">Design variables to be used in the benchmark problems</span><a class="headerlink" href="#taboptprob-dvs" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Variable</strong></p></th>
 <th class="head"><p><strong>Case 1</strong></p></th>
@@ -396,7 +395,7 @@ Note that, the exact number and form of some design variables will depend on the
 </table>
 </div>
 <section id="structural-variables">
-<h3>Structural Variables<a class="headerlink" href="#structural-variables" title="Link to this heading">¶</a></h3>
+<h3>Structural Variables<a class="headerlink" href="#structural-variables" title="Link to this heading">#</a></h3>
 <p>Due to the variety of structural modeling approaches we want to support in these benchmark problems, we do not prescribe a specific set of structural sizing variables.
 Instead we specify the following requirements for the parameterization of the wingbox:</p>
 <ol class="arabic simple">
@@ -409,12 +408,12 @@ Instead we specify the following requirements for the parameterization of the wi
 <figure class="align-center" id="figstructuralparameterisation">
 <img alt="../_images/StructuralParameterisation-General.png" src="../_images/StructuralParameterisation-General.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Each separately colored wingbox panel should be given it’s own structural sizing variables.</span><a class="headerlink" href="#figstructuralparameterisation" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Each separately colored wingbox panel should be given it’s own structural sizing variables.</span><a class="headerlink" href="#figstructuralparameterisation" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="geometric-variables">
-<h3>Geometric Variables<a class="headerlink" href="#geometric-variables" title="Link to this heading">¶</a></h3>
+<h3>Geometric Variables<a class="headerlink" href="#geometric-variables" title="Link to this heading">#</a></h3>
 <p>In <strong>Case 1</strong>, the wing geometry is fixed and thus there are no geometric design variables.
 In <strong>Case 2</strong>, the section shapes of the wing may be changed in the z direction, and the twist distribution may be varied.
 In <strong>Case 3</strong>, the optimizer may also vary the span, sweep, and chord distribution.
@@ -429,21 +428,21 @@ However, the following requirements must be satisfied:</p>
 </ul>
 </section>
 <section id="aerodynamic-variables">
-<h3>Aerodynamic Variables<a class="headerlink" href="#aerodynamic-variables" title="Link to this heading">¶</a></h3>
+<h3>Aerodynamic Variables<a class="headerlink" href="#aerodynamic-variables" title="Link to this heading">#</a></h3>
 <p>Finally, the optimizer can control the angles of attack at each flight point to meet the lift constraints described in the Constraints section.</p>
 </section>
 </section>
 <section id="constraints">
-<h2>Constraints<a class="headerlink" href="#constraints" title="Link to this heading">¶</a></h2>
+<h2>Constraints<a class="headerlink" href="#constraints" title="Link to this heading">#</a></h2>
 <p><a class="reference internal" href="#taboptprob-constraints"><span class="std std-numref">Table 7</span></a> provides a high-level summary the constraints applied in the 3 benchmark problems.
 As with the design variables, the exact formulation of the constraints in each benchmark problem will depend to some extent on the structural modeling and geometric parameterization approaches used by participants.</p>
 <section id="structural-constraints">
-<h3>Structural Constraints<a class="headerlink" href="#structural-constraints" title="Link to this heading">¶</a></h3>
+<h3>Structural Constraints<a class="headerlink" href="#structural-constraints" title="Link to this heading">#</a></h3>
 <p>The primary structural constraints enforce that the wingbox has a safety factor of 1.5 to both material and buckling failure in both maneuver flight conditions.
 How this is achieved is left free.</p>
 <p>Adjacency constraints are enforced to avoid abrupt changes in panel sizing.
 The change in panel and stiffener thicknesses between adjacent skin and spar panels is limited to <span class="math notranslate nohighlight">\(2.5\,\text{mm}\)</span> and the change in stiffener height to <span class="math notranslate nohighlight">\(10\,\text{mm}\)</span>. (By this we mean that the difference between variables on two adjacent skin panels, or two adjacent spar panels, are constrained, but not the difference between a spar panel and an adjacent skin panel.)
-Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a class="reference internal" href="#id20" title="Christos Kassapoglou. Design and Analysis of Composite Structures: With Applications to Aerospace Structures. John Wiley &amp; Sons Ltd, 2nd edition, 2013. ISBN 9781118401606. doi:10.1002/9781118536933.">Kas13</a>]</span> should be used on all panels:</p>
+Some basic structural sizing rules suggested by <span class="bibtex-citation" id="id5">Kassapoglou [<a class="reference internal" href="#id20" title="Christos Kassapoglou. Design and Analysis of Composite Structures: With Applications to Aerospace Structures. John Wiley &amp; Sons Ltd, 2nd edition, 2013. ISBN 9781118401606. doi:10.1002/9781118536933.">Kas13</a>]</span> should be used on all panels:</p>
 <ul class="simple">
 <li><p>The skin and stiffener thicknesses should be at least <span class="math notranslate nohighlight">\(0.6\,\text{mm}\)</span></p></li>
 <li><p>The stiffener heights should be at least <span class="math notranslate nohighlight">\(18\,\text{mm}\)</span></p></li>
@@ -455,15 +454,15 @@ Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a c
 <p>Participants should enforce as many of these constraints as are applicable to their structural sizing parameterization in all three benchmark problems.</p>
 </section>
 <section id="taxi-bump-constraints">
-<h3>Taxi Bump Constraints<a class="headerlink" href="#taxi-bump-constraints" title="Link to this heading">¶</a></h3>
-<p>For case 4, a taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by <span id="id6">Niu [<a class="reference internal" href="#id25" title="M. Niu. Airframe Structural Design. Hong Kong Conmilit Press, 9th edition, 1988.">Niu88</a>]</span>. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.</p>
+<h3>Taxi Bump Constraints<a class="headerlink" href="#taxi-bump-constraints" title="Link to this heading">#</a></h3>
+<p>For case 4, a taxi bump load case simulates the effect of a rough runway, and can be applied as pure inertial loads to the wingbox, at load factors of plus and minus 2g, as suggested by <span class="bibtex-citation" id="id6">Niu [<a class="reference internal" href="#id25" title="M. Niu. Airframe Structural Design. Hong Kong Conmilit Press, 9th edition, 1988.">Niu88</a>]</span>. These load cases should be applied for a wing with full fuel.  As with the maneuver flight conditions, structural constraints should be attached to each taxi bump load case, for a safety factor of 1.5 to both material and buckling failure.</p>
 </section>
 <section id="geometric-constraints">
-<h3>Geometric Constraints<a class="headerlink" href="#geometric-constraints" title="Link to this heading">¶</a></h3>
+<h3>Geometric Constraints<a class="headerlink" href="#geometric-constraints" title="Link to this heading">#</a></h3>
 <p>Since the benchmark problems consider a limited selection of flight points, additional geometric constraints are required to ensure the optimizer produces a realistic wing geometry:</p>
 <ul class="simple">
 <li><p>The wing’s leading edge radius must be at least 90% of its baseline value throughout the span to maintain reasonable low-speed performance.</p></li>
-<li><p>The front and rear spars must be at least 75% of their baseline height throughout the span to maintain the space required to mount components such as control surface actuators <span id="id7">[<a class="reference internal" href="#id22" title="Rhea P. Liem, Gaetan K. W. Kenway, and Joaquim R. R. A. Martins. Multimission aircraft fuel burn minimization via multipoint aerostructural optimization. AIAA Journal, 53(1):104–122, January 2015. doi:10.2514/1.J052940.">LKM15</a>]</span>.</p></li>
+<li><p>The front and rear spars must be at least 75% of their baseline height throughout the span to maintain the space required to mount components such as control surface actuators <span class="bibtex-citation" id="id7">[<a class="reference internal" href="#id22" title="Rhea P. Liem, Gaetan K. W. Kenway, and Joaquim R. R. A. Martins. Multimission aircraft fuel burn minimization via multipoint aerostructural optimization. AIAA Journal, 53(1):104–122, January 2015. doi:10.2514/1.J052940.">LKM15</a>]</span>.</p></li>
 <li><p>The region between the rear spar and the trailing edge must be at least 50% of its baseline thickness to prevent the optimizer creating an unrealistically thin trailing edge.</p></li>
 <li><p>The wingbox volume must be large enough to store the amount of fuel required for the mission, as computed in the objective function.</p></li>
 <li><p>When the planform is varied, the wing loading <span class="math notranslate nohighlight">\(\left(\text{TOGM}/2S\right)\)</span> must be no greater than <span class="math notranslate nohighlight">\(600\,\text{kg} / \text{m}^2\)</span>.</p></li>
@@ -482,18 +481,18 @@ Some basic structural sizing rules suggested by <span id="id5">Kassapoglou [<a c
 Note that the total fuel mass, <span class="math notranslate nohighlight">\(M_\text{fuel}\)</span>, is the sum of the fuel burn computed using <a class="reference internal" href="#equation-eqfuelburn">(1)</a> and the reserve fuel mass given in <a class="reference internal" href="#tabaircraftspec"><span class="std std-numref">Table 4</span></a>.</p>
 </section>
 <section id="lift-constraints">
-<h3>Lift Constraints<a class="headerlink" href="#lift-constraints" title="Link to this heading">¶</a></h3>
+<h3>Lift Constraints<a class="headerlink" href="#lift-constraints" title="Link to this heading">#</a></h3>
 <p>The lift produced by the wing at each flight point must be equal to the aircraft weight multiplied by the relevant load factor.
 The maneuvers are assumed to be performed at the LGM since the inertial relief of the fuel is not included in the structural model.
 The aircraft mass for the cruise condition is taken to be the mid-cruise mass, which is the geometric average of the cruise start and end masses.
 This accounts for the non-uniform rate of fuel burn over the segment.</p>
 </section>
 <section id="buffet-onset-constraints">
-<h3>Buffet Onset Constraints<a class="headerlink" href="#buffet-onset-constraints" title="Link to this heading">¶</a></h3>
+<h3>Buffet Onset Constraints<a class="headerlink" href="#buffet-onset-constraints" title="Link to this heading">#</a></h3>
 <p>For case 4, a buffet constraints are added.
 These constraints enforce that the wing must be free from buffet at a load factor of 1.3 up to its maximum operating Mach number, <span class="math notranslate nohighlight">\(M_\text{MO}=0.82\)</span>, and up to the dive Mach number, <span class="math notranslate nohighlight">\(M_D=0.89\)</span>, at a load factor of 1.
 As shown in <a class="reference internal" href="#tabflightconditions"><span class="std std-numref">Table 5</span></a>, both these constraints are applied at the aircraft’s service ceiling of <span class="math notranslate nohighlight">\(37000\,\text{ft}\)</span> and at the starting cruise mass, <span class="math notranslate nohighlight">\(M_\text{cruise, start}\)</span> (see the fuel burn objective computation).</p>
-<p>Participants are free to implement these buffet constraints as they wish, we provide a semi-empirical model <a class="reference external" href="https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files/buffet">here</a> based on the method of <span id="id8">Berard and Isikveren [<a class="reference internal" href="#id29" title="Adrien Berard and Askin T. Isikveren. Conceptual design prediction of the buffet envelope of transport aircraft. Journal of Aircraft, September 2009. doi:10.2514/1.41367.">BI09</a>]</span>.
+<p>Participants are free to implement these buffet constraints as they wish, we provide a semi-empirical model <a class="reference external" href="https://github.com/MDOBenchmarks/MDOAeroelasticBenchmark/tree/main/STW-Files/buffet">here</a> based on the method of <span class="bibtex-citation" id="id8">Berard and Isikveren [<a class="reference internal" href="#id29" title="Adrien Berard and Askin T. Isikveren. Conceptual design prediction of the buffet envelope of transport aircraft. Journal of Aircraft, September 2009. doi:10.2514/1.41367.">BI09</a>]</span>.
 This model computes the buffet onset lift coefficient (<span class="math notranslate nohighlight">\(C_{L_\text{buffet}}\)</span>) for a range of Mach numbers based on some basic geometric parameters of the wing.
 The constraint for both buffet conditions can then be written as:</p>
 <div class="math-wrapper docutils container">
@@ -503,7 +502,7 @@ The constraint for both buffet conditions can then be written as:</p>
 <p>Where <span class="math notranslate nohighlight">\(C_{L,n}\)</span> is the lift coefficient required to produce the necessary load factor at each buffet flight point and <span class="math notranslate nohighlight">\(C{L_\text{buffet}}\)</span> is the buffet onset lift coefficient at the relevant Mach number for each flight point.</p>
 </section>
 <section id="takeoff-constraint">
-<h3>Takeoff Constraint<a class="headerlink" href="#takeoff-constraint" title="Link to this heading">¶</a></h3>
+<h3>Takeoff Constraint<a class="headerlink" href="#takeoff-constraint" title="Link to this heading">#</a></h3>
 <p>The balanced field length of the aircraft at its TOGM, on a dry runway, at sea-level standard temperature conditions must be less than 5500 ft.
 The balanced field length is the distance required for the aircraft to accelerate, takeoff, and climb to 35 ft above the runway.
 An engine failure is assumed to occur at the “decision speed”, v1, this decision speed must be solved for such that the distance required to continue the takeoff and climb to 35 ft is equal to the distance required to stop the aircraft.</p>
@@ -519,10 +518,10 @@ A 20 degree flap setting should be assumed for the entire calculation.
 The provided model mentioned above includes a simple estimation of the maximum lift coefficient based on high level wing geometry parameters and an assumed sectional maximum lift coefficient.</p>
 </section>
 <section id="constraints-summary">
-<h3>Constraints Summary<a class="headerlink" href="#constraints-summary" title="Link to this heading">¶</a></h3>
+<h3>Constraints Summary<a class="headerlink" href="#constraints-summary" title="Link to this heading">#</a></h3>
 <div class="table-wrapper docutils container" id="taboptprob-constraints">
 <table class="docutils align-default" id="taboptprob-constraints">
-<caption><span class="caption-number">Table 7 </span><span class="caption-text">Constraints to be enforced in the benchmark problems</span><a class="headerlink" href="#taboptprob-constraints" title="Link to this table">¶</a></caption>
+<caption><span class="caption-number">Table 7 </span><span class="caption-text">Constraints to be enforced in the benchmark problems</span><a class="headerlink" href="#taboptprob-constraints" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head" colspan="3"><p><strong>Constraint</strong>                                                                             | <strong>Description</strong></p></th>
 <th class="head"><p><strong>Case 1</strong></p></th>
@@ -698,7 +697,7 @@ The provided model mentioned above includes a simple estimation of the maximum l
 </div>
 </section>
 <section id="bibliography">
-<h3>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">¶</a></h3>
+<h3>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">#</a></h3>
 <div class="docutils container" id="id15">
 <div role="list" class="citation-list">
 <div class="citation" id="id16" role="doc-biblioentry">
@@ -776,15 +775,15 @@ The provided model mentioned above includes a simple estimation of the maximum l
   </p>
 </div>
       <div class="sy-foot-socials">
-<a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
-  <iconify-icon icon="simple-icons:github"></iconify-icon>
-</a></div>
+  <a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div>
     </div>
   </div>
 </footer>
       <script src="../_static/documentation_options.js?v=01f34227"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-      <script src="../_static/shibuya.js?v=cac61aee"></script>
+      <script src="../_static/shibuya.js?v=50760d75"></script>
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script></body>
 </html>

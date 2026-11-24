@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MDO Benchmarks for Aircraft Design</title><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Simple Transonic Wing (STW)" href="stw/index.html" /><script>
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
-  </script><link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1c6635e" />
-    <link rel="stylesheet" type="text/css" href="_static/shibuya.css?v=44020203" />
+  </script><link rel="stylesheet" type="text/css" href="_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="_static/shibuya.css?v=2ceb65ce" />
     <link media="print" rel="stylesheet" type="text/css" href="_static/print.css?v=20ff2c19" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,8 @@
   --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
 }
 </style>
-    <meta property="og:type" content="website"/><meta property="og:title" content="MDO Benchmarks for Aircraft Design"/>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="MDO Benchmarks for Aircraft Design"/>
     <meta name="twitter:card" content="summary"/>
   </head>
 <body><div class="sy-head">
@@ -65,9 +66,7 @@ data-aria-dark="Switch to auto color mode">
 <li class="toctree-l2"><a class="reference internal" href="stw/stw_papers.html">Papers Using the Simple Transonic Wing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dlr-f25/index.html">DLR-F25</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="dlr-f25/index.html">DLR-F25</a></li>
 </ul>
 
         </div>
@@ -115,7 +114,7 @@ data-aria-dark="Switch to auto color mode">
       <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
   <article class="yue" role="main">
           <section id="mdo-benchmarks-for-aircraft-design">
-<h1>MDO Benchmarks for Aircraft Design<a class="headerlink" href="#mdo-benchmarks-for-aircraft-design" title="Link to this heading">¶</a></h1>
+<h1>MDO Benchmarks for Aircraft Design<a class="headerlink" href="#mdo-benchmarks-for-aircraft-design" title="Link to this heading">#</a></h1>
 <figure class="align-center" id="figcase4-4view">
 <img alt="Results for the simple transonic wing Case 4 benchmark problem." src="_images/Case4-4View.png" />
 </figure>
@@ -123,15 +122,15 @@ data-aria-dark="Switch to auto color mode">
 Similar to the drag prediction and aeroelastic prediction workshops, our goal is to pose a set of benchmark problems that practitioners can use to directly compare their tools to others in the community.
 Simultaneously, we aim to use these benchmark problems to identify and close gaps between the current state of the art and the needs of industry.</p>
 <section id="background">
-<h2>Background<a class="headerlink" href="#background" title="Link to this heading">¶</a></h2>
-<p>The MDO Benchmarks for Aircraft Design working group was formed at the 2024 AIAA SciTech Forum, when the Simple Transonic Wing (STW) benchmark model and problems were proposed <span id="id1">[<a class="reference internal" href="stw/index.html#id5" title="Alasdair C. Gray and Joaquim R. R. A. Martins. A proposed benchmark model for practical aerostructural optimization of aircraft wings. In AIAA SciTech Forum. Orlando, FL, January 2024. doi:10.2514/6.2024-2775.">GM24</a>]</span>.
+<h2>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
+<p>The MDO Benchmarks for Aircraft Design working group was formed at the 2024 AIAA SciTech Forum, when the Simple Transonic Wing (STW) benchmark model and problems were proposed <span class="bibtex-citation" id="id1">[<a class="reference internal" href="stw/index.html#id5" title="Alasdair C. Gray and Joaquim R. R. A. Martins. A proposed benchmark model for practical aerostructural optimization of aircraft wings. In AIAA SciTech Forum. Orlando, FL, January 2024. doi:10.2514/6.2024-2775.">GM24</a>]</span>.
 Since then, the working group has refined the STW benchmark problems, and multiple participants have presented results in special sessions at the AIAA SciTech Forums in 2025 and 2026.</p>
-<p>A new, more complex, benchmark model, the DLR-F25, was proposed at SciTech 2026 <span id="id2">[<a class="reference internal" href="#id14" title="Mohammad Abu-Zurayk, Antoine DeBlois, Joël Brezillon, Ben D. Phillips, Ögmundur Petersson, Raul llamas, Časlav Ilić, Eliot Aretskin-Hariton, Jeffryes W. Chapman, Patrick Wegener, Jan Himisch, Matthias Schulze, Jannik Häßy, Sascha Dähne, Cian Conlan-Smith, Jasveer Singh, Sebastian Wöhler, Christophe Blondeau, Michael Meheut, Sven Geisbauer, and Stefan Görtz. Establishing a joint research-industry MDO benchmark based on the DLR-F25 aircraft configuration. In AIAA SciTech Forum. Orlando, FL, 1 2026. doi:10.2514/6.2026-0763.">AZDB+26</a>]</span>, and the working group is currently in the process of finalizing benchmark problems for this model.
+<p>A new, more complex, benchmark model, the DLR-F25, was proposed at SciTech 2026 <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id14" title="Mohammad Abu-Zurayk, Antoine DeBlois, Joël Brezillon, Ben D. Phillips, Ögmundur Petersson, Raul llamas, Časlav Ilić, Eliot Aretskin-Hariton, Jeffryes W. Chapman, Patrick Wegener, Jan Himisch, Matthias Schulze, Jannik Häßy, Sascha Dähne, Cian Conlan-Smith, Jasveer Singh, Sebastian Wöhler, Christophe Blondeau, Michael Meheut, Sven Geisbauer, and Stefan Görtz. Establishing a joint research-industry MDO benchmark based on the DLR-F25 aircraft configuration. In AIAA SciTech Forum. Orlando, FL, 1 2026. doi:10.2514/6.2026-0763.">AZDB+26</a>]</span>, and the working group is currently in the process of finalizing benchmark problems for this model.
 For 2026, the working group will continue to work on both the STW and DLR-F25 benchmarks, with the STW acting as a simpler starting point for those new to the benchmarks, and the DLR-F25 acting as a grand-challenge problem.</p>
 <p>We encourage participants to present results on either or both of these benchmark problems at the 2027 AIAA SciTech Forum.</p>
 </section>
 <section id="get-involved">
-<h2>Get Involved<a class="headerlink" href="#get-involved" title="Link to this heading">¶</a></h2>
+<h2>Get Involved<a class="headerlink" href="#get-involved" title="Link to this heading">#</a></h2>
 <p>Our working group holds a regular meeting once a month to discuss progress on the benchmark problems and plan future activities.
 Anyone interested in participating in the working group is welcome to join.
 We welcome contributions both from those working on the benchmark problems themselves, and those in industry interested in helping us shape the future direction of the benchmarks.</p>
@@ -143,7 +142,7 @@ While the majority of participants to date have tackled the benchmark problems u
 Finally, we are happy for participants to present additional results on variations of the benchmark problems (e.g introducing new objectives, constraints, and design variables, or investigating the impact of different modelling choices on the optimization results).</p>
 </section>
 <section id="benchmarks">
-<h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Link to this heading">¶</a></h2>
+<h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Link to this heading">#</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="stw/index.html">Simple Transonic Wing (STW)</a></li>
@@ -152,9 +151,9 @@ Finally, we are happy for participants to present additional results on variatio
 </div>
 </section>
 <section id="related-works">
-<h2>Related Works<a class="headerlink" href="#related-works" title="Link to this heading">¶</a></h2>
+<h2>Related Works<a class="headerlink" href="#related-works" title="Link to this heading">#</a></h2>
 <section id="simple-transonic-wing-stw-papers">
-<h3>Simple Transonic Wing (STW) Papers<a class="headerlink" href="#simple-transonic-wing-stw-papers" title="Link to this heading">¶</a></h3>
+<h3>Simple Transonic Wing (STW) Papers<a class="headerlink" href="#simple-transonic-wing-stw-papers" title="Link to this heading">#</a></h3>
 <div class="docutils container" id="id3">
 <div role="list" class="citation-list">
 <div class="citation" id="id11" role="doc-biblioentry">
@@ -197,7 +196,7 @@ Finally, we are happy for participants to present additional results on variatio
 </div>
 </section>
 <section id="dlr-f25-papers">
-<h3>DLR-F25 Papers<a class="headerlink" href="#dlr-f25-papers" title="Link to this heading">¶</a></h3>
+<h3>DLR-F25 Papers<a class="headerlink" href="#dlr-f25-papers" title="Link to this heading">#</a></h3>
 <div class="docutils container" id="id13">
 <div role="list" class="citation-list">
 <div class="citation" id="id14" role="doc-biblioentry">
@@ -241,14 +240,14 @@ Finally, we are happy for participants to present additional results on variatio
   </p>
 </div>
       <div class="sy-foot-socials">
-<a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
-  <iconify-icon icon="simple-icons:github"></iconify-icon>
-</a></div>
+  <a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div>
     </div>
   </div>
 </footer>
       <script src="_static/documentation_options.js?v=01f34227"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-      <script src="_static/shibuya.js?v=cac61aee"></script></body>
+      <script src="_static/shibuya.js?v=50760d75"></script></body>
 </html>

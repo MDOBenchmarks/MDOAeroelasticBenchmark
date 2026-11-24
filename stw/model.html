@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Wing Model - MDO Benchmarks for Aircraft Design</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Optimization Problems" href="opt_problem.html" /><link rel="prev" title="Simple Transonic Wing (STW)" href="index.html" /><script>
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
-  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1c6635e" />
-    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=44020203" />
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=2ceb65ce" />
     <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,8 @@
   --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
 }
 </style>
-    <meta property="og:type" content="website"/><meta property="og:title" content="Wing Model"/>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="Wing Model"/>
     <meta name="twitter:card" content="summary"/>
   </head>
 <body><div class="sy-head">
@@ -65,9 +66,7 @@ data-aria-dark="Switch to auto color mode">
 <li class="toctree-l2"><a class="reference internal" href="stw_papers.html">Papers Using the Simple Transonic Wing</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../dlr-f25/index.html">DLR-F25</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../dlr-f25/index.html">DLR-F25</a></li>
 </ul>
 
         </div>
@@ -119,11 +118,11 @@ data-aria-dark="Switch to auto color mode">
       <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
   <article class="yue" role="main">
           <section id="wing-model">
-<h1>Wing Model<a class="headerlink" href="#wing-model" title="Link to this heading">¶</a></h1>
-<p>The benchmark model is based on an OML geometry originally defined by <span id="id1">Kenway [<a class="reference internal" href="#id11" title="Gaetan K. W. Kenway. A Scalable, Parallel Approach for Multi-Point, High-Fidelity Aerostructural Optimization of Aircraft Configurations. PhD thesis, University of Toronto, 2013.">Ken13</a>]</span>, who referred to it is as the STW.
+<h1>Wing Model<a class="headerlink" href="#wing-model" title="Link to this heading">#</a></h1>
+<p>The benchmark model is based on an OML geometry originally defined by <span class="bibtex-citation" id="id1">Kenway [<a class="reference internal" href="#id11" title="Gaetan K. W. Kenway. A Scalable, Parallel Approach for Multi-Point, High-Fidelity Aerostructural Optimization of Aircraft Configurations. PhD thesis, University of Toronto, 2013.">Ken13</a>]</span>, who referred to it is as the STW.
 In this document we simply refer to it as <cite>the wing</cite> or <cite>the benchmark model</cite>.</p>
 <section id="wing-geometry">
-<h2>Wing Geometry<a class="headerlink" href="#wing-geometry" title="Link to this heading">¶</a></h2>
+<h2>Wing Geometry<a class="headerlink" href="#wing-geometry" title="Link to this heading">#</a></h2>
 <p>The wing geometry is shown in <a class="reference internal" href="#figwingplanform"><span class="std std-numref">Fig. 1</span></a>, <a class="reference internal" href="#figboundaryconditions"><span class="std std-numref">Fig. 2</span></a> and <a class="reference internal" href="#figairfoilsection"><span class="std std-numref">Fig. 3</span></a>.
 It has a simple trapezoidal planform, based on the Boeing 717, with a constant, untwisted RAE2822 cross-section, shown in <a class="reference internal" href="#figairfoilsection"><span class="std std-numref">Fig. 3</span></a>.
 Note that this cross section cuts through the wing on planes normal to the global Y-axis, rather than normal the quarter-chord axis.
@@ -137,34 +136,34 @@ The wingbox is subject to symmetry conditions at the centerline and is fixed in 
 <figure class="align-center" id="figwingplanform">
 <img alt="Wing Planform" src="../_images/wingPlanform.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Wing Planform</span><a class="headerlink" href="#figwingplanform" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Wing Planform</span><a class="headerlink" href="#figwingplanform" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="figboundaryconditions">
 <img alt="Wing BCs" src="../_images/BoundaryConditions.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Wing OML and wingbox, boundary conditions are applied to the wingbox at the side-of-body junction and symmetry plane</span><a class="headerlink" href="#figboundaryconditions" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Wing OML and wingbox, boundary conditions are applied to the wingbox at the side-of-body junction and symmetry plane</span><a class="headerlink" href="#figboundaryconditions" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="figairfoilsection">
 <img alt="RAE2822 airfoil section" src="../_images/AirfoilSection.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">RAE2822 airfoil section</span><a class="headerlink" href="#figairfoilsection" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">RAE2822 airfoil section</span><a class="headerlink" href="#figairfoilsection" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="aerodynamic-model">
-<h2>Aerodynamic Model<a class="headerlink" href="#aerodynamic-model" title="Link to this heading">¶</a></h2>
+<h2>Aerodynamic Model<a class="headerlink" href="#aerodynamic-model" title="Link to this heading">#</a></h2>
 <p>A family of 3 structured multiblock CFD meshes for the wing are provided in the repository, which are summarized in <a class="reference internal" href="#tabaeromeshes"><span class="std std-numref">Table 1</span></a>.
 The finest mesh (L1) is intended only for mesh convergence and analysis studies, the L2 mesh is intended for final optimizations, and the L3 mesh for debugging.
 The coarser meshes are created by repeatedly coarsening the L0 surface mesh by a factor of 2 in each direction before extruding up to a distance of <span class="math notranslate nohighlight">\(300\,\text{m}\)</span> from the wing surface.
 The advantage of this approach is that it results in higher quality volume meshes than simply coarsening the L1 volume mesh.
-The disadvantage is that it does not provide the parametrically-similar series of grids necessary for a mathematically rigorous convergence study <span id="id2">[<a class="reference internal" href="#id18" title="John Vassberg. A unified baseline grid about the Common Research Model wing/body for the Fifth AIAA CFD Drag Prediction Workshop (invited). In 29th AIAA Applied Aerodynamics Conference. Jul 2011. doi:10.2514/6.2011-3508.">Vas11</a>]</span>.</p>
+The disadvantage is that it does not provide the parametrically-similar series of grids necessary for a mathematically rigorous convergence study <span class="bibtex-citation" id="id2">[<a class="reference internal" href="#id18" title="John Vassberg. A unified baseline grid about the Common Research Model wing/body for the Fifth AIAA CFD Drag Prediction Workshop (invited). In 29th AIAA Applied Aerodynamics Conference. Jul 2011. doi:10.2514/6.2011-3508.">Vas11</a>]</span>.</p>
 <p>Use of these meshes is not required.
 Participants are encouraged to submit results using meshes with topologies and sizes that are suitable for their CFD codes and available computational resources.</p>
 <div class="table-wrapper docutils container" id="tabaeromeshes">
 <table class="docutils align-default" id="tabaeromeshes">
-<caption><span class="caption-number">Table 1 </span><span class="caption-text">CFD mesh information.</span><a class="headerlink" href="#tabaeromeshes" title="Link to this table">¶</a></caption>
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">CFD mesh information.</span><a class="headerlink" href="#tabaeromeshes" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Mesh</strong></p></th>
 <th class="head"><p><strong>Cells</strong></p></th>
@@ -193,13 +192,13 @@ Participants are encouraged to submit results using meshes with topologies and s
 </div>
 </section>
 <section id="structural-model">
-<h2>Structural Model<a class="headerlink" href="#structural-model" title="Link to this heading">¶</a></h2>
+<h2>Structural Model<a class="headerlink" href="#structural-model" title="Link to this heading">#</a></h2>
 <p>A series of shell FE meshes of the wingbox are also provided in the repository in BDF format.
 These are summarized in <a class="reference internal" href="#tabstructmeshes"><span class="std std-numref">Table 2</span></a> and consist of 4-node quad elements.
 Equivalent meshes with higher order 9 and 16-node quad elements are also available in the repository however, these element types are not widely supported by commercial FE codes.</p>
 <div class="table-wrapper docutils container" id="tabstructmeshes">
 <table class="docutils align-default" id="tabstructmeshes">
-<caption><span class="caption-number">Table 2 </span><span class="caption-text">FE mesh information.</span><a class="headerlink" href="#tabstructmeshes" title="Link to this table">¶</a></caption>
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">FE mesh information.</span><a class="headerlink" href="#tabstructmeshes" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><ul class="simple">
 <li><p><strong>Mesh</strong></p></li>
@@ -247,20 +246,20 @@ Equivalent meshes with higher order 9 and 16-node quad elements are also availab
 <figure class="align-center" id="figstructmesh">
 <img alt="Structural mesh" src="../_images/L1StructMesh.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">The finest wingbox mesh contains 71,200 quadrilateral elements and 419,778 DOF.</span><a class="headerlink" href="#figstructmesh" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">The finest wingbox mesh contains 71,200 quadrilateral elements and 419,778 DOF.</span><a class="headerlink" href="#figstructmesh" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>To test the modeling capabilities relevant for analysis of modern aircraft structures, the wingbox is assumed to be made of stiffened composite panels.
 The stiffeners are assumed to have a T-shaped cross section, as shown in <a class="reference internal" href="#figcrosssection"><span class="std std-numref">Fig. 5</span></a>.
-The composite ply properties used throughout the wingbox are shown in <a class="reference internal" href="#tabcompositeproperties"><span class="std std-numref">Table 3</span></a>, taken from <span id="id3">Brooks <em>et al.</em> [<a class="reference internal" href="#id8" title="Timothy R. Brooks, Joaquim R. R. A. Martins, and Graeme J. Kennedy. Aerostructural trade-offs for tow-steered composite wings. Journal of Aircraft, 57(5):787–799, September 2020. doi:10.2514/1.C035699.">BMK20</a>]</span>.
+The composite ply properties used throughout the wingbox are shown in <a class="reference internal" href="#tabcompositeproperties"><span class="std std-numref">Table 3</span></a>, taken from <span class="bibtex-citation" id="id3">Brooks <em>et al.</em> [<a class="reference internal" href="#id8" title="Timothy R. Brooks, Joaquim R. R. A. Martins, and Graeme J. Kennedy. Aerostructural trade-offs for tow-steered composite wings. Journal of Aircraft, 57(5):787–799, September 2020. doi:10.2514/1.C035699.">BMK20</a>]</span>.
 Both the shell and stiffeners in every panel of the wingbox are assumed to consist of a [<span class="math notranslate nohighlight">\(0^{\circ}\)</span>, <span class="math notranslate nohighlight">\(-45^{\circ}\)</span>, <span class="math notranslate nohighlight">\(45^{\circ}\)</span>, <span class="math notranslate nohighlight">\(90^{\circ}\)</span>] layup.
-Different layups of these plies are used for different components in the wingbox based on values used by <span id="id4">Dillinger [<a class="reference internal" href="#id9" title="Johannes K. S. Dillinger. Static Aeroelastic Optimization of Composite Wings with Variable Stiffness Laminates. PhD thesis, TU Delft, 2014. doi:10.4233/uuid:20484651-fd5d-49f2-9c56-355bc680f2b7.">Dil14</a>]</span>.
+Different layups of these plies are used for different components in the wingbox based on values used by <span class="bibtex-citation" id="id4">Dillinger [<a class="reference internal" href="#id9" title="Johannes K. S. Dillinger. Static Aeroelastic Optimization of Composite Wings with Variable Stiffness Laminates. PhD thesis, TU Delft, 2014. doi:10.4233/uuid:20484651-fd5d-49f2-9c56-355bc680f2b7.">Dil14</a>]</span>.
 In the upper and lower skin shells and in all stiffeners, we assume a <span class="math notranslate nohighlight">\(0^{\circ}\)</span> biased layup with ply fractions of [44.41%, 22.2%, 22.2%, 11.19%], while in the spar and rib shells we use a more isotropic [10%, 35%, 35%, 20%].
 In the skins, the stiffeners and <span class="math notranslate nohighlight">\(0^{\circ}\)</span> plies are aligned with the trailing edge spar, in the spars and ribs they are vertically oriented.</p>
 <figure class="align-center" id="figcrosssection">
 <img alt="../_images/CrossSection.svg" src="../_images/CrossSection.svg" />
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Cross section of the panel</span><a class="headerlink" href="#figcrosssection" title="Link to this image">¶</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Cross section of the panel</span><a class="headerlink" href="#figcrosssection" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>There are a wide variety of approaches to modeling stiffened shells in FE models and predicting their failure, particularly in the context of optimization.
@@ -273,7 +272,7 @@ However, the models used by participants should:</p>
 </ol>
 <div class="table-wrapper docutils container" id="tabcompositeproperties">
 <table class="docutils align-default" id="tabcompositeproperties">
-<caption><span class="caption-number">Table 3 </span><span class="caption-text">Composite ply properties.</span><a class="headerlink" href="#tabcompositeproperties" title="Link to this table">¶</a></caption>
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">Composite ply properties.</span><a class="headerlink" href="#tabcompositeproperties" title="Link to this table">#</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Property</strong></p></th>
 <th class="head"><p><strong>Description</strong></p></th>
@@ -337,7 +336,7 @@ For the sake of simplicity, we do not include any inertial forces due to non-str
 Although such loads are simple enough to include in a standalone analysis, they are difficult to include in an optimization problem due to the need to keep them consistent with the wing’s geometry as it changes.</p>
 </section>
 <section id="bibliography">
-<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">¶</a></h2>
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">#</a></h2>
 <div class="docutils container" id="id5">
 <div role="list" class="citation-list">
 <div class="citation" id="id8" role="doc-biblioentry">
@@ -398,15 +397,15 @@ Although such loads are simple enough to include in a standalone analysis, they 
   </p>
 </div>
       <div class="sy-foot-socials">
-<a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
-  <iconify-icon icon="simple-icons:github"></iconify-icon>
-</a></div>
+  <a href="https://www.github.com/MDOBenchmarks/MDOAeroelasticBenchmark" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div>
     </div>
   </div>
 </footer>
       <script src="../_static/documentation_options.js?v=01f34227"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-      <script src="../_static/shibuya.js?v=cac61aee"></script>
+      <script src="../_static/shibuya.js?v=50760d75"></script>
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script></body>
 </html>
